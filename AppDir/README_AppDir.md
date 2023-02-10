@@ -1,4 +1,4 @@
-# Stefans_Julia_RePo
+# AppDir
 This is a directory for projects that should be compiled via "PackageCompiler".
 
 Julia Version should be at least v1.8.5
