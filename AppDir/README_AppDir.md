@@ -9,7 +9,7 @@ For compilation advice I refer to the site:
 https://julialang.github.io/PackageCompiler.jl/stable/apps.html
 
 The project "InteractiveEquivalentCircuit" is an interactive "GLMakie" figure.
-I relays on the package: "EquivalentCircuits.jl"
+It depends on the package: "EquivalentCircuits.jl"
 
 It might be necessary to install the master version of this package via:
 
