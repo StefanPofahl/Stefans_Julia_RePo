@@ -1,0 +1,7 @@
+name = "MyGLMakieApp"
+uuid = "07f8f970-0844-45a4-b180-d1cc3fb4dfa4"
+authors = ["WC1991 <s51079@edu.campus02.at>"]
+version = "0.1.0"
+
+[deps]
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"

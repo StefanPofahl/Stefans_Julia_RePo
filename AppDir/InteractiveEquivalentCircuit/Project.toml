@@ -4,10 +4,5 @@ authors = ["Stefan Pofahl, <pofahl@hycenta.at>"]
 version = "0.1.0"
 
 [deps]
-Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 EquivalentCircuits = "da5bd070-f609-4e16-a30d-de86b3faa756"
 GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
-LLVMExtra_jll = "dad2f222-ce93-54a1-a47d-0025e8a3acab"
-PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
-Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-micromamba_jll = "f8abcde7-e9b7-5caa-b8af-a437887ae8e4"

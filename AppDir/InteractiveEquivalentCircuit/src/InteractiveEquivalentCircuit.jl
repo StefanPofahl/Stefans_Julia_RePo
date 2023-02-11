@@ -1,35 +1,41 @@
-# --------------------------------------------------------------------------------------------------------------------------
-# packages that need to be installed:
-# using Pkg; Pkg.rm("EquivalentCircuits"); Pkg.add(url="https://github.com/MaximeVH/EquivalentCircuits.jl.git#master")
-# using Pkg; Pkg.add("GLMakie")
-# using Pkg; Pkg.add("LLVMExtra_jll")
-# using Pkg; Pkg.add("PackageCompiler")
-# using Pkg; Pkg.add("Artifacts")
-# using Pkg; Pkg.add("micromamba_jll")
-# Pkg> add PackageCompiler@v2.1.4
-# --------------------------------------------------------------------------------------------------------------------------
+# --- preface: ----------------------------------------------------------------------------------------------------------- #
+# --- please follow the instractions of the manual of "PackageCompiler":                                                   #
+# --- https://julialang.github.io/PackageCompiler.jl/stable/apps.html                                                      #
+# ... .................................................................................................................... #
+# --- For PackageCompiler v2.1.5 the compile command should be:                                                            #
+# --- julia> using PackageCompiler                                                                                         #
+# --- julia> create_app("MyGLMakieApp", "MyAppCompiled"; incremental= true, force= true, include_lazy_artifacts= true)     #
+# ... .................................................................................................................... #
+
+# ------------------------------------------------------------------------------------------------------------------------ # 
+# --- packages that need to be installed: 1. "EquivalentCircuits", 2. "GLMakie", 3. "PackageCompiler"                      #
+# --- if "EquivalentCircuits" is already installed and you run into trouble, remove this package and re-install            #
+# --- from the master branche                                                                                              #
+# --- julia> using Pkg; Pkg.rm("EquivalentCircuits")                                                                       #
+# --- julia> Pkg.add(url="https://github.com/MaximeVH/EquivalentCircuits.jl.git#master")                                   #
+# --- julia> using Pkg; Pkg.add("GLMakie")                                                                                 #
+# --- julia> using Pkg; Pkg.add("PackageCompiler")                                                                         #
+# --- Pkg-Manual: -------------------------------------------------------------------------------------------------------- #
+# --- https://pkgdocs.julialang.org/v1/                                                                                    #
+# --- https://pkgdocs.julialang.org/v1/environments/                                                                       #
+# ------------------------------------------------------------------------------------------------------------------------ #
+
 module InteractiveEquivalentCircuit
 
-using Artifacts
 using EquivalentCircuits 
 using GLMakie 
+# --- remark: ------------------------------------------------------------------------------------------------------------ #
+# --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #
+# ... .................................................................................................................... #
 
-if VERSION >= v"1.7.0"
-    using LLVMExtra_jll
+if VERSION < v"1.6.7"
+    error("Julia version must be at least v1.6.7")
 end
 
-using micromamba_jll
-
-const outputo = begin
-    o = Base.JLOptions().outputo
-    o == C_NULL ? "ok" : unsafe_string(o)
-end
-
-fooifier_path() = joinpath(artifact"fooifier", "bin", "fooifier" * (Sys.iswindows() ? ".exe" : ""))
-
-function julia_main()::Cint
+# --- mandatory function "julia_main()": -----------------------------------------------------------------------------------
+function julia_main()::Cint 
     try
-        display(real_main())
+        real_main()
     catch
         Base.invokelatest(Base.display_error, Base.catch_stack())
         return 1
@@ -37,71 +43,56 @@ function julia_main()::Cint
     return 0
 end
 
-if VERSION >= v"1.7.0"
-    if isfile(LLVMExtra_jll.libLLVMExtra_path)
-        println("LLVMExtra path: ok!")
-    else
-        println("LLVMExtra path: fail!")
-    end
-end
-
-if isfile(micromamba_jll.micromamba_path)
-    println("micromamba_jll path: ok!")
-else
-    println("micromamba_jll path: fail!")
-end
-
-if abspath(PROGRAM_FILE) == @__FILE__
-    real_main()
-end
-
+# --- this is the real main function, which is called inside "julia_main()": -----------------------------------------------
 function real_main()
-    if abspath(PROGRAM_FILE) == @__FILE__
-        real_main()
-    end
-    println("function real_main(): Hello World!")
     # --- measured values: -------------------------------------------------------------------------------------------------
     frequ_data = [0.0199553, 0.0251206, 0.0316296, 0.0398258, 0.0501337, 0.0631739, 0.0794492, 0.1001603, 0.1260081, 0.1588983, 
         0.2003205, 0.2520161, 0.316723, 0.400641, 0.5040323, 0.6334459, 0.7923428, 0.999041, 1.266892, 1.584686, 1.998082, 
         2.504006, 3.158693, 3.945707, 5.008013, 6.317385, 7.944915, 9.93114, 12.40079, 15.625, 19.86229, 24.93351, 31.25, 
         38.42213, 50.22321, 63.3446, 79.00281, 100.4464, 125.558, 158.3615, 198.6229, 252.4038, 315.5048, 397.9953, 505.5147, 
         627.7902, 796.875, 998.264, 1265.625, 1577.524, 1976.103, 2527.573]
-    Z_data = ComplexF64[0.0192023 + 6.406656e-6im, 0.0191242 - 8.276627e-5im, 0.0190921 - 0.0001089im, 0.0190038 - 0.0001645im, 
-        0.0189117 - 0.0002133im, 0.0188934 - 0.0002243im, 0.0188256 - 0.0002757im, 0.0187806 - 0.0003211im, 0.0187788 - 0.0003745im, 
-        0.018721 - 0.0004454im, 0.0186957 - 0.0005298im, 0.0186338 - 0.0006171im, 0.0185409 - 0.0007205im, 0.0184303 - 0.0008409im, 
-        0.0182806 - 0.0009458im, 0.0181321 - 0.0010522im, 0.0179509 - 0.0011472im, 0.017754 - 0.0012429im, 0.0175502 - 0.0013275im, 
-        0.0173766 - 0.0014186im, 0.0171844 - 0.0015215im, 0.0169962 - 0.0016264im, 0.0167821 - 0.0017693im, 0.0165568 - 0.0019212im, 
-        0.0162894 - 0.0021114im, 0.0160016 - 0.0023279im, 0.0156597 - 0.002562im, 0.0152661 - 0.0027968im, 0.0147982 - 0.0030195im, 
-        0.0142456 - 0.0032134im, 0.0136019 - 0.00335im, 0.0129721 - 0.0033938im, 0.0123483 - 0.0033619im, 0.0118009 - 0.0032698im, 
-        0.011152 - 0.0030826im, 0.010654 - 0.0028835im, 0.0102355 - 0.0026797im, 0.0098378 - 0.0024579im, 0.0095112 - 0.0022581im, 
-        0.0092073 - 0.0020614im, 0.0089405 - 0.0018805im, 0.0086829 - 0.0017002im, 0.0084644 - 0.0015397im, 0.0082576 - 0.0013784im, 
-        0.0080616 - 0.0012167im, 0.0078987 - 0.0010697im, 0.0077369 - 0.0009059im, 0.0075978 - 0.0007438im, 0.0074675 - 0.0005658im, 
-        0.0073608 - 0.0003879im, 0.0072638 - 0.0001883im, 0.0071759 + 5.594581e-5im]  
+
+    Z_data = ComplexF64[0.9814697912245967 - 0.0037228131590371894im, 0.9812805807383405 - 0.004541817311026915im, 
+        0.9810437691249618 - 0.005545286937042057im, 0.9807439778191548 - 0.006773931551470225im, 0.9803595778877165 - 0.008275929086694679im, 
+        0.9798559522934699 - 0.010121031228449179im, 0.9791942396150454 - 0.012352908512991463im, 0.9782930839600954 - 0.01509548153523514im, 
+        0.9770718096573817 - 0.018380445339277213im, 0.975365535083125 - 0.022351663962338727im, 0.9729941725770648 - 0.027026350797889443im, 
+        0.9697450049433056 - 0.03234827459977607im, 0.9653574004471115 - 0.03821250646524921im, 0.9594106323357426 - 0.04455919164804537im, 
+        0.9521251303395071 - 0.05065952707397996im, 0.9436150305790347 - 0.05620940341192938im, 0.9345015730138716 - 0.060900481864809765im, 
+        0.9248088105890082 - 0.065075600671394im, 0.9150406251320378 - 0.06909619659866516im, 0.906074046441051 - 0.07323386239214587im, 
+        0.8968000092157945 - 0.07842611441950355im, 0.8873612498406966 - 0.08472823436853534im, 0.8766966349427485 - 0.09266893007361414im, 
+        0.8650620144143906 - 0.10164345177037322im, 0.8505056931889721 - 0.1125530811610637im, 0.8337613003730493 - 0.1241012397136905im, 
+        0.8143789128055314 - 0.1358625203233807im, 0.792579368446722 - 0.14701938572720907im, 0.7680147071972325 - 0.15711017826147636im, 
+        0.7396893337971248 - 0.1657213462821573im, 0.7079415622643752 - 0.17179249645453626im, 0.676552652542632 - 0.17426744660285395im, 
+        0.6451613683886926 - 0.17332223040897865im, 0.6171293092305955 - 0.16957581484858758im, 0.5829422876305477 - 0.16117924545169507im, 
+        0.5560627948656406 - 0.15146286390152233im, 0.5332226186731637 - 0.1409170389640344im, 0.5114829653350961 - 0.1288449827762636im, 
+        0.4939833593856589 - 0.11770576032438315im, 0.4781784078527428 - 0.10668963480838624im, 0.4646695476865268 - 0.09677580719404014im, 
+        0.45192845274933935 - 0.08727373331793545im, 0.4410719645441521 - 0.07922589038903646im, 0.4304785560153798 - 0.07139711003732342im, 
+        0.4201572713674723 - 0.06352977408827129im, 0.4113425966574627 - 0.056232475166844im, 0.40239676915697875 - 0.04773107296298696im, 
+        0.39487964994816266 - 0.03912064920564358im, 0.3881066173087768 - 0.029425058931592557im, 0.3829084880809682 - 0.01986438882326411im, 
+        0.37861399237183796 - 0.009498772031665036im, 0.3749485995402947 + 0.0026642817458245784im]
+
     x_ref = real(Z_data)
     y_ref = imag(Z_data)
         
     # --- generate frequency vector with n_elements with the same range_data as given in the measurement: ----------------------
     n_elements = 100
-    # frequ_vec_all   = exp10.(LinRange(log10(frequ_data_all[1].val, log10(frequ_data_all[end].val, n_elements))
-    frequ_vec       = exp10.(LinRange(log10(frequ_data[1]), log10(frequ_data[end]), n_elements))
+    frequ_vec  = exp10.(LinRange(log10(frequ_data[1]), log10(frequ_data[end]), n_elements))
 
     # --- Equivalent Circuit Model: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]": -----------------------------------------------------------
     ecirc_strg = "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]"
-    R1_ref    = 0.007031                                          # Gamry: HFR
-    L2_ref    = 0.00000004257                                     # Gamry: Lstray
     # ---
-    P3w_ref   = 149.9;                  P3n_ref   = 0.9763        # Gamry: Q_3, a_3
-    R4_ref    = 0.00132                                           # Gamry: R_3
-    # ---
-    P5w_ref   = 1.948;                  P5n_ref   = 0.7817        # Gamry: Q_2, a_2
-    R6_ref    = 0.009341                                          # Gamry: R2
-    # ---
-    P7w_ref   = 0.2224;                 P7n_ref   = 9.97E-01      # Gamry: Q_1, a_1
-    R8_ref    = 0.001118                                          # Gamry: R_1
+    R1_ref    = 0.3627398
+    L2_ref    = 1.9482112e-6 
+    P3w_ref   = 0.0421738;              P3n_ref = 0.756012 
+    R4_ref    = 0.5040666 
+    P5w_ref   = 3.8225318;              P5n_ref = 0.999479
+    R6_ref    = 0.0588018 
+    P7w_ref   = 0.0088869;              P7n_ref = 0.913665 
+    R8_ref    = 0.0567510
 
     # --- interactive plotting: ------------------------------------------------------------------------------------------------ 
     fig = Figure(resolution= (1500, 600))
-    ax = Axis(fig[1, 1], title = ecirc_strg, xlabel = L"\text{z_{real}}", ylabel = L"\text{z_{imag}}", aspect=DataAspect(),)
+    ax = Axis(fig[1, 1], title = ecirc_strg, xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{normalized z_{imag} / -}", aspect=DataAspect(),)
 
     # --- function parameters must be of type "Observable": --------------------------------------------------------------------
     obs_ = [Observable(0.0) for s in 1:11]
@@ -113,7 +104,7 @@ function real_main()
     end
 
     # --- about makro @lift(): https://docs.makie.org/stable/documentation/nodes/index.html#shorthand_macro_for_lift
-    Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data, $(obs_[1]), $(obs_[2]), $(obs_[3]), $(obs_[4]), $(obs_[5]), $(obs_[6]), $(obs_[7]), $(obs_[8]), $(obs_[9]), $(obs_[10]), $(obs_[11]) ))
+    Z_sim_data = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_[1]), $(obs_[2]), $(obs_[3]), $(obs_[4]), $(obs_[5]), $(obs_[6]), $(obs_[7]), $(obs_[8]), $(obs_[9]), $(obs_[10]), $(obs_[11]) ))
     x_ = @lift(real($Z_sim_data))
     y_ = @lift(imag($Z_sim_data))
 
@@ -148,7 +139,13 @@ function real_main()
     # colsize!(fig.layout, 1, Aspect(1, /(ax.finallimits[].widths...)))
     # resize_to_layout!(fig)
     # --- 
-    return fig
-end # --- end function ---
+    # keep window open by "wait(gl_screen)", see:
+    # https://discourse.julialang.org/t/makie-app-from-command-line/53890/5
+    gl_screen = display(fig)
+    wait(gl_screen)
+    return 
+end # --- end function real_main() ------------------------------------------------------------------------------------------
 
+# ###########################################################################################################################
 end # module
+# ###########################################################################################################################
