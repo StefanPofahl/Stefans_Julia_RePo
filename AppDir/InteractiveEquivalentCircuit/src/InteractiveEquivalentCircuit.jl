@@ -1,36 +1,59 @@
-# --- preface: ----------------------------------------------------------------------------------------------------------- #
-# --- please follow the instractions of the manual of "PackageCompiler":                                                   #
-# --- https://julialang.github.io/PackageCompiler.jl/stable/apps.html                                                      #
-# ... .................................................................................................................... #
-# --- For PackageCompiler v2.1.5 the compile command should be:                                                            #
-# --- julia> using PackageCompiler                                                                                         #
-# --- julia> create_app("MyGLMakieApp", "MyAppCompiled"; incremental= true, force= true, include_lazy_artifacts= true)     #
-# ... .................................................................................................................... #
+# --- preface: ---------------------------------------------------------------------------------------------------------------------- #
+# --- please follow the instractions of the manual of "PackageCompiler":                                                              #
+# --- https://julialang.github.io/PackageCompiler.jl/stable/apps.html                                                                 #
+# ... ............................................................................................................................... #
+# --- start Julia:                                                                                                                    #
+# --- move to the directory direct below the folder that contains the file "Project.toml" of your project, e.g.:                      #
+# ---                                                                                                                                 #
+# --- $ cd "c:\Julia\MyApps" (under OS MS Windows)                                                                                    #
+# ---                                                                                                                                 #
+# --- if you change Julia version you may need to delete the file "Manifest.toml" (if it exists)                                      #
+# ---                                                                                                                                 #
+# --- $ del "c:\Julia\MyApps\InteractiveEquivalentCircuit\Manifest.toml"                                                              #
+# ---                                                                                                                                 #
+# --- start Julia on the command line as follows:                                                                                     #
+# ---                                                                                                                                 #
+# --- $ julia -q --startup-file=no --project                                                                                          #
+# ---                                                                                                                                 #
+# --- for further information about the command-line switches for Julia refer to:                                                     #
+# --- https://docs.julialang.org/en/v1/manual/command-line-options/                                                                   #
+# ---                                                                                                                                 #
+# --- For PackageCompiler v2.1.5 the compile command should be:                                                                       #
+# ---                                                                                                                                 #
+# --- julia> using PackageCompiler                                                                                                    #
+# --- julia> create_app("InteractiveEquivalentCircuit", "MyIECompiled"; incremental=true, force=true, include_lazy_artifacts=true)    #
+# ---                                                                                                                                 #
+# ... ............................................................................................................................... #
 
-# ------------------------------------------------------------------------------------------------------------------------ # 
-# --- packages that need to be installed: 1. "EquivalentCircuits", 2. "GLMakie", 3. "PackageCompiler"                      #
-# --- if "EquivalentCircuits" is already installed and you run into trouble, remove this package and re-install            #
-# --- from the master branche                                                                                              #
-# --- julia> using Pkg; Pkg.rm("EquivalentCircuits")                                                                       #
-# --- julia> Pkg.add(url="https://github.com/MaximeVH/EquivalentCircuits.jl.git#master")                                   #
-# --- julia> using Pkg; Pkg.add("GLMakie")                                                                                 #
-# --- julia> using Pkg; Pkg.add("PackageCompiler")                                                                         #
-# --- Pkg-Manual: -------------------------------------------------------------------------------------------------------- #
-# --- https://pkgdocs.julialang.org/v1/                                                                                    #
-# --- https://pkgdocs.julialang.org/v1/environments/                                                                       #
-# ------------------------------------------------------------------------------------------------------------------------ #
-
+# ----------------------------------------------------------------------------------------------------------------------------------- # 
+# --- packages that need to be installed: 1. "EquivalentCircuits", 2. "GLMakie", 3. "PackageCompiler"                                 #
+# --- if "EquivalentCircuits" is already installed and you run into trouble, remove this package and re-install                       #
+# --- from the master branche                                                                                                         #
+# --- julia> using Pkg; Pkg.rm("EquivalentCircuits")                                                                                  #
+# --- julia> Pkg.add(url="https://github.com/MaximeVH/EquivalentCircuits.jl.git#master")                                              #
+# --- julia> using Pkg; Pkg.add("GLMakie")                                                                                            #
+# --- julia> using Pkg; Pkg.add("PackageCompiler")                                                                                    #
+# --- julia> using Pkg; Pkg.add("Printf")                                                                                             #
+# --- julia> using Pkg; Pkg.add("RobustModels")                                                                                       #
+# --- Pkg-Manual: ------------------------------------------------------------------------------------------------------------------- #
+# --- https://pkgdocs.julialang.org/v1/                                                                                               #
+# --- https://pkgdocs.julialang.org/v1/environments/                                                                                  #
+# ----------------------------------------------------------------------------------------------------------------------------------- #
+# --- GLMakie related repository with nice examples:                                                                                  #
+# --- https://github.com/garrekstemo/InteractivePlotExamples.jl/tree/main/examples                                                    #
+# ................................................................................................................................... #
+# --- ToDo:                                                                                                                           #
+# --- Add Button to return sliders to initial position                                                                                #
+# ----------------------------------------------------------------------------------------------------------------------------------- #
+ 
 module InteractiveEquivalentCircuit
 
 using EquivalentCircuits 
-using GLMakie 
+using GLMakie, RobustModels, Printf
+
 # --- remark: ------------------------------------------------------------------------------------------------------------ #
 # --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #
 # ... .................................................................................................................... #
-
-if VERSION < v"1.6.7"
-    error("Julia version must be at least v1.6.7")
-end
 
 # --- mandatory function "julia_main()": -----------------------------------------------------------------------------------
 function julia_main()::Cint 
@@ -90,23 +113,26 @@ function real_main()
     P7w_ref   = 0.0088869;              P7n_ref = 0.913665 
     R8_ref    = 0.0567510
 
-    # --- interactive plotting: ------------------------------------------------------------------------------------------------ 
-    fig = Figure(resolution= (1500, 600))
-    ax = Axis(fig[1, 1], title = ecirc_strg, xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{normalized z_{imag} / -}", aspect=DataAspect(),)
-
-    # --- function parameters must be of type "Observable": --------------------------------------------------------------------
-    obs_ = [Observable(0.0) for s in 1:11]
-
+    # The fitting errors calculated using the modulus weighted objective function,
+    # you can adjust the function to see other fitting quality metrics (e.g. removal of the denominator gives the MSE). 
+    function quality_func(_Z_measured, _Z_simulated)
+        return mean((abs.(_Z_measured - _Z_simulated).^2)./(abs.(_Z_measured).^2 .+ abs.(_Z_simulated).^2))
+    end
     function imp_values(_circ_strg, _frequ, _R1, _L2, _P3w, _P3n, _R4, _P5w, _P5n, _R6, _P7w, _P7n, _R8 )
         _EC_params   = (R1 = _R1, L2 = _L2, P3w = _P3w, P3n = _P3n, R4 = _R4, P5w = _P5w, P5n = _P5n, R6 = _R6, P7w = _P7w, P7n = _P7n, R8 = _R8)
         _circfunc_EC = EquivalentCircuits.circuitfunction(_circ_strg)
         return EquivalentCircuits.simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
     end
 
+# --- interactive plotting: ------------------------------------------------------------------------------------------------ 
+    fig = Figure(resolution= (1500, 600))
+
+    # --- function parameters must be of type "Observable": --------------------------------------------------------------------
+    obs_EC_par = [Observable(0.0) for s in 1:11]
     # --- about makro @lift(): https://docs.makie.org/stable/documentation/nodes/index.html#shorthand_macro_for_lift
-    Z_sim_data = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_[1]), $(obs_[2]), $(obs_[3]), $(obs_[4]), $(obs_[5]), $(obs_[6]), $(obs_[7]), $(obs_[8]), $(obs_[9]), $(obs_[10]), $(obs_[11]) ))
-    x_ = @lift(real($Z_sim_data))
-    y_ = @lift(imag($Z_sim_data))
+    Z_sim_vec = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
+    x_ = @lift(real($Z_sim_vec))
+    y_ = @lift(imag($Z_sim_vec))
 
     sg = SliderGrid(
         fig[1, 2],
@@ -126,25 +152,43 @@ function real_main()
 
 
     sliderobservables = [s.value for s in sg.sliders]  
-
-    # --- link sliders to container: "obs_" ------------------------------------------------------------------------------------
-    for (_i, _object) in enumerate(obs_)
+    # --- link sliders to container: "obs_EC_par" ------------------------------------------------------------------------------------
+    for (_i, _object) in enumerate(obs_EC_par)
         connect!(_object, sliderobservables[_i])
     end
-
     # --- important: at least one plot variable must be of type: "Observable", in this case "x_" and "y_" are both of this type.
+    ax = Axis(fig[1, 1][1, 1], title = ecirc_strg, xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{normalized z_{imag} / -}", aspect=DataAspect(),)
     scatter!(ax, x_ref, y_ref)
     lines!(ax, x_, y_)
+    # --- set-up label: --------------------------------------------------------------------------------------------------------------
+    # Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
+    Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
+    
+    obs_Q = @lift(quality_func($(Observable(Z_data)), $(Z_sim_data)))
 
-    # colsize!(fig.layout, 1, Aspect(1, /(ax.finallimits[].widths...)))
-    # resize_to_layout!(fig)
+    label = lift(obs_Q) do s1
+        return string("Q (deviation from original) = ", @sprintf("%.4g", s1))
+    end
+    
+    Label(fig[1, 1][2, 1], label, tellwidth = false)
+    
+    resize_to_layout!(fig)
     # --- 
     # keep window open by "wait(gl_screen)", see:
     # https://discourse.julialang.org/t/makie-app-from-command-line/53890/5
     gl_screen = display(fig)
     wait(gl_screen)
+    # ---
     return 
 end # --- end function real_main() ------------------------------------------------------------------------------------------
+
+# The fitting errors calculated using the modulus weighted objective function,
+# you can adjust the function to see other fitting quality metrics (e.g. removal of the denominator gives the MSE).
+function quality_func(_Z_measured, _Z_simulated)
+    return mean((abs.(_Z_measured - _Z_simulated).^2)./(abs.(_Z_measured).^2 .+ abs.(_Z_simulated).^2))
+end
+
+
 
 # ###########################################################################################################################
 end # module
