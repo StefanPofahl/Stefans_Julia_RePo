@@ -125,7 +125,8 @@ function real_main()
     end
 
 # --- interactive plotting: ------------------------------------------------------------------------------------------------ 
-    fig = Figure(resolution= (1500, 600))
+    fig_height = 700; height_top = round(Int, 0.7 * fig_height); height_bottom = fig_height - height_top
+    fig = Figure(resolution= (1400, fig_height))
 
     # --- function parameters must be of type "Observable": --------------------------------------------------------------------
     obs_EC_par = [Observable(0.0) for s in 1:11]
@@ -134,8 +135,7 @@ function real_main()
     x_ = @lift(real($Z_sim_vec))
     y_ = @lift(imag($Z_sim_vec))
 
-    sg = SliderGrid(
-        fig[1, 2],
+    sg = SliderGrid( fig[1, 2][1,1],
         (label = "R1",  range = 0: 0.01*R1_ref:     10*R1_ref,  format = "{:.1e}Ω",     startvalue = R1_ref),
         (label = "L2",  range = 0: 0.01*L2_ref:     2*L2_ref,   format = "{:.1e}H",     startvalue = L2_ref),
         (label = "P3w", range = 0: 0.01*P3w_ref:    2*P3w_ref,  format = "{:.1e}S*s^n", startvalue = P3w_ref),
@@ -157,21 +157,36 @@ function real_main()
         connect!(_object, sliderobservables[_i])
     end
     # --- important: at least one plot variable must be of type: "Observable", in this case "x_" and "y_" are both of this type.
-    ax = Axis(fig[1, 1][1, 1], title = ecirc_strg, xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{normalized z_{imag} / -}", aspect=DataAspect(),)
+    ax = Axis(fig[1, 1][1, 1:2]; 
+        title = ecirc_strg, titlegap = 30.0, height = height_top, valign = :bottom,
+        xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{normalized z_{imag} / -}", 
+        aspect=DataAspect(), yreversed = true, tellheight = true, tellwidth = true, 
+        )
+
     scatter!(ax, x_ref, y_ref)
     lines!(ax, x_, y_)
     # --- set-up label: --------------------------------------------------------------------------------------------------------------
     # Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
     Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
     
-    obs_Q = @lift(quality_func($(Observable(Z_data)), $(Z_sim_data)))
+    obs_Q = @lift(round(quality_func($(Observable(Z_data)), $(Z_sim_data)); digits = 12))
 
     label = lift(obs_Q) do s1
         return string("Q (deviation from original) = ", @sprintf("%.4g", s1))
     end
     
-    Label(fig[1, 1][2, 1], label, tellwidth = false)
+    Label(fig[1, 1][2, 2], label, tellheight = false, tellwidth = false, valign = :top,)
     
+    bt = Button(fig[1, 1][2, 1]; label = "reset", tellheight = true,
+            strokecolor = RGBf(0.94, 0.14, 0.24), strokewidth = 4, )
+
+    # reset all sliders inside SliderGrid "sg"
+    on(bt.clicks) do n # n = number of clicks
+        for i_slider in sg.sliders
+            set_close_to!(i_slider, i_slider.startvalue[])
+        end
+    end
+
     resize_to_layout!(fig)
     # --- 
     # keep window open by "wait(gl_screen)", see:
