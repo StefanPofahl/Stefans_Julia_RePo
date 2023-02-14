@@ -8,9 +8,12 @@ https://julialang.github.io/PackageCompiler.jl/stable/apps.html
 
 There are two projects:
 - "`MyGLMakieApp`" is the example figure from the `GLMakie` manual with the feature "`SliderGrid()`"
-- "`InteractiveEquivalentCircuit`" is an interactive `GLMakie` figure. <br />
+- "`InteractiveEquivalentCircuit_simple`" is an interactive `GLMakie` figure. <br />
 It depends on the package: "`EquivalentCircuits.jl`". <br />
 Depicted is a `Nyquist Plot` that changes it shape dependent on the parameters of an `EquivalentCircuit` <br />
 of the form `R1-L2-[P3,R4]-[P5,R6]-[P7,R8]` (where `P` stands for: *constant phase element*, also referred to as `CPE` or `Q`)
+- "`InteractiveEquivalentCircuit`" is similar to "`InteractiveEquivalentCircuit_simple`", the difference is <br />
+there are additional plots for each of the three [RP]-elements (often reffered to as RC-circuit). <br />
+These additional plots can be switched on and off.
 
 

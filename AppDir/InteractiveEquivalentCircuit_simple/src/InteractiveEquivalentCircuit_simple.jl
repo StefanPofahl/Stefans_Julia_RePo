@@ -9,7 +9,7 @@
 # ---                                                                                                                                 #
 # --- if you change Julia version you may need to delete the file "Manifest.toml" (if it exists)                                      #
 # ---                                                                                                                                 #
-# --- $ del "c:\Julia\MyApps\InteractiveEquivalentCircuit\Manifest.toml"                                                              #
+# --- $ del "c:\Julia\MyApps\InteractiveEquivalentCircuit_simple\Manifest.toml"                                                       #
 # ---                                                                                                                                 #
 # --- start Julia on the command line as follows:                                                                                     #
 # ---                                                                                                                                 #
@@ -21,7 +21,7 @@
 # --- For PackageCompiler v2.1.5 the compile command should be:                                                                       #
 # ---                                                                                                                                 #
 # --- julia> using PackageCompiler                                                                                                    #
-# --- julia> create_app("InteractiveEquivalentCircuit", "MyIECompiled"; incremental=true, force=true, include_lazy_artifacts=true)    #
+# --- julia> create_app("InteractiveEquivalentCircuit_simple", "MyIECompiled_simple"; incremental=true, force=true, include_lazy_artifacts=true)    
 # ---                                                                                                                                 #
 # ... ............................................................................................................................... #
 
@@ -50,7 +50,7 @@
 # --- Add Button to return sliders to initial position                                                                                #
 # ----------------------------------------------------------------------------------------------------------------------------------- #
  
-module InteractiveEquivalentCircuit
+module InteractiveEquivalentCircuit_simple
 
 using EquivalentCircuits 
 using GLMakie, RobustModels, Printf
@@ -129,8 +129,6 @@ function real_main()
     ecirc_strg = "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]"
     ecirc_strg_PR = "R1-L2-[P3,R4]"
     # ---
-    case_ = 3
-    if case_ == 1
     R1_ref    = 0.3627398
     L2_ref    = 1.9482112e-6 
     P3w_ref   = 0.0421738;              P3n_ref = 0.756012 
@@ -139,37 +137,6 @@ function real_main()
     R6_ref    = 0.0588018 
     P7w_ref   = 0.0088869;              P7n_ref = 0.913665 
     R8_ref    = 0.0567510
-    elseif case_ == 2 # PR3 --> PR1
-        R1_ref    = 0.3627398
-        L2_ref    = 1.9482112e-6 
-
-        P3w_ref   = 0.0088869;              P3n_ref = 0.913665 
-        R4_ref    = 0.0567510 
-
-        P5w_ref   = 3.8225318;              P5n_ref = 0.999479
-        R6_ref    = 0.0588018 
-
-
-        P7w_ref   = 0.0421738;              P7n_ref = 0.756012  
-        R8_ref    = 0.5040666
-
-    elseif case_ == 3 # PR5 --> PR7
-        R1_ref    = 0.3627398
-        L2_ref    = 1.9482112e-6 
-
-        P3w_ref   = 0.0088869;              P3n_ref = 0.913665 
-        R4_ref    = 0.0567510 
-# ---
-        P5w_ref   = 0.0421738;              P5n_ref = 0.756012
-        R6_ref    = 0.5040666 
-# ---
-        P7w_ref   = 3.8225318;              P7n_ref = 0.999479  
-        R8_ref    = 0.0588018 
-
-    else
-        error("no valid choise")
-    end
-
     # --- local functions: ------------------------------------------------------------------------------------------------------
     # --- The fitting errors calculated using the modulus weighted objective function,
     # --- you can adjust the function to see other fitting quality metrics (e.g. removal of the denominator gives the MSE). 
@@ -183,56 +150,19 @@ function real_main()
         return EquivalentCircuits.simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
     end
 
-    function imp_values_RP(_circ_strg, _frequ, _R1, _L2, _P3w, _P3n, _R4 )
-        _EC_params   = (R1 = _R1, L2 = _L2, P3w = _P3w, P3n = _P3n, R4 = _R4)
-        _circfunc_EC = EquivalentCircuits.circuitfunction(_circ_strg)
-        return EquivalentCircuits.simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
-    end
-
-
-
 # --- interactive plotting: -----------------------------------------------------------------------------------------------------
-    Δtick       = 0.05 
-    fig_height  = 700; height_top = round(Int, 0.7 * fig_height)
-    rgb1 = RGBf(0.2, 0.7, 0.9); rgb2 = RGBf(0.7, 0.2, 0.9); rgb3 = RGBf(0.2, 0.9, 0.1); cbutton = RGBf(0.92, 0.92, 0.92)
-
-    # --- open figure object:
+    Δtick = 0.05 
+    fig_height = 700; height_top = round(Int, 0.7 * fig_height)
     fig = Figure(resolution = (1400, fig_height))
 
-    # --- cut-off frequencies:
-    fc_PR1 = 1 / (2*π* P3w_ref * R4_ref)
-    fc_PR2 = 1 / (2*π* P5w_ref * R6_ref)
-    fc_PR3 = 1 / (2*π* P7w_ref * R8_ref)
-
     # --- function parameters must be of type "Observable": --------------------------------------------------------------------
-    obs_R1  = Observable(0.0);  obs_L2  = Observable(0.0);  
-    obs_P3w = Observable(0.0);  obs_P3n = Observable(0.0);  obs_R4  = Observable(0.0); 
-    obs_P5w = Observable(0.0);  obs_P5n = Observable(0.0);  obs_R6  = Observable(0.0); 
-    obs_P7w = Observable(0.0);  obs_P7n = Observable(0.0);  obs_R8  = Observable(0.0); 
-
+    obs_EC_par = [Observable(0.0) for s in 1:11]
     # --- about makro @lift(): https://docs.makie.org/stable/documentation/nodes/index.html#shorthand_macro_for_lift
-    Z_sim_vec = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_ = @lift(real($Z_sim_vec));           y_ = @lift(imag($Z_sim_vec))
-
-    Z_PR1 = @lift(imp_values(ecirc_strg, [fc_PR1], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_PR1 = @lift(real($Z_PR1));            y_PR1 = @lift(imag($Z_PR1))
-
-    Z_PR2 = @lift(imp_values(ecirc_strg, [fc_PR2], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_PR2 = @lift(real($Z_PR2));            y_PR2 = @lift(imag($Z_PR2))
-
-    Z_PR3 = @lift(imp_values(ecirc_strg, [fc_PR3], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_PR3 = @lift(real($Z_PR3));            y_PR3 = @lift(imag($Z_PR3))
-
-    # "R1-L2-[P3,R4]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
-    Z_sim_vecRP1 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4) ))
-    x_RP1 = @lift(real($Z_sim_vecRP1));     y_RP1 = @lift(imag($Z_sim_vecRP1))
-    # "(R1+R4)-L2-[P5,R6]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
-    Z_sim_vecRP2 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1) + $(obs_R4), $(obs_L2), $(obs_P5w), $(obs_P5n), $(obs_R6) ))
-    x_RP2 = @lift(real($Z_sim_vecRP2));     y_RP2 = @lift(imag($Z_sim_vecRP2))
-    # "(R1+R4+R6)-L2-[P7,R8]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
-    Z_sim_vecRP3 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1) + $(obs_R4) + $(obs_R6), $(obs_L2), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_RP3 = @lift(real($Z_sim_vecRP3));     y_RP3 = @lift(imag($Z_sim_vecRP3))
-
+    # $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11])
+    #   R1                L2                P3w               P3n               R4                P5w               P5n               R6                P7w               P7n                R8 
+    Z_sim_vec = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
+    x_ = @lift(real($Z_sim_vec))
+    y_ = @lift(imag($Z_sim_vec))
     # --- SliderGrid(): ---------------------------------------------------------------------------------------------------------
     sg = SliderGrid( fig[1, 2][1,1],
         (label = "R1",  range = 0: 0.01*R1_ref:     10*R1_ref,  format = "{:.1e}Ω",     startvalue = R1_ref),
@@ -249,22 +179,12 @@ function real_main()
         width = 350,
         tellheight = false)
 
-
     # --- build vector of individual slider values: ----------------------------------------------------------------------------------
     sliderobservables = [s.value for s in sg.sliders]  
-    # --- link sliders to container: "obs_XYZ" ------------------------------------------------------------------------------------
-    connect!(obs_R1,    sliderobservables[ 1]) 
-    connect!(obs_L2,    sliderobservables[ 2]) 
-    connect!(obs_P3w,   sliderobservables[ 3]) 
-    connect!(obs_P3n,   sliderobservables[ 4]) 
-    connect!(obs_R4,    sliderobservables[ 5]) 
-    connect!(obs_P5w,   sliderobservables[ 6]) 
-    connect!(obs_P5n,   sliderobservables[ 7]) 
-    connect!(obs_R6,    sliderobservables[ 8]) 
-    connect!(obs_P7w,   sliderobservables[ 9]) 
-    connect!(obs_P7n,   sliderobservables[10]) 
-    connect!(obs_R8,    sliderobservables[11]) 
-    
+    # --- link sliders to container: "obs_EC_par" ------------------------------------------------------------------------------------
+    for (_i, _object) in enumerate(obs_EC_par)
+        connect!(_object, sliderobservables[_i])
+    end
     # --- important: at least one plot variable must be of type: "Observable", in this case "x_" and "y_" are both of this type.
     ax = Axis(fig[1, 1][1, 1:2]; 
         title = ecirc_strg, titlegap = 30.0, height = height_top, valign = :bottom,
@@ -272,21 +192,13 @@ function real_main()
         aspect=DataAspect(), xticks = DeltaTicks(Δtick), yticks = DeltaTicks(Δtick),
         yreversed = true, tellheight = true, tellwidth = true, 
         )
-    # --- reference / measured values: 
-    scatter!(ax, x_ref, y_ref)
-    # --- simulated impedance values:
-    lines!(ax, x_, y_)
-    # --- impedance points @cut-off frequencies: --------------------------------------------------------------------------------
-    pt_PR1 = @lift [Point2f($(x_PR1)[], $(y_PR1)[])]
-    scatter!(ax, pt_PR1, color = rgb1, markersize = 20)
-    pt_PR2 = @lift [Point2f($(x_PR2)[], $(y_PR2)[])]
-    scatter!(ax, pt_PR2, color = rgb2, markersize = 20)
-    pt_PR3 = @lift [Point2f($(x_PR3)[], $(y_PR3)[])]
-    scatter!(ax, pt_PR3, color = rgb3, markersize = 20)
 
-    # --- set-up label / quality: -----------------------------------------------------------------------------------------------
-    Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    # --- round at leftenside digit position 12:
+    scatter!(ax, x_ref, y_ref)
+    lines!(ax, x_, y_)
+    # --- set-up label: --------------------------------------------------------------------------------------------------------------
+    # Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
+    Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_EC_par[1]), $(obs_EC_par[2]), $(obs_EC_par[3]), $(obs_EC_par[4]), $(obs_EC_par[5]), $(obs_EC_par[6]), $(obs_EC_par[7]), $(obs_EC_par[8]), $(obs_EC_par[9]), $(obs_EC_par[10]), $(obs_EC_par[11]) ))
+    
     obs_Q = @lift(round(quality_func($(Observable(Z_data)), $(Z_sim_data)); digits = 12))
 
     label = lift(obs_Q) do s1
@@ -295,61 +207,16 @@ function real_main()
     
     Label(fig[1, 1][2, 2], label, tellheight = false, tellwidth = false, valign = :top,)
     
-    # --- set-up grid of buttons (4 buttons): -----------------------------------------------------------------------------------
-    fig[1, 1][2, 1] = buttongrid = GridLayout(tellwidth = false)
-    # btncolors = [RGBf(0.2, 0.7, 0.9), RGBf(0.7, 0.2, 0.9), RGBf(0.2, 0.9, 0.1)]
-    buttonlabels = ["reset", "R1-L2-[P3,R4]", "(R1+R4)-L2-[P5,R6]", "(R1+R4+R6)-L2-(P7,R8)"]
-    buttons = buttongrid[1, 1:length(buttonlabels)] = [Button(fig, label = _s, strokewidth = 4, strokecolor = (:red)) for (_i, _s) in enumerate(buttonlabels) ]
-        
+    bt = Button(fig[1, 1][2, 1]; label = "reset", tellheight = true,
+            strokecolor = RGBf(0.94, 0.14, 0.24), strokewidth = 4, )
 
-    # --- reset all sliders inside SliderGrid "sg":
-    on(buttons[1].clicks) do n      # n = number of clicks
+    # reset all sliders inside SliderGrid "sg"
+    on(bt.clicks) do n # n = number of clicks
         for i_slider in sg.sliders
             set_close_to!(i_slider, i_slider.startvalue[])
         end
     end
-    # --- three lines for each subplot, first define line colors:
-    l1 = []; l2 = []; l3 = [];
-    on(buttons[2].clicks) do n_clicks 
-        global l1
-        if n_clicks == 1
-            l1 = lines!(ax, x_RP1, y_RP1, linestyle = :dash, color = rgb1)
-        end
-        if iseven(n_clicks)
-            l1.visible = false
-            buttons[2].buttoncolor = cbutton
-        else
-            l1.visible = true
-            buttons[2].buttoncolor = rgb1
-        end
-    end
-    on(buttons[3].clicks) do n_clicks
-        global l2
-        if n_clicks == 1
-            l2 = lines!(ax, x_RP2, y_RP2, linestyle = :dash, color = rgb2)
-        end
-        if iseven(n_clicks)
-            l2.visible = false
-            buttons[3].buttoncolor = cbutton
-        else
-            l2.visible = true
-            buttons[3].buttoncolor = rgb2
-        end
-    end
-    on(buttons[4].clicks) do n_clicks
-        global l3
-        if n_clicks == 1
-            l3 = lines!(ax, x_RP3, y_RP3, linestyle = :dash, color = rgb3)
-        end
-        if iseven(n_clicks)
-            l3.visible = false
-            buttons[4].buttoncolor = cbutton
-        else
-            l3.visible = true
-            buttons[4].buttoncolor = rgb3
-        end
-    end
-    # ---
+
     resize_to_layout!(fig)
     # --- 
     # keep window open by "wait(gl_screen)", see:
