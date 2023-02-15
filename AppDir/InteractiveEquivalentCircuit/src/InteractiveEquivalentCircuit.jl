@@ -226,7 +226,7 @@ function real_main()
     # --- definition of common plot axis, it contains a function call to determine the position of equidistant ticks: -----------
     ax = Axis(fig[1, 1][1, 1:2]; 
         title = ecirc_strg, titlegap = 30.0, height = height_top, valign = :bottom,
-        xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{inverted normalized z_{imag} / -}", 
+        xlabel = rich("normalized z", subscript("real"), " / -"), ylabel = rich("inverted normalized z", subscript("imag"), " / -"), 
         aspect=DataAspect(), xticks = DeltaTicks(Δtick), yticks = DeltaTicks(Δtick),
         yreversed = true, tellheight = true, tellwidth = true, 
         )
