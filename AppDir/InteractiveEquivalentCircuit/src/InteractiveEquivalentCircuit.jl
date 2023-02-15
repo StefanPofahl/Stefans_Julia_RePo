@@ -129,46 +129,17 @@ function real_main()
     ecirc_strg = "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]"
     ecirc_strg_PR = "R1-L2-[P3,R4]"
     # ---
-    case_ = 3
-    if case_ == 1
     R1_ref    = 0.3627398
     L2_ref    = 1.9482112e-6 
-    P3w_ref   = 0.0421738;              P3n_ref = 0.756012 
-    R4_ref    = 0.5040666 
-    P5w_ref   = 3.8225318;              P5n_ref = 0.999479
-    R6_ref    = 0.0588018 
-    P7w_ref   = 0.0088869;              P7n_ref = 0.913665 
-    R8_ref    = 0.0567510
-    elseif case_ == 2 # PR3 --> PR1
-        R1_ref    = 0.3627398
-        L2_ref    = 1.9482112e-6 
-
-        P3w_ref   = 0.0088869;              P3n_ref = 0.913665 
-        R4_ref    = 0.0567510 
-
-        P5w_ref   = 3.8225318;              P5n_ref = 0.999479
-        R6_ref    = 0.0588018 
-
-
-        P7w_ref   = 0.0421738;              P7n_ref = 0.756012  
-        R8_ref    = 0.5040666
-
-    elseif case_ == 3 # PR5 --> PR7
-        R1_ref    = 0.3627398
-        L2_ref    = 1.9482112e-6 
-
-        P3w_ref   = 0.0088869;              P3n_ref = 0.913665 
-        R4_ref    = 0.0567510 
-# ---
-        P5w_ref   = 0.0421738;              P5n_ref = 0.756012
-        R6_ref    = 0.5040666 
-# ---
-        P7w_ref   = 3.8225318;              P7n_ref = 0.999479  
-        R8_ref    = 0.0588018 
-
-    else
-        error("no valid choise")
-    end
+    # --- [PR1]:
+    P3w_ref   = 0.0088869;              P3n_ref = 0.913665 
+    R4_ref    = 0.0567510 
+    # --- [PR2]:
+    P5w_ref   = 0.0421738;              P5n_ref = 0.756012
+    R6_ref    = 0.5040666 
+    # --- [PR3]:
+    P7w_ref   = 3.8225318;              P7n_ref = 0.999479  
+    R8_ref    = 0.0588018 
 
     # --- local functions: ------------------------------------------------------------------------------------------------------
     # --- The fitting errors calculated using the modulus weighted objective function,
@@ -189,8 +160,6 @@ function real_main()
         return EquivalentCircuits.simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
     end
 
-
-
 # --- interactive plotting: -----------------------------------------------------------------------------------------------------
     Δtick       = 0.05 
     fig_height  = 700; height_top = round(Int, 0.7 * fig_height)
@@ -199,53 +168,42 @@ function real_main()
     # --- open figure object:
     fig = Figure(resolution = (1400, fig_height))
 
-    # --- cut-off frequencies:
-    fc_PR1 = 1 / (2*π* P3w_ref * R4_ref)
-    fc_PR2 = 1 / (2*π* P5w_ref * R6_ref)
-    fc_PR3 = 1 / (2*π* P7w_ref * R8_ref)
+    # --- RC time constant / cut-off frequencies: -------------------------------------------------------------------------------
+    # --- https://en.wikipedia.org/wiki/RC_time_constant
+    fc_PR1_ref = 1 / (2*π* P3w_ref * R4_ref)
+    fc_PR2_ref = 1 / (2*π* P5w_ref * R6_ref)
+    fc_PR3_ref = 1 / (2*π* P7w_ref * R8_ref)
+    println(@sprintf("cut-off trequencies, fc_PR1_ref: \t %.3fHz, \t fc_PR2_ref: \t %.3fHz, \t fc_PR3_ref: \t %.3fHz", fc_PR1_ref, fc_PR2_ref, fc_PR3_ref))
 
+    # --- Impedance points on reference impedance curve @cut-off frequencies of the individual [PR]-circuits: ------------------
+    Z_PR1_ref = imp_values(ecirc_strg, [fc_PR1_ref], R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
+    x_fc_PR1_ref = real(Z_PR1_ref);         y_fc_PR1_ref = imag(Z_PR1_ref); 
+
+    Z_PR2_ref = imp_values(ecirc_strg, [fc_PR2_ref], R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
+    x_fc_PR2_ref = real(Z_PR2_ref);         y_fc_PR2_ref = imag(Z_PR2_ref); 
+
+    Z_PR3_ref = imp_values(ecirc_strg, [fc_PR3_ref], R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
+    x_fc_PR3_ref = real(Z_PR3_ref);         y_fc_PR3_ref = imag(Z_PR3_ref); 
+    
     # --- function parameters must be of type "Observable": --------------------------------------------------------------------
     obs_R1  = Observable(0.0);  obs_L2  = Observable(0.0);  
     obs_P3w = Observable(0.0);  obs_P3n = Observable(0.0);  obs_R4  = Observable(0.0); 
     obs_P5w = Observable(0.0);  obs_P5n = Observable(0.0);  obs_R6  = Observable(0.0); 
     obs_P7w = Observable(0.0);  obs_P7n = Observable(0.0);  obs_R8  = Observable(0.0); 
 
-    # --- about makro @lift(): https://docs.makie.org/stable/documentation/nodes/index.html#shorthand_macro_for_lift
-    Z_sim_vec = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_ = @lift(real($Z_sim_vec));           y_ = @lift(imag($Z_sim_vec))
-
-    Z_PR1 = @lift(imp_values(ecirc_strg, [fc_PR1], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_PR1 = @lift(real($Z_PR1));            y_PR1 = @lift(imag($Z_PR1))
-
-    Z_PR2 = @lift(imp_values(ecirc_strg, [fc_PR2], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_PR2 = @lift(real($Z_PR2));            y_PR2 = @lift(imag($Z_PR2))
-
-    Z_PR3 = @lift(imp_values(ecirc_strg, [fc_PR3], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_PR3 = @lift(real($Z_PR3));            y_PR3 = @lift(imag($Z_PR3))
-
-    # "R1-L2-[P3,R4]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
-    Z_sim_vecRP1 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4) ))
-    x_RP1 = @lift(real($Z_sim_vecRP1));     y_RP1 = @lift(imag($Z_sim_vecRP1))
-    # "(R1+R4)-L2-[P5,R6]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
-    Z_sim_vecRP2 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1) + $(obs_R4), $(obs_L2), $(obs_P5w), $(obs_P5n), $(obs_R6) ))
-    x_RP2 = @lift(real($Z_sim_vecRP2));     y_RP2 = @lift(imag($Z_sim_vecRP2))
-    # "(R1+R4+R6)-L2-[P7,R8]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
-    Z_sim_vecRP3 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1) + $(obs_R4) + $(obs_R6), $(obs_L2), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
-    x_RP3 = @lift(real($Z_sim_vecRP3));     y_RP3 = @lift(imag($Z_sim_vecRP3))
-
     # --- SliderGrid(): ---------------------------------------------------------------------------------------------------------
     sg = SliderGrid( fig[1, 2][1,1],
         (label = "R1",  range = 0: 0.01*R1_ref:     10*R1_ref,  format = "{:.1e}Ω",     startvalue = R1_ref),
         (label = "L2",  range = 0: 0.01*L2_ref:     2*L2_ref,   format = "{:.1e}H",     startvalue = L2_ref),
-        (label = "P3w", range = 0: 0.01*P3w_ref:    2*P3w_ref,  format = "{:.1e}S*s^n", startvalue = P3w_ref),
-        (label = "P3n", range = 0: 0.01*P3n_ref:    2*P3n_ref,  format = "{:.1e}-",     startvalue = P3n_ref),
-        (label = "R4",  range = 0: 0.01*R4_ref:     2*R4_ref,   format = "{:.1e}Ω",     startvalue = R4_ref),
-        (label = "P5w", range = 0: 0.01*P5w_ref:    2*P5w_ref,  format = "{:.1e}S*s^n", startvalue = P5w_ref),
-        (label = "P5n", range = 0: 0.01*P5n_ref:    2*P5n_ref,  format = "{:.1e}-",     startvalue = P5n_ref),
-        (label = "R6",  range = 0: 0.01*R6_ref:     2*R6_ref,   format = "{:.1e}Ω",     startvalue = R6_ref),
-        (label = "P7w", range = 0: 0.01*P7w_ref:    2*P7w_ref,  format = "{:.1e}S*s^n", startvalue = P7w_ref),
-        (label = "P7n", range = 0: 0.01*P7n_ref:    2*P7n_ref,  format = "{:.1e}-",     startvalue = P7n_ref),
-        (label = "R8",  range = 0: 0.01*R8_ref:     2*R8_ref,   format = "{:.1e}Ω",     startvalue = R8_ref),
+        (label = rich("P3w", color = rgb1), range = 0: 0.01*P3w_ref:    2*P3w_ref,  format = "{:.1e}S*s^n", startvalue = P3w_ref),
+        (label = rich("P3n", color = rgb1), range = 0: 0.01*P3n_ref:    2*P3n_ref,  format = "{:.1e}-",     startvalue = P3n_ref),
+        (label = rich("R4",  color = rgb1), range = 0: 0.01*R4_ref:     2*R4_ref,   format = "{:.1e}Ω",     startvalue = R4_ref),
+        (label = rich("P5w", color = rgb2), range = 0: 0.01*P5w_ref:    2*P5w_ref,  format = "{:.1e}S*s^n", startvalue = P5w_ref),
+        (label = rich("P5n", color = rgb2), range = 0: 0.01*P5n_ref:    2*P5n_ref,  format = "{:.1e}-",     startvalue = P5n_ref),
+        (label = rich("R6",  color = rgb2), range = 0: 0.01*R6_ref:     2*R6_ref,   format = "{:.1e}Ω",     startvalue = R6_ref),
+        (label = rich("P7w", color = rgb3), range = 0: 0.01*P7w_ref:    2*P7w_ref,  format = "{:.1e}S*s^n", startvalue = P7w_ref),
+        (label = rich("P7n", color = rgb3), range = 0: 0.01*P7n_ref:    2*P7n_ref,  format = "{:.1e}-",     startvalue = P7n_ref),
+        (label = rich("R8",  color = rgb3), range = 0: 0.01*R8_ref:     2*R8_ref,   format = "{:.1e}Ω",     startvalue = R8_ref),
         width = 350,
         tellheight = false)
 
@@ -265,26 +223,63 @@ function real_main()
     connect!(obs_P7n,   sliderobservables[10]) 
     connect!(obs_R8,    sliderobservables[11]) 
     
-    # --- important: at least one plot variable must be of type: "Observable", in this case "x_" and "y_" are both of this type.
+    # --- definition of common plot axis, it contains a function call to determine the position of equidistant ticks: -----------
     ax = Axis(fig[1, 1][1, 1:2]; 
         title = ecirc_strg, titlegap = 30.0, height = height_top, valign = :bottom,
         xlabel = L"\text{normalized z_{real} / -}", ylabel = L"\text{inverted normalized z_{imag} / -}", 
         aspect=DataAspect(), xticks = DeltaTicks(Δtick), yticks = DeltaTicks(Δtick),
         yreversed = true, tellheight = true, tellwidth = true, 
         )
-    # --- reference / measured values: 
+
+    # --- reference / measured values (static): ---------------------------------------------------------------------------------
     scatter!(ax, x_ref, y_ref)
-    # --- simulated impedance values:
+
+    pt_PR1_ref = Point2f(x_fc_PR1_ref[], y_fc_PR1_ref[])
+    scatter!(ax, pt_PR1_ref, color = rgb1, markersize = 20)
+
+    pt_PR2_ref = Point2f(x_fc_PR2_ref[], y_fc_PR2_ref[])
+    scatter!(ax, pt_PR2_ref, color = rgb2, markersize = 20)
+
+    pt_PR3_ref = Point2f(x_fc_PR3_ref[], y_fc_PR3_ref[])
+    scatter!(ax, pt_PR3_ref, color = rgb3, markersize = 20)
+
+    # --- simulated impedance values at current EC-parameter values (dynamic/interactive): --------------------------------------
+    # --- about makro @lift(): https://docs.makie.org/stable/documentation/nodes/index.html#shorthand_macro_for_lift
+    Z_sim_vec = @lift(imp_values(ecirc_strg, frequ_vec, $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    x_ = @lift(real($Z_sim_vec));           y_ = @lift(imag($Z_sim_vec))
+
+    # "R1-L2-[P3,R4]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
+    Z_sim_vecRP1 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4) ))
+    x_RP1 = @lift(real($Z_sim_vecRP1));     y_RP1 = @lift(imag($Z_sim_vecRP1))
+    # "(R1+R4)-L2-[P5,R6]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
+    Z_sim_vecRP2 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1) + $(obs_R4), $(obs_L2), $(obs_P5w), $(obs_P5n), $(obs_R6) ))
+    x_RP2 = @lift(real($Z_sim_vecRP2));     y_RP2 = @lift(imag($Z_sim_vecRP2))
+    # "(R1+R4+R6)-L2-[P7,R8]"  (part of: "R1-L2-[P3,R4]-[P5,R6]-[P7,R8]")
+    Z_sim_vecRP3 = @lift(imp_values_RP(ecirc_strg_PR, frequ_vec, $(obs_R1) + $(obs_R4) + $(obs_R6), $(obs_L2), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    x_RP3 = @lift(real($Z_sim_vecRP3));     y_RP3 = @lift(imag($Z_sim_vecRP3))
+
+    # --- important: at least one plot variable must be of type: "Observable", in this case "x_" and "y_" are both of this type.
     lines!(ax, x_, y_)
     # --- impedance points @cut-off frequencies: --------------------------------------------------------------------------------
-    pt_PR1 = @lift [Point2f($(x_PR1)[], $(y_PR1)[])]
+    fc_PR1   = @lift(1 / (2*π* $(obs_P3w) * $(obs_R4)))
+    Z_fc_PR1 = @lift(imp_values(ecirc_strg, [$(fc_PR1)], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    x_PR1    = @lift(real($(Z_fc_PR1)));       y_PR1 = @lift(imag($(Z_fc_PR1)))
+    pt_PR1   = @lift[Point2f($(x_PR1)[], $(y_PR1)[])]
     scatter!(ax, pt_PR1, color = rgb1, markersize = 20)
-    pt_PR2 = @lift [Point2f($(x_PR2)[], $(y_PR2)[])]
+    # ---
+    fc_PR2   = @lift(1 / (2*π* $(obs_P5w) * $(obs_R6)))
+    Z_fc_PR2 = @lift(imp_values(ecirc_strg, [$(fc_PR2)], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    x_PR2    = @lift(real($(Z_fc_PR2)));       y_PR2 = @lift(imag($(Z_fc_PR2)))
+    pt_PR2   = @lift[Point2f($(x_PR2)[], $(y_PR2)[])]
     scatter!(ax, pt_PR2, color = rgb2, markersize = 20)
-    pt_PR3 = @lift [Point2f($(x_PR3)[], $(y_PR3)[])]
+    # ---
+    fc_PR3   = @lift(1 / (2*π* $(obs_P7w) * $(obs_R8)))
+    Z_fc_PR3 = @lift(imp_values(ecirc_strg, [$(fc_PR3)], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    x_PR3    = @lift(real($(Z_fc_PR3)));       y_PR3 = @lift(imag($(Z_fc_PR3)))
+    pt_PR3   = @lift[Point2f($(x_PR3)[], $(y_PR3)[])]
     scatter!(ax, pt_PR3, color = rgb3, markersize = 20)
 
-    # --- set-up label / quality: -----------------------------------------------------------------------------------------------
+    # --- set-up label to display current quality / deviation of values from reference impedance values: ------------------------
     Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
     # --- round at leftenside digit position 12:
     obs_Q = @lift(round(quality_func($(Observable(Z_data)), $(Z_sim_data)); digits = 12))
@@ -298,17 +293,18 @@ function real_main()
     # --- set-up grid of buttons (4 buttons): -----------------------------------------------------------------------------------
     fig[1, 1][2, 1] = buttongrid = GridLayout(tellwidth = false)
     # btncolors = [RGBf(0.2, 0.7, 0.9), RGBf(0.7, 0.2, 0.9), RGBf(0.2, 0.9, 0.1)]
-    buttonlabels = ["reset", "R1-L2-[P3,R4]", "(R1+R4)-L2-[P5,R6]", "(R1+R4+R6)-L2-(P7,R8)"]
+    buttonlabels = [rich("reset", color = :red), rich("R1-L2-", rich("[P3,R4]", color = rgb1)), rich("(R1+R4)-L2-", rich("[P5,R6]", color = rgb2)), rich("(R1+R4+R6)-L2-", rich("[P7,R8]", color = rgb3))]
     buttons = buttongrid[1, 1:length(buttonlabels)] = [Button(fig, label = _s, strokewidth = 4, strokecolor = (:red)) for (_i, _s) in enumerate(buttonlabels) ]
         
 
-    # --- reset all sliders inside SliderGrid "sg":
+    # --- reset all sliders inside SliderGrid "sg": -----------------------------------------------------------------------------
     on(buttons[1].clicks) do n      # n = number of clicks
         for i_slider in sg.sliders
             set_close_to!(i_slider, i_slider.startvalue[])
         end
     end
-    # --- three lines for each subplot, first define line colors:
+
+    # --- three lines for each subplot, first define line colors: ---------------------------------------------------------------
     l1 = []; l2 = []; l3 = [];
     on(buttons[2].clicks) do n_clicks 
         global l1
