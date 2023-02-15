@@ -6,3 +6,6 @@ In the folder **AppDir** are three projects for standalone applications based on
 
 ## GLMakie
 This folder contains simple **GLMakie** figure examples.
+
+## WGLMakie
+Currently only one script (experimental)
