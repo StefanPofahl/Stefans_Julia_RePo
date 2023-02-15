@@ -292,9 +292,11 @@ function real_main()
     
     # --- set-up grid of buttons (4 buttons): -----------------------------------------------------------------------------------
     fig[1, 1][2, 1] = buttongrid = GridLayout(tellwidth = false)
-    # btncolors = [RGBf(0.2, 0.7, 0.9), RGBf(0.7, 0.2, 0.9), RGBf(0.2, 0.9, 0.1)]
-    buttonlabels = [rich("reset", color = :red), rich("R1-L2-", rich("[P3,R4]", color = rgb1)), rich("(R1+R4)-L2-", rich("[P5,R6]", color = rgb2)), rich("(R1+R4+R6)-L2-", rich("[P7,R8]", color = rgb3))]
-    buttons = buttongrid[1, 1:length(buttonlabels)] = [Button(fig, label = _s, strokewidth = 4, strokecolor = (:red)) for (_i, _s) in enumerate(buttonlabels) ]
+    btncolors = [RGBf(1.0, 0.0, 0.4), rgb1, rgb2, rgb3]
+    buttonlabels = ["reset", "R1-L2-[P3,R4]", "(R1+R4)-L2-[P5,R6]", "(R1+R4+R6)-L2-[P7,R8]"]
+    buttons = buttongrid[1, 1:length(buttonlabels)] = 
+        [Button(fig, label = _s, strokewidth = 6, cornerradius = 10, strokecolor = btncolors[_i]) 
+                for (_i, _s) in enumerate(buttonlabels) ]
         
 
     # --- reset all sliders inside SliderGrid "sg": -----------------------------------------------------------------------------
