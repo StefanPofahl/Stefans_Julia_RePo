@@ -1,60 +1,9 @@
-# --- preface: ---------------------------------------------------------------------------------------------------------------------- #
-# --- please follow the instractions of the manual of "PackageCompiler":                                                              #
-# --- https://julialang.github.io/PackageCompiler.jl/stable/apps.html                                                                 #
-# ... ............................................................................................................................... #
-# --- start Julia:                                                                                                                    #
-# --- move to the directory direct below the folder that contains the file "Project.toml" of your project, e.g.:                      #
-# ---                                                                                                                                 #
-# --- $ cd "c:\Julia\MyApps" (under OS MS Windows)                                                                                    #
-# ---                                                                                                                                 #
-# --- if you change Julia version you may need to delete the file "Manifest.toml" (if it exists)                                      #
-# ---                                                                                                                                 #
-# --- $ del "c:\Julia\MyApps\InteractiveEquivalentCircuit\Manifest.toml"                                                              #
-# ---                                                                                                                                 #
-# --- start Julia on the command line as follows:                                                                                     #
-# ---                                                                                                                                 #
-# --- $ julia -q --startup-file=no --project                                                                                          #
-# ---                                                                                                                                 #
-# --- for further information about the command-line switches for Julia refer to:                                                     #
-# --- https://docs.julialang.org/en/v1/manual/command-line-options/                                                                   #
-# ---                                                                                                                                 #
-# --- For PackageCompiler v2.1.5 the compile command should be:                                                                       #
-# ---                                                                                                                                 #
-# --- julia> using PackageCompiler                                                                                                    #
-# --- julia> create_app("InteractiveEquivalentCircuit", "MyIECompiled"; incremental=true, force=true, include_lazy_artifacts=true)    #
-# ---                                                                                                                                 #
-# ... ............................................................................................................................... #
-
-# ----------------------------------------------------------------------------------------------------------------------------------- # 
-# --- packages that need to be installed: 1. "EquivalentCircuits", 2. "GLMakie", 3. "PackageCompiler"                                 #
-# --- if "EquivalentCircuits" is already installed and you run into trouble, remove this package and re-install                       #
-# --- from the master branche                                                                                                         #
-# --- julia> import Pkg; Pkg.rm("EquivalentCircuits")                                                                                 #
-# --- julia> import Pkg; Pkg.add(url="https://github.com/MaximeVH/EquivalentCircuits.jl.git#master")                                  #
-# --- julia> using Pkg; Pkg.add("GLMakie")                                                                                            #
-# --- julia> using Pkg; Pkg.add("PackageCompiler")                                                                                    #
-# --- julia> using Pkg; Pkg.add("Printf")                                                                                             #
-# --- julia> using Pkg; Pkg.add("RobustModels")                                                                                       #
-# --- Pkg-Manual: ------------------------------------------------------------------------------------------------------------------- #
-# --- https://pkgdocs.julialang.org/v1/                                                                                               #
-# --- https://pkgdocs.julialang.org/v1/environments/                                                                                  #
-# ----------------------------------------------------------------------------------------------------------------------------------- #
-# --- GLMakie:                                                                                                                        #
-# --- Issue under Julia v1.6.7 on Linux: It might be that the wrong library "libstdc++.so.6" is installed in your JuliaLTS folders    #
-# --- if this is the case, see: https://discourse.julialang.org/t/opengl-glfw-error-building-glmakie/47598/9                          #
-# ---                                                                                                                                 #
-# --- GLMakie related repository with nice examples:                                                                                  #
-# --- https://github.com/garrekstemo/InteractivePlotExamples.jl/tree/main/examples                                                    #
-# ................................................................................................................................... #
-# --- ToDo:                                                                                                                           #
-# --- Add Button to return sliders to initial position                                                                                #
-# ----------------------------------------------------------------------------------------------------------------------------------- #
- 
-module InteractiveEquivalentCircuit
-
-using EquivalentCircuits 
+module InteractiveNyquist
+include("MyCircuitFunction.jl")
 using GLMakie, RobustModels, Printf
+import Tulip
 
+Tulip.__init__();
 # --- remark: ------------------------------------------------------------------------------------------------------------ #
 # --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #
 # ... .................................................................................................................... #
@@ -142,6 +91,10 @@ function real_main()
     R8_ref    = 0.0588018 
 
     # --- local functions: ------------------------------------------------------------------------------------------------------
+    function _simulateimpedance_noiseless(circuitfunc, parameters, frequencies) 
+        return [circuitfunc(parameters, fr) for fr in frequencies] 
+    end
+
     # --- The fitting errors calculated using the modulus weighted objective function,
     # --- you can adjust the function to see other fitting quality metrics (e.g. removal of the denominator gives the MSE). 
     function quality_func(_Z_measured, _Z_simulated)
@@ -149,15 +102,15 @@ function real_main()
     end
     # ---
     function imp_values(_circ_strg, _frequ, _R1, _L2, _P3w, _P3n, _R4, _P5w, _P5n, _R6, _P7w, _P7n, _R8 )
-        _EC_params   = (R1 = _R1, L2 = _L2, P3w = _P3w, P3n = _P3n, R4 = _R4, P5w = _P5w, P5n = _P5n, R6 = _R6, P7w = _P7w, P7n = _P7n, R8 = _R8)
-        _circfunc_EC = EquivalentCircuits.circuitfunction(_circ_strg)
-        return EquivalentCircuits.simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
+        _EC_params = (R1 = _R1, L2 = _L2, P3w = _P3w, P3n = _P3n, R4 = _R4, P5w = _P5w, P5n = _P5n, R6 = _R6, P7w = _P7w, P7n = _P7n, R8 = _R8)
+        _circfunc_EC = My_circuitfunction(_circ_strg)        
+        return _simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
     end
 
     function imp_values_RP(_circ_strg, _frequ, _R1, _L2, _P3w, _P3n, _R4 )
-        _EC_params   = (R1 = _R1, L2 = _L2, P3w = _P3w, P3n = _P3n, R4 = _R4)
-        _circfunc_EC = EquivalentCircuits.circuitfunction(_circ_strg)
-        return EquivalentCircuits.simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
+        _EC_params = (R1 = _R1, L2 = _L2, P3w = _P3w, P3n = _P3n, R4 = _R4)
+        _circfunc_EC = My_circuitfunction(_circ_strg)        
+        return _simulateimpedance_noiseless(_circfunc_EC, _EC_params, _frequ)
     end
 
 # --- interactive plotting: -----------------------------------------------------------------------------------------------------
@@ -182,13 +135,13 @@ function real_main()
     rich("PR3", subscript("ref"), ": ", str_fc_PR3_ref, color = rgb3))
 
     # --- Impedance points on reference impedance curve @cut-off frequencies of the individual [PR]-circuits: ------------------
-    Z_PR1_ref = imp_values(ecirc_strg, [fc_PR1_ref], R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
+    Z_PR1_ref = imp_values(ecirc_strg, fc_PR1_ref, R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
     x_fc_PR1_ref = real(Z_PR1_ref);         y_fc_PR1_ref = imag(Z_PR1_ref); 
 
-    Z_PR2_ref = imp_values(ecirc_strg, [fc_PR2_ref], R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
+    Z_PR2_ref = imp_values(ecirc_strg, fc_PR2_ref, R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
     x_fc_PR2_ref = real(Z_PR2_ref);         y_fc_PR2_ref = imag(Z_PR2_ref); 
 
-    Z_PR3_ref = imp_values(ecirc_strg, [fc_PR3_ref], R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
+    Z_PR3_ref = imp_values(ecirc_strg, fc_PR3_ref, R1_ref, L2_ref, P3w_ref, P3n_ref, R4_ref, P5w_ref, P5n_ref, R6_ref, P7w_ref, P7n_ref, R8_ref )
     x_fc_PR3_ref = real(Z_PR3_ref);         y_fc_PR3_ref = imag(Z_PR3_ref); 
     
     # --- function parameters must be of type "Observable": --------------------------------------------------------------------
@@ -199,7 +152,7 @@ function real_main()
 
     # --- SliderGrid(): ---------------------------------------------------------------------------------------------------------
     sg = SliderGrid( fig[1, 2][1,1],
-        (label = "R1",  range = 0: 0.01*R1_ref:     10*R1_ref,  format = "{:.1e}Ω",     startvalue = R1_ref),
+        (label = "R1",  range = 0: 0.01*R1_ref:     3*R1_ref,  format = "{:.1e}Ω",     startvalue = R1_ref),
         (label = "L2",  range = 0: 0.01*L2_ref:     2*L2_ref,   format = "{:.1e}H",     startvalue = L2_ref),
         (label = rich("P3w", color = rgb1), range = 0: 0.01*P3w_ref:    2*P3w_ref,  format = "{:.1e}S*s^n", startvalue = P3w_ref),
         (label = rich("P3n", color = rgb1), range = 0: 0.01*P3n_ref:    2*P3n_ref,  format = "{:.1e}-",     startvalue = P3n_ref),
@@ -269,19 +222,19 @@ function real_main()
     lines!(ax, x_, y_)
     # --- impedance points @cut-off frequencies: --------------------------------------------------------------------------------
     fc_PR1   = @lift(1 / (2*π* $(obs_P3w) * $(obs_R4)))
-    Z_fc_PR1 = @lift(imp_values(ecirc_strg, [$(fc_PR1)], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    Z_fc_PR1 = @lift(imp_values(ecirc_strg, $(fc_PR1), $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
     x_PR1    = @lift(real($(Z_fc_PR1)));       y_PR1 = @lift(imag($(Z_fc_PR1)))
     pt_PR1   = @lift[Point2f($(x_PR1)[], $(y_PR1)[])]
     scatter!(ax, pt_PR1, color = rgb1, markersize = 20)
     # ---
     fc_PR2   = @lift(1 / (2*π* $(obs_P5w) * $(obs_R6)))
-    Z_fc_PR2 = @lift(imp_values(ecirc_strg, [$(fc_PR2)], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    Z_fc_PR2 = @lift(imp_values(ecirc_strg, $(fc_PR2), $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
     x_PR2    = @lift(real($(Z_fc_PR2)));       y_PR2 = @lift(imag($(Z_fc_PR2)))
     pt_PR2   = @lift[Point2f($(x_PR2)[], $(y_PR2)[])]
     scatter!(ax, pt_PR2, color = rgb2, markersize = 20)
     # ---
     fc_PR3   = @lift(1 / (2*π* $(obs_P7w) * $(obs_R8)))
-    Z_fc_PR3 = @lift(imp_values(ecirc_strg, [$(fc_PR3)], $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
+    Z_fc_PR3 = @lift(imp_values(ecirc_strg, $(fc_PR3), $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
     x_PR3    = @lift(real($(Z_fc_PR3)));       y_PR3 = @lift(imag($(Z_fc_PR3)))
     pt_PR3   = @lift[Point2f($(x_PR3)[], $(y_PR3)[])]
     scatter!(ax, pt_PR3, color = rgb3, markersize = 20)
