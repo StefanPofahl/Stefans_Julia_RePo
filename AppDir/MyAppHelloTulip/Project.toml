@@ -1,0 +1,7 @@
+name = "MyAppHelloTulip"
+uuid = "5eaa84a2-2ac0-4409-97e0-c9f020bf7241"
+authors = ["WC1991 <s51079@edu.campus02.at>"]
+version = "0.1.0"
+
+[deps]
+Tulip = "6dd1b50a-3aae-11e9-10b5-ef983d2400fa"

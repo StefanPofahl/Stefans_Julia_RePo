@@ -1,9 +1,7 @@
 module InteractiveNyquist
 include("MyCircuitFunction.jl")
 using GLMakie, RobustModels, Printf
-import Tulip
 
-Tulip.__init__();
 # --- remark: ------------------------------------------------------------------------------------------------------------ #
 # --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #
 # ... .................................................................................................................... #
