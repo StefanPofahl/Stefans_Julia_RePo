@@ -6,7 +6,9 @@ Julia Version should be at least v1.6.7
 For compilation advice I refer to the site:
 https://julialang.github.io/PackageCompiler.jl/stable/apps.html
 
-There are four projects:
+There are six projects:
+- "`MyAppHelloTulip`" minimal example with the package `Tulip`
+- "`MyTulipHello`" experimental project including a renamed version of `Tulip` (new name is `MyTulip` )
 - "`MyGLMakieApp`" is the example figure from the `GLMakie` manual with the feature "`SliderGrid()`"
 - "`InteractiveEquivalentCircuit_simple`" is an interactive `GLMakie` figure. <br />
 It depends on the package: "`EquivalentCircuits.jl`". <br />

@@ -1,0 +1,7 @@
+name = "MyTulipHello"
+uuid = "83e210d5-115b-40c8-91e4-e3af5cbdfd5f"
+authors = ["WC1991 <s51079@edu.campus02.at>"]
+version = "0.1.0"
+
+[deps]
+LLVMExtra_jll = "dad2f222-ce93-54a1-a47d-0025e8a3acab"

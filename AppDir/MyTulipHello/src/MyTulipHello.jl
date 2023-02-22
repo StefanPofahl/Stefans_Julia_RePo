@@ -1,5 +1,5 @@
-module MyAppHelloTulip
-import Tulip 
+module MyTulipHello
+import MyTulip  # my cloned project "Tulip", renamed and with different UUID
 if VERSION >= v"1.7.0"
     using LLVMExtra_jll
 end

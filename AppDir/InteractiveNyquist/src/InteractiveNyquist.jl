@@ -1,6 +1,11 @@
 module InteractiveNyquist
 include("MyCircuitFunction.jl")
 using GLMakie, RobustModels, Printf
+using Tulip # other packages depend on it, we must specify the local version as development package 
+if VERSION >= v"1.7.0"
+    using LLVMExtra_jll
+end
+
 
 # --- remark: ------------------------------------------------------------------------------------------------------------ #
 # --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #

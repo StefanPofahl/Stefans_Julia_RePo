@@ -1,0 +1,38 @@
+name = "MyTulip"
+uuid = "a25d17e8-3a2b-463d-813b-72b5f9b06982"
+authors = ["WC1991 <s51079@edu.campus02.at>"]
+version = "0.9.4+1"
+
+# --- original --------
+# name = "MyTulip"
+# uuid = "6dd1b50a-3aae-11e9-10b5-ef983d2400fa"
+# authors = ["Mathieu Tanneau <mathieu.tanneau@gmail.com>"]
+# version = "0.9.4+1"
+
+[deps]
+CodecBzip2 = "523fee87-0ab8-5b00-afb7-3ecf72e48cfd"
+CodecZlib = "944b1d66-785c-5afd-91f1-9de20f533193"
+Krylov = "ba0b0d4f-ebba-5204-a429-3ac8c609bfb7"
+LDLFactorizations = "40e66cde-538c-5869-a4ad-c39174c6795b"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+LinearOperators = "5c8ed15e-5a4c-59e4-a42b-c7e8811fb125"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+QPSReader = "10f199a5-22af-520b-b891-7ce84a7b1bd0"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+SuiteSparse = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+TimerOutputs = "a759f4b9-e2f1-59dc-863e-4aeb61b1ea8f"
+
+[compat]
+CodecBzip2 = "0.7.2"
+CodecZlib = "0.7.0"
+Krylov = "0.8, 0.9"
+LDLFactorizations = "0.8, 0.9, 0.10"
+LinearOperators = "2.0"
+MathOptInterface = "1"
+QPSReader = "0.2"
+TimerOutputs = "0.5.6"
+julia = "1.6, 1.7, 1.8, 1.9"
