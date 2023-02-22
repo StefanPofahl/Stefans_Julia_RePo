@@ -8,7 +8,7 @@ end
 function julia_main()::Cint
     try
         if isempty(ARGS)
-            real_main("Tulip Version: v", Tulip.version())
+            real_main(string("Tulip Version: v", Tulip.version()))
         else
             real_main(ARGS[1])
         end

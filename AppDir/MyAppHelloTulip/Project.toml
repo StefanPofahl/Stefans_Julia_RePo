@@ -4,4 +4,5 @@ authors = ["WC1991 <s51079@edu.campus02.at>"]
 version = "0.1.0"
 
 [deps]
+LLVMExtra_jll = "dad2f222-ce93-54a1-a47d-0025e8a3acab"
 Tulip = "6dd1b50a-3aae-11e9-10b5-ef983d2400fa"
