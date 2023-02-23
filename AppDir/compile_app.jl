@@ -26,11 +26,11 @@ import Pkg, Chain, Dates
 using PackageCompiler, Printf
 
 # --- configuration parameters: -------------------------------------------------------------------------------------------------
-case_nr                     = 1 # which project should be compiled (1: MyAppHelloTulip)
+case_nr                     = 4 # which project should be compiled (1: MyAppHelloTulip)
 b_stop_in_priv_prim_env     = false
 b_stop_in_project_env       = false # it makes sense to investigate secondary environment / project environment via Pkg.status()
-b_instantiate               = false # may take some time ... (maybe set to "true", if issues must be resolved)
-b_resolve                   = false # careful with this option, if packages are markes as development packages via: >dev PackageName<
+b_instantiate               = true # may take some time ... (maybe set to "true", if issues must be resolved)
+b_resolve                   = true # careful with this option, if packages are marked as development packages via: >dev PackageName<
 vJuliaLTS                   = v"1.6.7" # version of Julia Long Time Support
 dir_local_projects          = raw"C:\data\git_repos\own_repos\Stefans_Julia_RePo\AppDir\cloned_packages"
 std_packages_in_priv_prim_env = ["PackageCompiler"]
@@ -55,21 +55,25 @@ if case_nr == 1                 # standard project name and UUID of package Tuli
     # import Pkg; Pkg.build("SpecialFunctions")
     s_MyAppCompileEnvironment   = "MyAppCompileEnv" # take standard primary environment
     # s_MyAppCompileEnvironment   = "" # take standard primary environment
+    specific_packages_inside_both_env = []
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
 elseif case_nr == 2             # take clone of "Tulip", new name "MyTulip" and new UUID
     s_app       = "MyTulipHello"
     s_MyAppCompileEnvironment   = "MyInteractiveNyquistCompileEnv"
+    specific_packages_inside_both_env = []
     my_cloned_packages = ["MyTulip"]
     my_cloned_packages_in_AppProject = ["MyTulip"]
 elseif case_nr == 3             
     s_app       = "InteractiveNyquist"
-    s_MyAppCompileEnvironment   = ""
+    s_MyAppCompileEnvironment   = "PrimeEnvInteractiveNyquistApp"
+    specific_packages_inside_both_env = []
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
 elseif case_nr == 4
-    s_app       = "InteractiveEquivalentCircuit"
-    s_MyAppCompileEnvironment   = ""
+    s_app       = "InteractiveEquivalentCircuit" # abbrev IEC
+    s_MyAppCompileEnvironment   = "PrimeEnvIECApp"
+    specific_packages_inside_both_env = []
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
 else
@@ -104,11 +108,28 @@ end
 # --- packages to be available in current private primary Environment:
 import Pkg # make Pkg available in primary private environment
 # --- install standard packages, if not yet installed: ------------------------------------------------------------------------- #
-for i_package in std_packages_in_priv_prim_env
-    if ~isinstalled(s_package)
-        Pkg.add("$i_package")
+s_package = "LLVMExtra_jll"
+if VERSION >= v"1.7.0" && ~isinstalled(s_package)
+    Pkg.add("$s_package")
+    @warn("\"$s_package\" had to be installed in the current project!")
+end
+if ~isempty(std_packages_in_priv_prim_env)
+    for i_package in std_packages_in_priv_prim_env
+        if ~isinstalled(i_package)
+            Pkg.add("$i_package")
+        end
     end
 end
+if ~isempty(specific_packages_inside_both_env)
+    for i_package in specific_packages_inside_both_env
+        if ~isinstalled(i_package)
+            # Pkg.add("$i_package")
+            println("DBG:   $i_package")
+        end
+    end
+end
+
+
 # --- install private clones of packages in primary environment, if not yet installed: ----------------------------------------- #
 if ~isempty(my_cloned_packages)
     for i_package in my_cloned_packages
@@ -133,7 +154,7 @@ end
 startdir, _ = splitdir(@__FILE__());  cd(startdir)
 println("\n--- Start dir: \"", startdir, "\" -------------------------------------------------")
 if VERSION > vJuliaLTS
-    tmp_s_app = string(s_app, "_RC")
+    tmp_s_app = string("tmp_copy_", s_app, "_julia_stable")
     if ispath(tmp_s_app)
         @info(string("Julia Version: v", VERSION, ", copy of project folder: \"", tmp_s_app, "\" exists already!  ------"))
     else
@@ -179,9 +200,8 @@ import Pkg # make Pkg available in secondary environment / project environment
 # --- install packages, if they do not exist in current project environment: ----------------------------------------------------
 s_package = "LLVMExtra_jll"
 if VERSION >= v"1.7.0" && ~isinstalled(s_package)
-    Pkg.add(s_package)
+    Pkg.add("$s_package")
     @warn("\"$s_package\" had to be installed in the current project!")
-    Pkg.rm("$s_package")
 end
 
 if ~isempty(my_cloned_packages_in_AppProject)
@@ -196,6 +216,14 @@ if ~isempty(my_cloned_packages_in_AppProject)
         end
     end
 end
+if ~isempty(specific_packages_inside_both_env)
+    for i_package in specific_packages_inside_both_env
+        if ~isinstalled(i_package)
+            Pkg.add("$i_package")
+        end
+    end
+end
+
 
 # --- make shure "PackageCompiler" is not includet in current project environment: ----------------------------------------------
 if isinstalled("PackageCompiler")

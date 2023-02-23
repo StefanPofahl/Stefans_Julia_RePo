@@ -54,6 +54,12 @@ module InteractiveEquivalentCircuit
 
 using EquivalentCircuits 
 using GLMakie, RobustModels, Printf
+using GeneralizedGenerated # maybe this helps?
+using Tulip # other packages depend on it (maybe not necessary to be specified here) 
+if VERSION >= v"1.7.0"
+    using LLVMExtra_jll
+end
+
 
 # --- remark: ------------------------------------------------------------------------------------------------------------ #
 # --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #
