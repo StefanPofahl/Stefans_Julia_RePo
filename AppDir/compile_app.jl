@@ -26,11 +26,11 @@ import Pkg, Chain, Dates
 using PackageCompiler, Printf
 
 # --- configuration parameters: -------------------------------------------------------------------------------------------------
-case_nr                     = 4 # which project should be compiled (1: MyAppHelloTulip)
+case_nr                     = 3 # which project should be compiled (1: MyAppHelloTulip)
 b_stop_in_priv_prim_env     = false
 b_stop_in_project_env       = false # it makes sense to investigate secondary environment / project environment via Pkg.status()
-b_instantiate               = true # may take some time ... (maybe set to "true", if issues must be resolved)
-b_resolve                   = true # careful with this option, if packages are marked as development packages via: >dev PackageName<
+b_instantiate               = false # may take some time ... (maybe set to "true", if issues must be resolved)
+b_resolve                   = false # careful with this option, if packages are marked as development packages via: >dev PackageName<
 vJuliaLTS                   = v"1.6.7" # version of Julia Long Time Support
 dir_local_projects          = raw"C:\data\git_repos\own_repos\Stefans_Julia_RePo\AppDir\cloned_packages"
 std_packages_in_priv_prim_env = ["PackageCompiler"]
@@ -67,7 +67,8 @@ elseif case_nr == 2             # take clone of "Tulip", new name "MyTulip" and 
 elseif case_nr == 3             
     s_app       = "InteractiveNyquist"
     s_MyAppCompileEnvironment   = "PrimeEnvInteractiveNyquistApp"
-    specific_packages_inside_both_env = []
+    specific_packages_inside_both_env = ["GLMakie", "RobustModels", "Printf", "Tulip", 
+        "MacroTools", "JuliaVariables", "MLStyle", "DataStructures", "Serialization"]
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
 elseif case_nr == 4
@@ -123,8 +124,8 @@ end
 if ~isempty(specific_packages_inside_both_env)
     for i_package in specific_packages_inside_both_env
         if ~isinstalled(i_package)
-            # Pkg.add("$i_package")
-            println("DBG:   $i_package")
+            Pkg.add("$i_package")
+            # println("DBG:   $i_package")
         end
     end
 end
@@ -146,7 +147,7 @@ end
 
 Pkg.resolve() # make sure we are in the primary environment and check, if all dependencies are satisfied
 if b_stop_in_priv_prim_env
-    @info('-'^100); @info("---  Scheduled stop in private primary environment.  ---");     @info('-'^100)
+    @info('-'^100); @info("---  Scheduled stop in private primary environment: \"$s_MyAppCompileEnvironment\".  ---");     @info('-'^100)
     error("Scheduled stop in private primary environment.")
 end
 
@@ -256,7 +257,7 @@ else
     @warn(string("After Base.active_project(): Manifest.toml not found!"))
 end
 if b_stop_in_project_env
-    @info('-'^100); @info("---  Scheduled stop in project environment!  ---");     @info('-'^100)
+    @info('-'^100); @info("---  Scheduled stop in project environment: \"$s_env\"!  ---");     @info('-'^100)
     error("Scheduled stop in project environment!"); 
 end
 # ### ######################################################################################################################### #
