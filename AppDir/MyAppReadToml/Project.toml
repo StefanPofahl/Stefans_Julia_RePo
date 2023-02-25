@@ -1,0 +1,7 @@
+name = "MyAppReadToml"
+uuid = "8d1fa77c-2e11-413f-878c-3e436930adf7"
+authors = ["Stefan Pofahl <stefan@pofahl.de>"]
+version = "0.1.0"
+
+[deps]
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"

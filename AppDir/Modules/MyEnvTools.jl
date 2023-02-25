@@ -40,7 +40,7 @@ export MyLib_select_primary_env, MyLib_add_primary_env
 # ---
 function MyLib_select_primary_env(_environment::AbstractString="")
     b_dbg = false
-    curr_dir = pwd()
+    prim_env_dir = []
     if VERSION < VersionNumber(1, 6, 7)
         error("Julia too old! Please upgrade to v > v1.6.7!")
     else
@@ -70,12 +70,10 @@ function MyLib_select_primary_env(_environment::AbstractString="")
             end
         end
     else
+        prim_env_dir = joinpath(env_dir, _environment)
         if any(occursin.(_environment, string.(env_list)))
             if splitpath(Base.active_project())[end-1] != _environment
-                cd(env_dir)
-                Pkg.activate(_environment)
-                cd(curr_dir)
-                println("current dir: ", pwd())
+                Pkg.activate(prim_env_dir)
             else
                 @info(string("Environment \"", _environment, "\" is already loaded!"))
             end
