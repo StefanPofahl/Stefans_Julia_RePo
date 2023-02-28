@@ -1,0 +1,7 @@
+name = "MyTOML"
+uuid = "d6650879-efa7-47b9-b20e-3387297f7e41"
+authors = ["Stefan Pofahl <stefan@pofahl.de>"]
+version = "0.1.0"
+
+[deps]
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"

@@ -24,16 +24,24 @@ include("./Modules/MyEnvTools.jl")
 
 import Pkg, Chain, Dates
 using PackageCompiler, Printf
+# --- for the purpose of onedirectional synchronization -------------------------------------------------------------------------
+using PyCall
+py_setuptools   = PyCall.pyimport("setuptools")
+py_distutils    = py_setuptools.distutils
+py_copy_tree    = py_distutils.dir_util.copy_tree
+
 
 # --- configuration parameters: -------------------------------------------------------------------------------------------------
-case_nr                     = 2 # which project should be compiled (1: MyAppHelloTulip)
-b_stop_in_priv_prim_env     = false
-b_stop_in_project_env       = false # it makes sense to investigate secondary environment / project environment via Pkg.status()
-b_instantiate               = true # may take some time ... (maybe set to "true", if issues must be resolved)
-b_resolve                   = true # careful with this option, if packages are marked as development packages via: >dev PackageName<
-b_run                       = true
+case_nr                     = 4     # which project should be compiled (1: MyAppHelloTulip, 2: MyTOML, 3: MyAppReadToml )
+b_stop_in_priv_prim_env     = true # stop in primary environment
+b_stop_in_project_env       = true # it makes sense to investigate secondary environment / project environment via Pkg.status()
+b_instantiate               = false # may take some time ... (maybe set to "true", if issues must be resolved)
+b_resolve                   = false # careful with this option, if packages are marked as development packages via: >dev PackageName<
+b_run                       = false
+# --- end configuration part  --------------------------------------------------------------------------------------------------
 vJuliaLTS                   = v"1.6.7" # version of Julia Long Time Support
 std_packages_in_priv_prim_env = ["PackageCompiler"]
+b_LLVMExtra_jll             = true
 # ---
 if VERSION == vJuliaLTS
     if Sys.iswindows() 
@@ -58,26 +66,34 @@ if case_nr == 1                 # standard project name and UUID of package Tuli
     specific_packages_inside_both_env = ["Tulip", "TOML", "InteractiveUtils"]
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
-elseif case_nr == 2             # take clone of "Tulip", new name "MyTulip" and new UUID
-    s_app       = "MyAppReadToml"
-    s_MyAppCompileEnvironment   = "MyAppReadTomlCompileEnv"
-    specific_packages_inside_both_env = ["TOML", "Tulip", "InteractiveUtils"]
+elseif case_nr == 2             # a bit mor complicated TOML-example
+    s_app       = "MyTOML"
+    s_MyAppCompileEnvironment   = "MyTOMLCompileEnv"
+    specific_packages_inside_both_env = ["TOML"]
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
-elseif case_nr == 3             
+    b_LLVMExtra_jll = false
+elseif case_nr == 3             # a bit mor complicated TOML-example
+    s_app       = "MyAppReadToml"
+    s_MyAppCompileEnvironment   = "MyAppReadTomlCompileEnv"
+    specific_packages_inside_both_env = ["TOML", "InteractiveUtils", "DelimitedFiles"]
+    my_cloned_packages = []
+    my_cloned_packages_in_AppProject = []
+    b_LLVMExtra_jll = false
+elseif case_nr == 4             
     s_app       = "InteractiveNyquist"
     s_MyAppCompileEnvironment   = "PrimeEnvInteractiveNyquistApp"
     specific_packages_inside_both_env = ["GLMakie", "RobustModels", "Printf", "Tulip", 
         "MacroTools", "JuliaVariables", "MLStyle", "DataStructures", "Serialization"]
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
-elseif case_nr == 4
+elseif case_nr == 5             # result is un-portable :-(
     s_app       = "InteractiveEquivalentCircuit" # abbrev IEC
     s_MyAppCompileEnvironment   = "PrimeEnvIECApp"
-    specific_packages_inside_both_env = []
+    specific_packages_inside_both_env = ["GLMakie", "EquivalentCircuits", "RobustModels", "Printf"]
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
-elseif case_nr == 5             # take clone of "Tulip", with new name "MyTulip" and new UUID
+elseif case_nr == 6             # (under construction ... ) take clone of "Tulip", with new name "MyTulip" and new UUID
     s_app       = "MyTulipHello"
     s_MyAppCompileEnvironment   = "MyInteractiveNyquistCompileEnv"
     specific_packages_inside_both_env = []
@@ -117,10 +133,12 @@ end
 import Pkg; Pkg.gc()  # make Pkg available in primary private environment and clean
 
 # --- install standard packages, if not yet installed: ------------------------------------------------------------------------- #
-s_package = "LLVMExtra_jll"
-if VERSION >= v"1.7.0" && ~isinstalled(s_package)
-    Pkg.add("$s_package")
-    @warn("\"$s_package\" had to be installed in the current project!")
+if VERSION >= v"1.7.0" && b_LLVMExtra_jll
+    s_package = "LLVMExtra_jll"
+    if ~isinstalled(s_package)
+        Pkg.add("$s_package")
+        @warn("\"$s_package\" had to be installed in the current project!")
+    end
 end
 if ~isempty(std_packages_in_priv_prim_env)
     for i_package in std_packages_in_priv_prim_env
@@ -180,19 +198,18 @@ end
 @info(string("\n--- Start dir: \"", startdir, "\" ------------------------------------------------- \n "))
 if VERSION > vJuliaLTS
     tmp_dir_project = joinpath(startdir, string("tmp_", s_app, "_julia_stable"))
-    if ispath(tmp_dir_project)
+    if ~ispath(tmp_dir_project)
         @info(string("Julia Version: v", VERSION, ", copy of project folder: \"", tmp_dir_project, "\" exists! \n "))
-        d_ = Dates.format(Dates.now(), "_HHMM")
-        tmp_dir_project = string(tmp_dir_project, d_)
         @info(string("A new folder with the modified name: \"", tmp_dir_project, "\" will be copied!  ------"))
-    end
-    println("Julia Version: v", VERSION, ", copy project folder to: \"", tmp_dir_project, "\"   ------")
-    if ispath(dir_project)
-        Base.Filesystem.cp(dir_project, tmp_dir_project; force=true )
+        if ispath(dir_project)
+            Base.Filesystem.cp(dir_project, tmp_dir_project; force=true )
+        else
+            error("Projectfolder \"$dir_project"\" not found!")
+        end
     else
-        error("Projectfolder \"$dir_project"\" not found!")
+        @info("---  Update folder: \"$tmp_dir_project\". -------------------------- \n ")
+        py_copy_tree(dir_project, tmp_dir_project, verbose=true, update=true) # copy only files that have been change in sourcs-dir
     end
-    println("Copy Project folder to: \"$tmp_dir_project\"  concludet! ------")    
     dir_project = tmp_dir_project
 end
 
@@ -232,7 +249,7 @@ import Pkg # make Pkg available in secondary environment / project environment
 
 # --- install packages, if they do not exist in current project environment: ----------------------------------------------------
 s_package = "LLVMExtra_jll"
-if VERSION >= v"1.7.0" && ~isinstalled(s_package)
+if VERSION >= v"1.7.0" && ~isinstalled(s_package) && b_LLVMExtra_jll
     Pkg.add("$s_package")
     @warn("\"$s_package\" had to be installed in the current project!")
 end
@@ -280,11 +297,7 @@ if b_instantiate
 end
 
 # ---
-s_compiled = string("tmp_", s_app, "_compiled_j", VERSION, "_PCv", vPackageComp)
 s_env = @sprintf("%s/%s", splitpath(Base.active_project())[end-2], splitpath(Base.active_project())[end-1])
-s_win_title = string("v", VERSION, ", App: ", s_app, ", env: ", s_env)
-# --- change title of CLI (command line interface):
-Sys.iswindows() ? run(`cmd /C 'title '"$s_win_title"`) : print("\033]0;$s_win_title\007")
 
 @info(string("Environment: ", Base.active_project()))
 
@@ -294,6 +307,7 @@ else
     @warn(string("After Base.active_project(): Manifest.toml not found!"))
 end
 if b_stop_in_project_env
+    @show Pkg.status()
     @info('-'^100); @info("---  Scheduled stop in project environment: \"$s_env\"!  ---");     @info('-'^100)
     error("Scheduled stop in project environment!"); 
 end
@@ -311,10 +325,18 @@ end
 Main.MyEnvTools.MyLib_select_primary_env(s_MyAppCompileEnvironment); # swtch back to specified primary environment
 cd(startdir) # get out of project directory
 # --- create a batch and a julia script file and invoce the batch script : ------------------------------------------------------
-println("\npwd(): ", pwd(), "\n")
 if ~isdir(startdir) # modify name of target directory, if it exist already to enable next compilation, before previous is concluded
     error("This should not heapen!")
 end
+s_compiled = string("tmp_", s_app, "_compiled_j", VERSION, "_PCv", vPackageComp)
+s_compiled_full = joinpath(startdir, s_compiled)
+if ispath(s_compiled_full)
+    d_ = Dates.format(Dates.now(), "_HHMM")
+    s_compiled = string(s_compiled, d_)
+end
+s_win_title = string("v", VERSION, ", App: ", s_app, ", env: ", s_env)
+# --- change title of CLI (command line interface):
+Sys.iswindows() ? run(`cmd /C 'title '"$s_win_title"`) : print("\033]0;$s_win_title\007")
 # --- common part (common for linux and ms-windows)
 s_start_PC = "tmp_start_PC.jl"
 cd_proj_sub_dir = string("cd \"", startdir, "\"")
@@ -345,13 +367,14 @@ if Sys.iswindows()
 elseif Sys.islinux()
     Base.Filesystem.chmod(s_bat, 0o500) # +500= a.) execute by user= 100, b.) read by user= 400
     cmd_ = Cmd(`konsole --noclose --show-menubar --separate -e ./$s_bat \&`; windows_verbatim=true, detach=true)
-    println("cmd: ", cmd_)
 else
     error("Not yet ready for other then Linux- and MS-Windows-OS")
 end
 if b_run
     run(cmd_; wait=false)
 else
+    @info(string("system call cmd would be: ", cmd_))
     @info("Compilation option \"b_run\" is set to \"false\"!")
 end
+Pkg.activate()
 @info("--- End of script execution :-)  -------------------------------------------------------------------------------")

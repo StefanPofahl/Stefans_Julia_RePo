@@ -45,6 +45,8 @@ function MyLib_select_primary_env(_environment::AbstractString="")
         error("Julia too old! Please upgrade to v > v1.6.7!")
     else
         env_dir = joinpath(Pkg.envdir(), string("v", VERSION)[1:end-2])
+        Pkg.activate() # make sure we are in the primary default environment        
+        env_dir, _ = splitdir(Base.active_project())
     end
     # env_dir = Pkg.envdir()
     dir_list = readdir(env_dir, join= false)
@@ -87,7 +89,8 @@ end
 
 function MyLib_add_primary_env(_environment::AbstractString="")
     curr_dir = pwd()
-    env_dir = joinpath(Pkg.envdir(), string("v", VERSION)[1:end-2])
+    Pkg.activate() # make sure we are in the primary default environment        
+    env_dir, _ = splitdir(Base.active_project())
     # env_dir = Pkg.envdir()
     dir_list = readdir(env_dir, join= false)
     dir_list_full = readdir(env_dir, join= true)
@@ -99,11 +102,9 @@ function MyLib_add_primary_env(_environment::AbstractString="")
         end
     end
     if isempty(_environment) ||  ~any(occursin.(_environment, string.(env_list)))
-        cd(env_dir)
-        Pkg.activate(_environment)
+        prim_env_dir = joinpath(env_dir, _environment)
+        Pkg.activate(prim_env_dir)
         Pkg.add("Revise")
-        cd(curr_dir)
-        println("current dir: ", pwd())
     end
     return env_list
 end

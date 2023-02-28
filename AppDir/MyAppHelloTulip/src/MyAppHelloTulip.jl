@@ -41,7 +41,8 @@ function julia_main()::Cint
     @show Base.JLOptions().check_bounds
 
     display(Base.loaded_modules)
-    println('-'^100)
+
+    println("\n", '-'^100)
     # --- do some real things, build variables and write data in a new folder:
     root_dir, _     = Base.Filesystem.splitdir(Sys.BINDIR)
     input_dir       = Base.Filesystem.joinpath(root_dir, "input_files")
@@ -103,6 +104,9 @@ function __init__()
     println('-'^100)
     Base.@show filter(n -> !isa(getfield(Main, n), Module), Base.names(Main))
     println('-'^100)    
+    Base.@info("--- \"__init__()\" \"Base.loaded_modules\" --------------------- \n ")
+    display(Base.loaded_modules)
+    println()
     Base.@info("--- Exit \"__init__()\" ---------------------------------------- \n ")
     return
 end

@@ -100,7 +100,7 @@ function real_main()
 
     # --- The fitting errors calculated using the modulus weighted objective function,
     # --- you can adjust the function to see other fitting quality metrics (e.g. removal of the denominator gives the MSE). 
-    function quality_func(_Z_measured, _Z_simulated)
+    function _quality_func(_Z_measured, _Z_simulated)
         return mean((abs.(_Z_measured - _Z_simulated).^2)./(abs.(_Z_measured).^2 .+ abs.(_Z_simulated).^2))
     end
     # ---
@@ -245,7 +245,7 @@ function real_main()
     # --- set-up label to display current quality / deviation of values from reference impedance values: ------------------------
     Z_sim_data = @lift(imp_values(ecirc_strg, frequ_data , $(obs_R1), $(obs_L2), $(obs_P3w), $(obs_P3n), $(obs_R4), $(obs_P5w), $(obs_P5n), $(obs_R6), $(obs_P7w), $(obs_P7n), $(obs_R8) ))
     # --- round at leftenside digit position 12:
-    obs_Q = @lift(round(quality_func($(Observable(Z_data)), $(Z_sim_data)); digits = 12))
+    obs_Q = @lift(round(_quality_func($(Observable(Z_data)), $(Z_sim_data)); digits = 12))
 
     label = lift(obs_Q) do s1
         return string("Q (deviation from original) = ", @sprintf("%.4g", s1))
