@@ -79,6 +79,13 @@ elseif case_nr == 3             # a bit mor complicated TOML-example
     specific_packages_inside_both_env = ["TOML", "InteractiveUtils", "DelimitedFiles"]
     my_cloned_packages = []
     my_cloned_packages_in_AppProject = []
+elseif case_nr == 2             # take clone of "Tulip", new name "MyTulip" and new UUID
+    s_app       = "MyTulipHello"
+    s_MyAppCompileEnvironment   = "MyMyTulipHelloCompileEnv"
+    specific_packages_inside_both_env = []
+    my_cloned_packages = ["MyTulip"]
+    my_cloned_packages_in_AppProject = ["MyTulip"]
+elseif case_nr == 3             
     b_LLVMExtra_jll = false
 elseif case_nr == 4             
     s_app       = "InteractiveNyquist"
