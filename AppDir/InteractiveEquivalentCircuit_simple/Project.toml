@@ -1,11 +1,11 @@
-name    = "InteractiveEquivalentCircuit_simple"
-uuid    = "cb2b6e78-f3ff-40c2-a393-93587d4d3d7c"
+name = "InteractiveEquivalentCircuit_simple"
+uuid = "cb2b6e78-f3ff-40c2-a393-93587d4d3d7c"
 authors = ["Stefan Pofahl <stefan@pofahl.de>"]
 version = "0.1.0"
 
 [deps]
-EquivalentCircuits  = "da5bd070-f609-4e16-a30d-de86b3faa756"
-GLMakie             = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
-RobustModels        = "d6ea1423-9682-4bbd-952f-b1577cbf8c98"
-Printf              = "de0858da-6303-5e67-8744-51eddeeeb8d7"
-
+# ArrayInterface = "4fba245c-0d91-5ea0-9b3e-6abc04ee57a9"
+EquivalentCircuits = "da5bd070-f609-4e16-a30d-de86b3faa756"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+RobustModels = "d6ea1423-9682-4bbd-952f-b1577cbf8c98"

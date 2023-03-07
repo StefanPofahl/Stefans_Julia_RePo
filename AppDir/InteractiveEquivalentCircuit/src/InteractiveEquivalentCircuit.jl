@@ -46,19 +46,16 @@
 # --- GLMakie related repository with nice examples:                                                                                  #
 # --- https://github.com/garrekstemo/InteractivePlotExamples.jl/tree/main/examples                                                    #
 # ................................................................................................................................... #
-# --- ToDo:                                                                                                                           #
-# --- Add Button to return sliders to initial position                                                                                #
-# ----------------------------------------------------------------------------------------------------------------------------------- #
  
 module InteractiveEquivalentCircuit
 
 using EquivalentCircuits 
 using GLMakie, RobustModels, Printf
 using GeneralizedGenerated # maybe this helps?
-using Tulip # other packages depend on it (maybe not necessary to be specified here) 
-if VERSION >= v"1.7.0"
-    using LLVMExtra_jll
-end
+# using Tulip # other packages depend on it (maybe not necessary to be specified here) 
+# if VERSION >= v"1.7.0"
+#     using LLVMExtra_jll
+# end
 
 
 # --- remark: ------------------------------------------------------------------------------------------------------------ #

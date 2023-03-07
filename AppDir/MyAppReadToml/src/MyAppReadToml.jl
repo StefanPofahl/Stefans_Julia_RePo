@@ -13,9 +13,10 @@
 
 module MyAppReadToml
 using TOML, InteractiveUtils, DelimitedFiles
-if VERSION >= v"1.7.0" && false  # currently not needed.
-    using LLVMExtra_jll
-end
+# if VERSION >= v"1.7.0" && false  # currently not needed.
+#     using LLVMExtra_jll
+# end
+
 # --- constants:
 const TEMPLATE_DATA = Dict(
     "names" => ["Julia", "Julio"],

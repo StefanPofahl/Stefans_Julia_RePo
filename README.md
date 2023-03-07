@@ -4,7 +4,7 @@ Julia related Stuff
 
 ## AppDir
 
-In the folder **AppDir** are three projects for standalone applications based on `GLMakie.jl`.
+In the folder **AppDir** are projects for the compilation of standalone applications.
 
 ## examples
 

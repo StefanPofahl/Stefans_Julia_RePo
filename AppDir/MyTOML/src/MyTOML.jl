@@ -3,10 +3,12 @@ import TOML
 # ******************************************************************************************************************** #
 # ---  Lesson learned:                                                                                                 #
 # ---  In the curren Julia Versions: v1.6.7 & V1.8.5 the following applies:                                            #
-# ---  inside functions for output variables inside try-catch these variables need to be declared inside the function  #
-# ---  outside the try-catch structure. In this code that applies to the variable "toml_content" inside the function   #
-# ---  real_main().                                                                                                    #
+# ---  inside functions for output variables inside try-catch:                                                         #
+# ---  these variables need to be declared inside the function outside the try-catch structure.                        #
+# ---  In this code that applies to the variable "toml_content" inside the function real_main().                       #
+# ---                                                                                                                  #
 # ******************************************************************************************************************** #
+
 # --- constants:
 const TEMPLATE_DATA = Dict(
     "names" => ["Julia", "Julio"],

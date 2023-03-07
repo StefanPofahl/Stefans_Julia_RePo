@@ -19,66 +19,28 @@
 
 module MyAppHelloTulip
 import Tulip, TOML
-if VERSION >= v"1.7.0"
-    using LLVMExtra_jll
+# --- constants:
+const PROJECTVERSION = let 
+    project_toml = joinpath(@__DIR__, "..", "Project.toml")
+    Base.include_dependency(project_toml)
+    VersionNumber(TOML.parsefile(project_toml)["version"])
 end
 
-# ---
-# variable_list() = filter(n -> !isa(getfield(Main, n), Module), Base.names(Main))
+const PROJECTNAME = let 
+    project_toml = joinpath(@__DIR__, "..", "Project.toml")
+    Base.include_dependency(project_toml)
+    TOML.parsefile(project_toml)["name"]
+end
+
+# --- functions:
+version() = PROJECTVERSION
 
 function julia_main()::Cint
-    println("--- julia_main ---")
-    @show ARGS
-    @show Base.PROGRAM_FILE
-    @show DEPOT_PATH
-    @show LOAD_PATH
-    @show pwd()
-    @show Base.active_project()
-    @show Sys.BINDIR
-
-    @show Base.JLOptions().opt_level
-    @show Base.JLOptions().nthreads
-    @show Base.JLOptions().check_bounds
-
-    display(Base.loaded_modules)
-
-    println("\n", '-'^100)
-    # --- do some real things, build variables and write data in a new folder:
-    root_dir, _     = Base.Filesystem.splitdir(Sys.BINDIR)
-    input_dir       = Base.Filesystem.joinpath(root_dir, "input_files")
-    data_file_name  = Base.Filesystem.joinpath(input_dir, "template.toml")
-    println("---  mkpath($input_dir) --------------------------------")
-    try
-        Base.Filesystem.mkpath(input_dir)        
-    catch
-        Base.invokelatest(Base.display_error, Base.catch_stack())
-    end
-    # ---
-    _template_data = Dict(
-          "names" => ["Julia", "Julio"],
-          "age" => [10, 20],
-       );    
-    # ---
-    println("---  write toml-file ($data_file_name) --------------------------------")
-    try
-        if ispath(input_dir)
-            if ~Base.Filesystem.isfile(data_file_name)
-                Base.open(data_file_name, "w") do io
-                    TOML.print(io, _template_data)
-                end
-                println("---  toml-file \"$data_file_name\" written. -------------------------")
-            end
-        else
-            @warn("Input path \"$input_dir\" does not exist!")
-        end            
-    catch
-        Base.invokelatest(Base.display_error, Base.catch_stack())
-    end
     # --- call function: real_main():
+    @info("\n --- Call of \"real_main\": -------------------------------------------- \n ")
     try
-        println("\n --- Call of \"real_main\": --------------------------------------------")
         if isempty(ARGS)
-            real_main(string("Tulip Version: v", Tulip.version()))
+            real_main(string("Projectname: \"$PROJECTNAME\", Projectversion: \"$PROJECTVERSION\", Tulip Version: v", Tulip.version()))
         else
             real_main(ARGS[1])
         end
@@ -91,6 +53,8 @@ function julia_main()::Cint
 end                                                                               
   
 function real_main(_s::AbstractString="Hello Julia!") 
+    @info("\n ----   Enter   ----   real_main()  ------- \n ")
+    @show ARGS
     return println(_s)
 end
 

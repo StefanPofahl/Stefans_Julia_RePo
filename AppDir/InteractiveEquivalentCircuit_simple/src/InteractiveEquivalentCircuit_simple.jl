@@ -31,10 +31,10 @@
 # --- from the master branche                                                                                                         #
 # --- julia> import Pkg; Pkg.rm("EquivalentCircuits")                                                                                 #
 # --- julia> import Pkg; Pkg.add(url="https://github.com/MaximeVH/EquivalentCircuits.jl.git#master")                                  #
-# --- julia> using Pkg; Pkg.add("GLMakie")                                                                                            #
-# --- julia> using Pkg; Pkg.add("PackageCompiler")                                                                                    #
-# --- julia> using Pkg; Pkg.add("Printf")                                                                                             #
-# --- julia> using Pkg; Pkg.add("RobustModels")                                                                                       #
+# --- julia> import Pkg; Pkg.add("GLMakie")                                                                                            #
+# --- julia> import Pkg; Pkg.add("PackageCompiler")                                                                                    #
+# --- julia> import Pkg; Pkg.add("Printf")                                                                                             #
+# --- julia> import Pkg; Pkg.add("RobustModels")                                                                                       #
 # --- Pkg-Manual: ------------------------------------------------------------------------------------------------------------------- #
 # --- https://pkgdocs.julialang.org/v1/                                                                                               #
 # --- https://pkgdocs.julialang.org/v1/environments/                                                                                  #
@@ -55,9 +55,27 @@ module InteractiveEquivalentCircuit_simple
 using EquivalentCircuits 
 using GLMakie, RobustModels, Printf
 
-# --- remark: ------------------------------------------------------------------------------------------------------------ #
-# --- all packages that are loaded inside this module must be included in the "Project.toml" of this Application Project   #
+# --- remark: ArrayInterface: -------------------------------------------------------------------------------------------- #
+# --- the following wornings are thrown, if the compilled App is started:
 # ... .................................................................................................................... #
+# --- + @ Requires C:\Users\stefanpofahl\.julia\packages\Requires\Z8rfN\src\require.jl:51
+# --- + Warning: Error requiring `StaticArraysCore` from `ArrayInterface`
+# ---¦   exception =
+# ---¦    LoadError: ArgumentError: Package ArrayInterface does not have LinearAlgebra in its dependencies:
+# ---
+# --- + Warning: Error requiring `GPUArraysCore` from `ArrayInterface`
+# ---¦   exception =
+# ---¦    LoadError: ArgumentError: Package ArrayInterface does not have Adapt in its dependencies:
+# --- 
+# ... .................................................................................................................... #
+# --- Idea:
+# --- add the package: "ArrayInterface"
+# --- Result:
+# --- It has not the effect to get rid of the warning :-(
+# ... .................................................................................................................... #
+# using ArrayInterface   # GPUArraysCore, StaticArraysCore
+# const b_FOO = ArrayInterface.ensures_sorted([])
+# ### #################################################################################################################### #
 
 # --- mandatory function "julia_main()": -----------------------------------------------------------------------------------
 function julia_main()::Cint 
@@ -70,11 +88,11 @@ function julia_main()::Cint
     return 0
 end
 
-# --- function DeltaTicks(dtick): ---------------------------------------------------------------------------------------- #
-# motivation: espacially in graphs with equidistant axis scaling, also the tick spacing should be equidistant as well.     #
-# source:                                                                                                                  #
-# https://discourse.julialang.org/t/optimal-layouting-with-dataaspect/75121/7                                              #
-# ........................................................................................................................ #
+# --- function DeltaTicks(dtick): --------------------------------------------------------------------------------------------- #
+# --- motivation: espacially in graphs with equidistant axis scaling, also the tick spacing should be equidistant as well.      #
+# --- source:                                                                                                                   #
+# --- https://discourse.julialang.org/t/optimal-layouting-with-dataaspect/75121/7                                               #
+# ............................................................................................................................. #
 struct DeltaTicks
     delta::Float64
     offset::Float64

@@ -6,10 +6,6 @@ module MyGLMakieApp
 # --- For PackageCompiler v2.1.5 the compile command should be:                                                            #
 # --- julia> using PackageCompiler                                                                                         #
 # --- julia> create_app("MyGLMakieApp", "MyAppCompiled"; incremental= true, force= true, include_lazy_artifacts= true)     #
-# ... ... address of my fork: ............................................................................................ #
-# ... https://github.com/StefanPofahl/Tulip.jl
-# ... install from this fork:
-# --- import Pkg; Pkg.add()
 # ... .................................................................................................................... #
 
 
