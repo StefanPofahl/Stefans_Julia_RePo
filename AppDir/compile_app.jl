@@ -209,7 +209,8 @@ dir_project = joinpath(startdir, s_app);
 # ----------------------------------------------------------------------------------------------------------------------------- #
 @info(string("\n--- Start dir: \"", startdir, "\" ------------------------------------------------- \n "))
 if VERSION > Vers_aboveLTS
-    tmp_dir_project = joinpath(startdir, string("tmp", s_release_tag, "_", s_app))
+    s_project_folder = string("tmp", s_release_tag, "_", s_app)
+    tmp_dir_project = joinpath(startdir, s_project_folder)
     tmp_fn_project_toml         = joinpath(tmp_dir_project, "Project.toml")
     tmp_fn_project_toml_backup  = joinpath(tmp_dir_project, "Project~.toml")
     tmp_fn_manifest_toml        = joinpath(tmp_dir_project, "Manifest.toml")
@@ -247,6 +248,8 @@ if VERSION > Vers_aboveLTS
     end
     dir_project = tmp_dir_project
     @info(string("\nJulia Version: ", VERSION,"  ---  Synchronization of: \"$dir_project\"\n"))
+else 
+    s_project_folder = s_app
 end
 
 # ----------------------------------------------------------------------------------------------------------------------------- #
@@ -417,7 +420,8 @@ fid = open(s_start_PC, "w")
     println(fid, string("Pkg.activate(raw\"$dir_project\")"))
     println(fid, string("Pkg.instantiate(; verbose = true)"))   
     println(fid, string("Pkg.resolve()"))  
-    if any(occursin.("GLMakie", specific_packages_inside_both_env))
+    # --- trick: a hat char "^" as first char in a regular expression restrict to strings starting with the search pattern
+    if any(occursin.(r"^GLMakie", specific_packages_inside_both_env))  
         println(fid, "@info(string(\"\\n----      start build \\\"ModernGL\\\"     -----\\n \" ))" )        
         println(fid, string("Pkg.build(\"ModernGL\")") )
         println(fid, "@info(string(\"\\n----      start build \\\"GLMakie\\\"     -----\\n \" ))" )
@@ -443,7 +447,7 @@ fid = open(s_start_PC, "w")
         println(fid, string("    names_ = [Pair(\"$executable_name\", \"julia_main\")]") )
     end
     b_incremental ? s_incremental = "true" : s_incremental = "false"
-    println(fid, string("    create_app(\"$s_app\", \"$s_compiled\"; incremental=$s_incremental, force=true, include_lazy_artifacts=true, executables=names_)"))
+    println(fid, string("    create_app(\"$s_project_folder\", \"$s_compiled\"; incremental=$s_incremental, force=true, include_lazy_artifacts=true, executables=names_)"))
     println(fid, string("end"))
     println(fid, string("@time compile_it()"))
 close(fid)
