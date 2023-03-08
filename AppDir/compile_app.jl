@@ -219,7 +219,7 @@ if VERSION > Vers_aboveLTS
         @info(string("Julia Version: v", VERSION, ", copy of project folder: \"", tmp_dir_project, "\" exists! \n "))
         @info(string("A new folder with the modified name: \"", tmp_dir_project, "\" will be copied!  ------"))
         if ~ispath(dir_project)
-            error("Projectfolder \"$dir_project"\" not found!")
+            error("Projectfolder \"$dir_project\" not found!")
         end
         Base.Filesystem.cp(dir_project, tmp_dir_project; force=true )
         Base.Filesystem.rm(tmp_fn_manifest_toml; force=true )
