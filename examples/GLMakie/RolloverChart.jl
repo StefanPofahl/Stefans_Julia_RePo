@@ -11,7 +11,9 @@
 #: * Symbol(): utilize this function to use a string variable instead of a literal "string".
 #: * any(x -> x == sFNext, sListExt): To analyse if string is inside a list.
 #: * lstrip(), rstrip(): To ensure proper filename, with only one point "." before the file name extention
-# --- load packages and define constants:
+#: --- Version / Date / Author ------------------------------------------------------------------ #
+#: Version: 1.0, Date: 27-Jan-2026, Author: Stefan N. Pofahl                                      #
+#: --- load packages and define constants: ------------------------------------------------------ #
 using GLMakie
 using Statistics
 using CairoMakie
