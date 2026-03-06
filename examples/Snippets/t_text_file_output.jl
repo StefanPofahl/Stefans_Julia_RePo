@@ -1,6 +1,18 @@
-### --- snippets around text file output: ---
+#: --- snippets around text file output: ---
 
-##: Write Linux Bash script
+#: --- File Extention, ensure FNbody + dot + FNextention
+# --- clean strings and build complete file name:
+sFNbody_in = "Pritty File Name."
+sFNext_in  = ".pdf"
+sFNbody = rstrip(replace(sFNbody_in, " " => ""), '.') # remove tailing character '.'
+sFNext  = lstrip(sFNext_in, '.') # remove leading character '.'
+sFNplt  = string(sFNbody, ".", sFNext)
+println("sFNbody_in: \"", sFNbody_in, "\", sFNext_in: \"", sFNext_in, "\", sFNplt: \"", sFNplt, "\".")
+
+#: --- File Name Handling
+fn = raw"C:\temp\data.csv"
+
+#: --- Write Linux Bash script
 if Sys.islinux()
     fn_script = joinpath(homedir(), ".local", "bin", "test_script.sh")
     if isfile(fn_script)

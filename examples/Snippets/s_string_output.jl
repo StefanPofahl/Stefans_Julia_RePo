@@ -19,11 +19,13 @@ println(" --- Print Vector of complex numbers: ----------------------------- ")
 for i in axes(z_complex, 1)
     @printf("%5.2f %5.2fim\n", real(z_complex[i]), imag(z_complex[i]))
 end
+
 #: ------------------------------------------------------------------
 #: --- static format specifier:
 fmt = Printf.Format("%.2f "^3); # equivalent to "%.2f%.2f%.2f"
 Printf.format(fmt, real(z_complex)...)
 println(Printf.format(fmt, real(z_complex)...))
+
 #: --- dynamic format specifier:
 println(" ---  dynamic ---")
 f_fmt(x) = Printf.Format("%.2f "^x)

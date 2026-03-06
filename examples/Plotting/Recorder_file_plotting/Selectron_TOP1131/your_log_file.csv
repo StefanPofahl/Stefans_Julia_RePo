@@ -1,0 +1,758 @@
+SECTION;COMMON
+VERSION;4.00
+DATE;06.03.2026
+TIME;17:54:06
+COMMENT;LogData-Export from TOP1131
+
+SECTION;TOP1131
+VERSION;V5.0.11.4098
+PROJECT;C:\data\SVN_repos\trans4m-r_VCU\branches\Stefan\FB_Testing\FB_Tempomat\top\SimulateLocomotiveDBG.top
+
+SECTION;CAP1131_PROJECT
+CAP1131_PROJECT;FB_Tempomat;C:\data\SVN_repos\trans4m-r_VCU\branches\Stefan\FB_Testing\FB_Tempomat
+
+SECTION;CAP1131_PROJECT_INFO
+CAP1131_PROJECT_INFO;FB_Tempomat;NAME;fb_tempomat
+CAP1131_PROJECT_INFO;FB_Tempomat;COMPILED;06.03.2026 17:40:10
+CAP1131_PROJECT_INFO;FB_Tempomat;VERSION;454
+CAP1131_PROJECT_INFO;FB_Tempomat;COMMENT;Blank Template with simulation MOS Library Pool, without IO-Modules
+CAP1131_PROJECT_INFO;FB_Tempomat;CAP1131;5.12.0401.5660
+CAP1131_PROJECT_INFO;FB_Tempomat;OS;MOS_CPU835_SIM V761.C193
+CAP1131_PROJECT_INFO;FB_Tempomat;CPU;CPU835
+
+SECTION;MASRESOURCE
+MASRESOURCE;Sumulated835;CPU835;FB_Tempomat
+
+SECTION;LOGRESOURCE
+PARENT_NODE;MAS_RESOURCE;Sumulated835;CPU835;SysCom LAN,127.0.0.1:1065
+LOGRESOURCE_NAME;Speed plus Forces
+DATALOGGER_TYPE;Local
+TRACE_MODE;Interval
+TRACE_AUTOSTART;TRUE
+TRACE_LOCAL_UPDATERATE;100
+TRACE_INTERVAL_TIME;100
+TRACE_EVENTMODE_TRIGGERFUNTION;GT
+TRACE_EVENTMODE_TRIGGERREFVALUE;
+TRACE_EVENTMODE_PREHISTORYCYCLES;10
+TRACE_EVENTMODE_PASTHISTORYCYCLES;10
+TRACE_EVENTMODE_HISTORYINTERVALLTIME;0
+TRACE_BUFFER_MODE;List
+TRACE_BUFFER_SIZE;8192
+TRACE_FILELOGGING_MODE;Disable
+TRACE_AUTOLOGDATAEXPORT_ENABLE;FALSE
+TRACE_AUTOLOGDATAEXPORT_FOLDER;.\LogData
+TRACE_AUTOLOGDATAEXPORT_FILENAME;Sumulated835_Speed plus Forces.csv
+TRACE_AUTOLOGDATAEXPORT_INCREMENTFILENAME;TRUE
+TRACE_AUTOLOGDATAEXPORT_MAXFILESIZE;0
+TRACEDISPLAYCONFIG;stacked
+IPLOTX_PROPERTIES;File Type = Plot Config'\n'ChannelCount = 7'\n'XAxisCount = 1'\n'YAxisCount = 7'\n'ToolBarCount = 1'\n'LegendCount = 1'\n'TableCount = 0'\n'LabelCount = 1'\n'DataViewCount = 1'\n'DataCursorCount = 1'\n'LimitCount = 0'\n'DataViewZHorz = 0'\n'DataViewZVert = 2'\n'Channel0.Name = Sumulated835.P_Main.rForceAir_kN'\n'Channel0.Visible = 1'\n'Channel0.Enabled = 1'\n'Channel0.Layer = 100'\n'Channel0.PopupEnabled = 1'\n'Channel0.CanFocus = 1'\n'Channel0.TitleText = rForceAir_kN'\n'Channel0.VisibleInLegend = 1'\n'Channel0.ClipToAxes = 0'\n'Channel0.ShowDataPointHints = 0'\n'Channel0.UserCanMoveDataPoints = 0'\n'Channel0.UserCanMoveDataPointsStyle = 0'\n'Channel0.RingBufferSize = 0'\n'Channel0.TraceVisible = 1'\n'Channel0.Color = 255'\n'Channel0.TraceLineStyle = 0'\n'Channel0.TraceLineWidth = 1'\n'Channel0.MarkersAllowIndividual = 0'\n'Channel0.MarkersPenUseChannelColor = 1'\n'Channel0.MarkersBrushUseChannelColor = 1'\n'Channel0.MarkersTurnOffLimit = 0'\n'Channel0.MarkersVisible = 0'\n'Channel0.MarkersSize = 3'\n'Channel0.MarkersStyle = 0'\n'Channel0.MarkersPenColor = 255'\n'Channel0.MarkersPenStyle = 0'\n'Channel0.MarkersPenWidth = 0'\n'Channel0.MarkersBrushColor = 255'\n'Channel0.MarkersBrushStyle = 0'\n'Channel0.MarkersFont.Charset = 1'\n'Channel0.MarkersFont.Color = 16777215'\n'Channel0.MarkersFont.Height = -11'\n'Channel0.MarkersFont.Name = Tahoma'\n'Channel0.MarkersFont.Orientation = 0'\n'Channel0.MarkersFont.Pitch = 0'\n'Channel0.MarkersFont.Style = 1'\n'Channel0.MarkersFont.Quality = 0'\n'Channel0.XAxisName = X-Axis 1'\n'Channel0.YAxisName = Y0'\n'Channel0.XAxisTrackingEnabled = 1'\n'Channel0.YAxisTrackingEnabled = 1'\n'Channel0.LogFileName = '\n'Channel0.LogBufferSize = 0'\n'Channel0.DataStyle = 0'\n'Channel0.FastDrawEnabled = 1'\n'Channel0.AllowOutOfOrderXValues = 1'\n'Channel0.DrawOutOfOrderXValues = 0'\n'Channel0.ResetStartTimeOnFirstDataPoint = 0'\n'Channel0.InterpolationStyle = 0'\n'Channel0.FillEnabled = 0'\n'Channel0.FillReference = 0'\n'Channel0.FillStyle = 0'\n'Channel0.FillColor = 0'\n'Channel0.FillUseChannelColor = 1'\n'Channel0.DigitalEnabled = 0'\n'Channel0.DigitalReferenceStyle = 0'\n'Channel0.DigitalReferenceLow = 10'\n'Channel0.DigitalReferenceHigh = 90'\n'Channel0.HighLowStyle = 0'\n'Channel0.HighLowEnabled = 0'\n'Channel0.HighLowBarColor = 16776960'\n'Channel0.HighLowBarWidth = 0,5'\n'Channel0.HighLowOpenShow = 1'\n'Channel0.HighLowOpenColor = 65280'\n'Channel0.HighLowOpenWidth = 1'\n'Channel0.HighLowOpenHeight = 1'\n'Channel0.HighLowCloseShow = 1'\n'Channel0.HighLowCloseColor = 255'\n'Channel0.HighLowCloseWidth = 1'\n'Channel0.HighLowCloseHeight = 1'\n'Channel0.HighLowShadowColor = 8421504'\n'Channel0.HighLowBullishColor = 16777215'\n'Channel0.HighLowBearishColor = 8421504'\n'Channel0.BarEnabled = 0'\n'Channel0.BarPenUseChannelColor = 1'\n'Channel0.BarBrushUseChannelColor = 1'\n'Channel0.BarReference = 0'\n'Channel0.BarWidth = 5'\n'Channel0.BarPenColor = 255'\n'Channel0.BarPenWidth = 0'\n'Channel0.BarPenStyle = 0'\n'Channel0.BarBrushColor = 255'\n'Channel0.BarBrushStyle = 0'\n'Channel0.OPCGroupName = '\n'Channel0.OPCComputerName = Local'\n'Channel0.OPCServerName = '\n'Channel0.OPCItemName = '\n'Channel0.OPCItem2Name = '\n'Channel0.OPCUpdateRate = 500'\n'Channel0.OPCScalar = 0'\n'Channel0.OPCOffset = 0'\n'Channel0.OPCScalar2 = 0'\n'Channel0.OPCOffset2 = 0'\n'Channel0.OPCAutoConnect = 1'\n'Channel0.OPCXValueSource = 0'\n'Channel1.Name = Sumulated835.P_Main.rForceResist_kN'\n'Channel1.Visible = 1'\n'Channel1.Enabled = 1'\n'Channel1.Layer = 100'\n'Channel1.PopupEnabled = 1'\n'Channel1.CanFocus = 1'\n'Channel1.TitleText = rForceResist_kN'\n'Channel1.VisibleInLegend = 1'\n'Channel1.ClipToAxes = 0'\n'Channel1.ShowDataPointHints = 0'\n'Channel1.UserCanMoveDataPoints = 0'\n'Channel1.UserCanMoveDataPointsStyle = 0'\n'Channel1.RingBufferSize = 0'\n'Channel1.TraceVisible = 1'\n'Channel1.Color = 12615680'\n'Channel1.TraceLineStyle = 0'\n'Channel1.TraceLineWidth = 1'\n'Channel1.MarkersAllowIndividual = 0'\n'Channel1.MarkersPenUseChannelColor = 1'\n'Channel1.MarkersBrushUseChannelColor = 1'\n'Channel1.MarkersTurnOffLimit = 0'\n'Channel1.MarkersVisible = 0'\n'Channel1.MarkersSize = 3'\n'Channel1.MarkersStyle = 0'\n'Channel1.MarkersPenColor = 255'\n'Channel1.MarkersPenStyle = 0'\n'Channel1.MarkersPenWidth = 0'\n'Channel1.MarkersBrushColor = 255'\n'Channel1.MarkersBrushStyle = 0'\n'Channel1.MarkersFont.Charset = 1'\n'Channel1.MarkersFont.Color = 16777215'\n'Channel1.MarkersFont.Height = -11'\n'Channel1.MarkersFont.Name = Tahoma'\n'Channel1.MarkersFont.Orientation = 0'\n'Channel1.MarkersFont.Pitch = 0'\n'Channel1.MarkersFont.Style = 1'\n'Channel1.MarkersFont.Quality = 0'\n'Channel1.XAxisName = X-Axis 1'\n'Channel1.YAxisName = Y1'\n'Channel1.XAxisTrackingEnabled = 1'\n'Channel1.YAxisTrackingEnabled = 1'\n'Channel1.LogFileName = '\n'Channel1.LogBufferSize = 0'\n'Channel1.DataStyle = 0'\n'Channel1.FastDrawEnabled = 1'\n'Channel1.AllowOutOfOrderXValues = 1'\n'Channel1.DrawOutOfOrderXValues = 0'\n'Channel1.ResetStartTimeOnFirstDataPoint = 0'\n'Channel1.InterpolationStyle = 0'\n'Channel1.FillEnabled = 0'\n'Channel1.FillReference = 0'\n'Channel1.FillStyle = 0'\n'Channel1.FillColor = 0'\n'Channel1.FillUseChannelColor = 1'\n'Channel1.DigitalEnabled = 0'\n'Channel1.DigitalReferenceStyle = 0'\n'Channel1.DigitalReferenceLow = 10'\n'Channel1.DigitalReferenceHigh = 90'\n'Channel1.HighLowStyle = 0'\n'Channel1.HighLowEnabled = 0'\n'Channel1.HighLowBarColor = 16776960'\n'Channel1.HighLowBarWidth = 0,5'\n'Channel1.HighLowOpenShow = 1'\n'Channel1.HighLowOpenColor = 65280'\n'Channel1.HighLowOpenWidth = 1'\n'Channel1.HighLowOpenHeight = 1'\n'Channel1.HighLowCloseShow = 1'\n'Channel1.HighLowCloseColor = 255'\n'Channel1.HighLowCloseWidth = 1'\n'Channel1.HighLowCloseHeight = 1'\n'Channel1.HighLowShadowColor = 8421504'\n'Channel1.HighLowBullishColor = 16777215'\n'Channel1.HighLowBearishColor = 8421504'\n'Channel1.BarEnabled = 0'\n'Channel1.BarPenUseChannelColor = 1'\n'Channel1.BarBrushUseChannelColor = 1'\n'Channel1.BarReference = 0'\n'Channel1.BarWidth = 5'\n'Channel1.BarPenColor = 255'\n'Channel1.BarPenWidth = 0'\n'Channel1.BarPenStyle = 0'\n'Channel1.BarBrushColor = 255'\n'Channel1.BarBrushStyle = 0'\n'Channel1.OPCGroupName = '\n'Channel1.OPCComputerName = Local'\n'Channel1.OPCServerName = '\n'Channel1.OPCItemName = '\n'Channel1.OPCItem2Name = '\n'Channel1.OPCUpdateRate = 500'\n'Channel1.OPCScalar = 0'\n'Channel1.OPCOffset = 0'\n'Channel1.OPCScalar2 = 0'\n'Channel1.OPCOffset2 = 0'\n'Channel1.OPCAutoConnect = 1'\n'Channel1.OPCXValueSource = 0'\n'Channel2.Name = Sumulated835.P_Main.rForceSpeed_kN'\n'Channel2.Visible = 1'\n'Channel2.Enabled = 1'\n'Channel2.Layer = 100'\n'Channel2.PopupEnabled = 1'\n'Channel2.CanFocus = 1'\n'Channel2.TitleText = rForceSpeed_kN'\n'Channel2.VisibleInLegend = 1'\n'Channel2.ClipToAxes = 0'\n'Channel2.ShowDataPointHints = 0'\n'Channel2.UserCanMoveDataPoints = 0'\n'Channel2.UserCanMoveDataPointsStyle = 0'\n'Channel2.RingBufferSize = 0'\n'Channel2.TraceVisible = 1'\n'Channel2.Color = 32768'\n'Channel2.TraceLineStyle = 0'\n'Channel2.TraceLineWidth = 1'\n'Channel2.MarkersAllowIndividual = 0'\n'Channel2.MarkersPenUseChannelColor = 1'\n'Channel2.MarkersBrushUseChannelColor = 1'\n'Channel2.MarkersTurnOffLimit = 0'\n'Channel2.MarkersVisible = 0'\n'Channel2.MarkersSize = 3'\n'Channel2.MarkersStyle = 0'\n'Channel2.MarkersPenColor = 255'\n'Channel2.MarkersPenStyle = 0'\n'Channel2.MarkersPenWidth = 0'\n'Channel2.MarkersBrushColor = 255'\n'Channel2.MarkersBrushStyle = 0'\n'Channel2.MarkersFont.Charset = 1'\n'Channel2.MarkersFont.Color = 16777215'\n'Channel2.MarkersFont.Height = -11'\n'Channel2.MarkersFont.Name = Tahoma'\n'Channel2.MarkersFont.Orientation = 0'\n'Channel2.MarkersFont.Pitch = 0'\n'Channel2.MarkersFont.Style = 1'\n'Channel2.MarkersFont.Quality = 0'\n'Channel2.XAxisName = X-Axis 1'\n'Channel2.YAxisName = Y2'\n'Channel2.XAxisTrackingEnabled = 1'\n'Channel2.YAxisTrackingEnabled = 1'\n'Channel2.LogFileName = '\n'Channel2.LogBufferSize = 0'\n'Channel2.DataStyle = 0'\n'Channel2.FastDrawEnabled = 1'\n'Channel2.AllowOutOfOrderXValues = 1'\n'Channel2.DrawOutOfOrderXValues = 0'\n'Channel2.ResetStartTimeOnFirstDataPoint = 0'\n'Channel2.InterpolationStyle = 0'\n'Channel2.FillEnabled = 0'\n'Channel2.FillReference = 0'\n'Channel2.FillStyle = 0'\n'Channel2.FillColor = 0'\n'Channel2.FillUseChannelColor = 1'\n'Channel2.DigitalEnabled = 0'\n'Channel2.DigitalReferenceStyle = 0'\n'Channel2.DigitalReferenceLow = 10'\n'Channel2.DigitalReferenceHigh = 90'\n'Channel2.HighLowStyle = 0'\n'Channel2.HighLowEnabled = 0'\n'Channel2.HighLowBarColor = 16776960'\n'Channel2.HighLowBarWidth = 0,5'\n'Channel2.HighLowOpenShow = 1'\n'Channel2.HighLowOpenColor = 65280'\n'Channel2.HighLowOpenWidth = 1'\n'Channel2.HighLowOpenHeight = 1'\n'Channel2.HighLowCloseShow = 1'\n'Channel2.HighLowCloseColor = 255'\n'Channel2.HighLowCloseWidth = 1'\n'Channel2.HighLowCloseHeight = 1'\n'Channel2.HighLowShadowColor = 8421504'\n'Channel2.HighLowBullishColor = 16777215'\n'Channel2.HighLowBearishColor = 8421504'\n'Channel2.BarEnabled = 0'\n'Channel2.BarPenUseChannelColor = 1'\n'Channel2.BarBrushUseChannelColor = 1'\n'Channel2.BarReference = 0'\n'Channel2.BarWidth = 5'\n'Channel2.BarPenColor = 255'\n'Channel2.BarPenWidth = 0'\n'Channel2.BarPenStyle = 0'\n'Channel2.BarBrushColor = 255'\n'Channel2.BarBrushStyle = 0'\n'Channel2.OPCGroupName = '\n'Channel2.OPCComputerName = Local'\n'Channel2.OPCServerName = '\n'Channel2.OPCItemName = '\n'Channel2.OPCItem2Name = '\n'Channel2.OPCUpdateRate = 500'\n'Channel2.OPCScalar = 0'\n'Channel2.OPCOffset = 0'\n'Channel2.OPCScalar2 = 0'\n'Channel2.OPCOffset2 = 0'\n'Channel2.OPCAutoConnect = 1'\n'Channel2.OPCXValueSource = 0'\n'Channel3.Name = Sumulated835.P_Main.rTimeElapsed_s'\n'Channel3.Visible = 1'\n'Channel3.Enabled = 1'\n'Channel3.Layer = 100'\n'Channel3.PopupEnabled = 1'\n'Channel3.CanFocus = 1'\n'Channel3.TitleText = rTimeElapsed_s'\n'Channel3.VisibleInLegend = 1'\n'Channel3.ClipToAxes = 0'\n'Channel3.ShowDataPointHints = 0'\n'Channel3.UserCanMoveDataPoints = 0'\n'Channel3.UserCanMoveDataPointsStyle = 0'\n'Channel3.RingBufferSize = 0'\n'Channel3.TraceVisible = 1'\n'Channel3.Color = 10485760'\n'Channel3.TraceLineStyle = 0'\n'Channel3.TraceLineWidth = 1'\n'Channel3.MarkersAllowIndividual = 0'\n'Channel3.MarkersPenUseChannelColor = 1'\n'Channel3.MarkersBrushUseChannelColor = 1'\n'Channel3.MarkersTurnOffLimit = 0'\n'Channel3.MarkersVisible = 0'\n'Channel3.MarkersSize = 3'\n'Channel3.MarkersStyle = 0'\n'Channel3.MarkersPenColor = 255'\n'Channel3.MarkersPenStyle = 0'\n'Channel3.MarkersPenWidth = 0'\n'Channel3.MarkersBrushColor = 255'\n'Channel3.MarkersBrushStyle = 0'\n'Channel3.MarkersFont.Charset = 1'\n'Channel3.MarkersFont.Color = 16777215'\n'Channel3.MarkersFont.Height = -11'\n'Channel3.MarkersFont.Name = Tahoma'\n'Channel3.MarkersFont.Orientation = 0'\n'Channel3.MarkersFont.Pitch = 0'\n'Channel3.MarkersFont.Style = 1'\n'Channel3.MarkersFont.Quality = 0'\n'Channel3.XAxisName = X-Axis 1'\n'Channel3.YAxisName = Y3'\n'Channel3.XAxisTrackingEnabled = 1'\n'Channel3.YAxisTrackingEnabled = 1'\n'Channel3.LogFileName = '\n'Channel3.LogBufferSize = 0'\n'Channel3.DataStyle = 0'\n'Channel3.FastDrawEnabled = 1'\n'Channel3.AllowOutOfOrderXValues = 1'\n'Channel3.DrawOutOfOrderXValues = 0'\n'Channel3.ResetStartTimeOnFirstDataPoint = 0'\n'Channel3.InterpolationStyle = 0'\n'Channel3.FillEnabled = 0'\n'Channel3.FillReference = 0'\n'Channel3.FillStyle = 0'\n'Channel3.FillColor = 0'\n'Channel3.FillUseChannelColor = 1'\n'Channel3.DigitalEnabled = 0'\n'Channel3.DigitalReferenceStyle = 0'\n'Channel3.DigitalReferenceLow = 10'\n'Channel3.DigitalReferenceHigh = 90'\n'Channel3.HighLowStyle = 0'\n'Channel3.HighLowEnabled = 0'\n'Channel3.HighLowBarColor = 16776960'\n'Channel3.HighLowBarWidth = 0,5'\n'Channel3.HighLowOpenShow = 1'\n'Channel3.HighLowOpenColor = 65280'\n'Channel3.HighLowOpenWidth = 1'\n'Channel3.HighLowOpenHeight = 1'\n'Channel3.HighLowCloseShow = 1'\n'Channel3.HighLowCloseColor = 255'\n'Channel3.HighLowCloseWidth = 1'\n'Channel3.HighLowCloseHeight = 1'\n'Channel3.HighLowShadowColor = 8421504'\n'Channel3.HighLowBullishColor = 16777215'\n'Channel3.HighLowBearishColor = 8421504'\n'Channel3.BarEnabled = 0'\n'Channel3.BarPenUseChannelColor = 1'\n'Channel3.BarBrushUseChannelColor = 1'\n'Channel3.BarReference = 0'\n'Channel3.BarWidth = 5'\n'Channel3.BarPenColor = 255'\n'Channel3.BarPenWidth = 0'\n'Channel3.BarPenStyle = 0'\n'Channel3.BarBrushColor = 255'\n'Channel3.BarBrushStyle = 0'\n'Channel3.OPCGroupName = '\n'Channel3.OPCComputerName = Local'\n'Channel3.OPCServerName = '\n'Channel3.OPCItemName = '\n'Channel3.OPCItem2Name = '\n'Channel3.OPCUpdateRate = 500'\n'Channel3.OPCScalar = 0'\n'Channel3.OPCOffset = 0'\n'Channel3.OPCScalar2 = 0'\n'Channel3.OPCOffset2 = 0'\n'Channel3.OPCAutoConnect = 1'\n'Channel3.OPCXValueSource = 0'\n'Channel4.Name = Sumulated835.P_Main.rTractionForceGross_SP_kN'\n'Channel4.Visible = 1'\n'Channel4.Enabled = 1'\n'Channel4.Layer = 100'\n'Channel4.PopupEnabled = 1'\n'Channel4.CanFocus = 1'\n'Channel4.TitleText = rTractionForceGross_SP_kN'\n'Channel4.VisibleInLegend = 1'\n'Channel4.ClipToAxes = 0'\n'Channel4.ShowDataPointHints = 0'\n'Channel4.UserCanMoveDataPoints = 0'\n'Channel4.UserCanMoveDataPointsStyle = 0'\n'Channel4.RingBufferSize = 0'\n'Channel4.TraceVisible = 1'\n'Channel4.Color = 4194432'\n'Channel4.TraceLineStyle = 0'\n'Channel4.TraceLineWidth = 1'\n'Channel4.MarkersAllowIndividual = 0'\n'Channel4.MarkersPenUseChannelColor = 1'\n'Channel4.MarkersBrushUseChannelColor = 1'\n'Channel4.MarkersTurnOffLimit = 0'\n'Channel4.MarkersVisible = 0'\n'Channel4.MarkersSize = 3'\n'Channel4.MarkersStyle = 0'\n'Channel4.MarkersPenColor = 255'\n'Channel4.MarkersPenStyle = 0'\n'Channel4.MarkersPenWidth = 0'\n'Channel4.MarkersBrushColor = 255'\n'Channel4.MarkersBrushStyle = 0'\n'Channel4.MarkersFont.Charset = 1'\n'Channel4.MarkersFont.Color = 16777215'\n'Channel4.MarkersFont.Height = -11'\n'Channel4.MarkersFont.Name = Tahoma'\n'Channel4.MarkersFont.Orientation = 0'\n'Channel4.MarkersFont.Pitch = 0'\n'Channel4.MarkersFont.Style = 1'\n'Channel4.MarkersFont.Quality = 0'\n'Channel4.XAxisName = X-Axis 1'\n'Channel4.YAxisName = Y4'\n'Channel4.XAxisTrackingEnabled = 1'\n'Channel4.YAxisTrackingEnabled = 1'\n'Channel4.LogFileName = '\n'Channel4.LogBufferSize = 0'\n'Channel4.DataStyle = 0'\n'Channel4.FastDrawEnabled = 1'\n'Channel4.AllowOutOfOrderXValues = 1'\n'Channel4.DrawOutOfOrderXValues = 0'\n'Channel4.ResetStartTimeOnFirstDataPoint = 0'\n'Channel4.InterpolationStyle = 0'\n'Channel4.FillEnabled = 0'\n'Channel4.FillReference = 0'\n'Channel4.FillStyle = 0'\n'Channel4.FillColor = 0'\n'Channel4.FillUseChannelColor = 1'\n'Channel4.DigitalEnabled = 0'\n'Channel4.DigitalReferenceStyle = 0'\n'Channel4.DigitalReferenceLow = 10'\n'Channel4.DigitalReferenceHigh = 90'\n'Channel4.HighLowStyle = 0'\n'Channel4.HighLowEnabled = 0'\n'Channel4.HighLowBarColor = 16776960'\n'Channel4.HighLowBarWidth = 0,5'\n'Channel4.HighLowOpenShow = 1'\n'Channel4.HighLowOpenColor = 65280'\n'Channel4.HighLowOpenWidth = 1'\n'Channel4.HighLowOpenHeight = 1'\n'Channel4.HighLowCloseShow = 1'\n'Channel4.HighLowCloseColor = 255'\n'Channel4.HighLowCloseWidth = 1'\n'Channel4.HighLowCloseHeight = 1'\n'Channel4.HighLowShadowColor = 8421504'\n'Channel4.HighLowBullishColor = 16777215'\n'Channel4.HighLowBearishColor = 8421504'\n'Channel4.BarEnabled = 0'\n'Channel4.BarPenUseChannelColor = 1'\n'Channel4.BarBrushUseChannelColor = 1'\n'Channel4.BarReference = 0'\n'Channel4.BarWidth = 5'\n'Channel4.BarPenColor = 255'\n'Channel4.BarPenWidth = 0'\n'Channel4.BarPenStyle = 0'\n'Channel4.BarBrushColor = 255'\n'Channel4.BarBrushStyle = 0'\n'Channel4.OPCGroupName = '\n'Channel4.OPCComputerName = Local'\n'Channel4.OPCServerName = '\n'Channel4.OPCItemName = '\n'Channel4.OPCItem2Name = '\n'Channel4.OPCUpdateRate = 500'\n'Channel4.OPCScalar = 0'\n'Channel4.OPCOffset = 0'\n'Channel4.OPCScalar2 = 0'\n'Channel4.OPCOffset2 = 0'\n'Channel4.OPCAutoConnect = 1'\n'Channel4.OPCXValueSource = 0'\n'Channel5.Name = Sumulated835.P_Main.rTractionForceNet_kN'\n'Channel5.Visible = 1'\n'Channel5.Enabled = 1'\n'Channel5.Layer = 100'\n'Channel5.PopupEnabled = 1'\n'Channel5.CanFocus = 1'\n'Channel5.TitleText = rTractionForceNet_kN'\n'Channel5.VisibleInLegend = 1'\n'Channel5.ClipToAxes = 0'\n'Channel5.ShowDataPointHints = 0'\n'Channel5.UserCanMoveDataPoints = 0'\n'Channel5.UserCanMoveDataPointsStyle = 0'\n'Channel5.RingBufferSize = 0'\n'Channel5.TraceVisible = 1'\n'Channel5.Color = 16711680'\n'Channel5.TraceLineStyle = 0'\n'Channel5.TraceLineWidth = 1'\n'Channel5.MarkersAllowIndividual = 0'\n'Channel5.MarkersPenUseChannelColor = 1'\n'Channel5.MarkersBrushUseChannelColor = 1'\n'Channel5.MarkersTurnOffLimit = 0'\n'Channel5.MarkersVisible = 0'\n'Channel5.MarkersSize = 3'\n'Channel5.MarkersStyle = 0'\n'Channel5.MarkersPenColor = 255'\n'Channel5.MarkersPenStyle = 0'\n'Channel5.MarkersPenWidth = 0'\n'Channel5.MarkersBrushColor = 255'\n'Channel5.MarkersBrushStyle = 0'\n'Channel5.MarkersFont.Charset = 1'\n'Channel5.MarkersFont.Color = 16777215'\n'Channel5.MarkersFont.Height = -11'\n'Channel5.MarkersFont.Name = Tahoma'\n'Channel5.MarkersFont.Orientation = 0'\n'Channel5.MarkersFont.Pitch = 0'\n'Channel5.MarkersFont.Style = 1'\n'Channel5.MarkersFont.Quality = 0'\n'Channel5.XAxisName = X-Axis 1'\n'Channel5.YAxisName = Y5'\n'Channel5.XAxisTrackingEnabled = 1'\n'Channel5.YAxisTrackingEnabled = 1'\n'Channel5.LogFileName = '\n'Channel5.LogBufferSize = 0'\n'Channel5.DataStyle = 0'\n'Channel5.FastDrawEnabled = 1'\n'Channel5.AllowOutOfOrderXValues = 1'\n'Channel5.DrawOutOfOrderXValues = 0'\n'Channel5.ResetStartTimeOnFirstDataPoint = 0'\n'Channel5.InterpolationStyle = 0'\n'Channel5.FillEnabled = 0'\n'Channel5.FillReference = 0'\n'Channel5.FillStyle = 0'\n'Channel5.FillColor = 0'\n'Channel5.FillUseChannelColor = 1'\n'Channel5.DigitalEnabled = 0'\n'Channel5.DigitalReferenceStyle = 0'\n'Channel5.DigitalReferenceLow = 10'\n'Channel5.DigitalReferenceHigh = 90'\n'Channel5.HighLowStyle = 0'\n'Channel5.HighLowEnabled = 0'\n'Channel5.HighLowBarColor = 16776960'\n'Channel5.HighLowBarWidth = 0,5'\n'Channel5.HighLowOpenShow = 1'\n'Channel5.HighLowOpenColor = 65280'\n'Channel5.HighLowOpenWidth = 1'\n'Channel5.HighLowOpenHeight = 1'\n'Channel5.HighLowCloseShow = 1'\n'Channel5.HighLowCloseColor = 255'\n'Channel5.HighLowCloseWidth = 1'\n'Channel5.HighLowCloseHeight = 1'\n'Channel5.HighLowShadowColor = 8421504'\n'Channel5.HighLowBullishColor = 16777215'\n'Channel5.HighLowBearishColor = 8421504'\n'Channel5.BarEnabled = 0'\n'Channel5.BarPenUseChannelColor = 1'\n'Channel5.BarBrushUseChannelColor = 1'\n'Channel5.BarReference = 0'\n'Channel5.BarWidth = 5'\n'Channel5.BarPenColor = 255'\n'Channel5.BarPenWidth = 0'\n'Channel5.BarPenStyle = 0'\n'Channel5.BarBrushColor = 255'\n'Channel5.BarBrushStyle = 0'\n'Channel5.OPCGroupName = '\n'Channel5.OPCComputerName = Local'\n'Channel5.OPCServerName = '\n'Channel5.OPCItemName = '\n'Channel5.OPCItem2Name = '\n'Channel5.OPCUpdateRate = 500'\n'Channel5.OPCScalar = 0'\n'Channel5.OPCOffset = 0'\n'Channel5.OPCScalar2 = 0'\n'Channel5.OPCOffset2 = 0'\n'Channel5.OPCAutoConnect = 1'\n'Channel5.OPCXValueSource = 0'\n'Channel6.Name = Sumulated835.P_Main.rVelocity_km_per_h'\n'Channel6.Visible = 1'\n'Channel6.Enabled = 1'\n'Channel6.Layer = 100'\n'Channel6.PopupEnabled = 1'\n'Channel6.CanFocus = 1'\n'Channel6.TitleText = rVelocity_km_per_h'\n'Channel6.VisibleInLegend = 1'\n'Channel6.ClipToAxes = 0'\n'Channel6.ShowDataPointHints = 0'\n'Channel6.UserCanMoveDataPoints = 0'\n'Channel6.UserCanMoveDataPointsStyle = 0'\n'Channel6.RingBufferSize = 0'\n'Channel6.TraceVisible = 1'\n'Channel6.Color = 16711935'\n'Channel6.TraceLineStyle = 0'\n'Channel6.TraceLineWidth = 1'\n'Channel6.MarkersAllowIndividual = 0'\n'Channel6.MarkersPenUseChannelColor = 1'\n'Channel6.MarkersBrushUseChannelColor = 1'\n'Channel6.MarkersTurnOffLimit = 0'\n'Channel6.MarkersVisible = 0'\n'Channel6.MarkersSize = 3'\n'Channel6.MarkersStyle = 0'\n'Channel6.MarkersPenColor = 255'\n'Channel6.MarkersPenStyle = 0'\n'Channel6.MarkersPenWidth = 0'\n'Channel6.MarkersBrushColor = 255'\n'Channel6.MarkersBrushStyle = 0'\n'Channel6.MarkersFont.Charset = 1'\n'Channel6.MarkersFont.Color = 16777215'\n'Channel6.MarkersFont.Height = -11'\n'Channel6.MarkersFont.Name = Tahoma'\n'Channel6.MarkersFont.Orientation = 0'\n'Channel6.MarkersFont.Pitch = 0'\n'Channel6.MarkersFont.Style = 1'\n'Channel6.MarkersFont.Quality = 0'\n'Channel6.XAxisName = X-Axis 1'\n'Channel6.YAxisName = Y6'\n'Channel6.XAxisTrackingEnabled = 1'\n'Channel6.YAxisTrackingEnabled = 1'\n'Channel6.LogFileName = '\n'Channel6.LogBufferSize = 0'\n'Channel6.DataStyle = 0'\n'Channel6.FastDrawEnabled = 1'\n'Channel6.AllowOutOfOrderXValues = 1'\n'Channel6.DrawOutOfOrderXValues = 0'\n'Channel6.ResetStartTimeOnFirstDataPoint = 0'\n'Channel6.InterpolationStyle = 0'\n'Channel6.FillEnabled = 0'\n'Channel6.FillReference = 0'\n'Channel6.FillStyle = 0'\n'Channel6.FillColor = 0'\n'Channel6.FillUseChannelColor = 1'\n'Channel6.DigitalEnabled = 0'\n'Channel6.DigitalReferenceStyle = 0'\n'Channel6.DigitalReferenceLow = 10'\n'Channel6.DigitalReferenceHigh = 90'\n'Channel6.HighLowStyle = 0'\n'Channel6.HighLowEnabled = 0'\n'Channel6.HighLowBarColor = 16776960'\n'Channel6.HighLowBarWidth = 0,5'\n'Channel6.HighLowOpenShow = 1'\n'Channel6.HighLowOpenColor = 65280'\n'Channel6.HighLowOpenWidth = 1'\n'Channel6.HighLowOpenHeight = 1'\n'Channel6.HighLowCloseShow = 1'\n'Channel6.HighLowCloseColor = 255'\n'Channel6.HighLowCloseWidth = 1'\n'Channel6.HighLowCloseHeight = 1'\n'Channel6.HighLowShadowColor = 8421504'\n'Channel6.HighLowBullishColor = 16777215'\n'Channel6.HighLowBearishColor = 8421504'\n'Channel6.BarEnabled = 0'\n'Channel6.BarPenUseChannelColor = 1'\n'Channel6.BarBrushUseChannelColor = 1'\n'Channel6.BarReference = 0'\n'Channel6.BarWidth = 5'\n'Channel6.BarPenColor = 255'\n'Channel6.BarPenWidth = 0'\n'Channel6.BarPenStyle = 0'\n'Channel6.BarBrushColor = 255'\n'Channel6.BarBrushStyle = 0'\n'Channel6.OPCGroupName = '\n'Channel6.OPCComputerName = Local'\n'Channel6.OPCServerName = '\n'Channel6.OPCItemName = '\n'Channel6.OPCItem2Name = '\n'Channel6.OPCUpdateRate = 500'\n'Channel6.OPCScalar = 0'\n'Channel6.OPCOffset = 0'\n'Channel6.OPCScalar2 = 0'\n'Channel6.OPCOffset2 = 0'\n'Channel6.OPCAutoConnect = 1'\n'Channel6.OPCXValueSource = 0'\n'XAxis0.Name = X-Axis 1'\n'XAxis0.Visible = 1'\n'XAxis0.Enabled = 1'\n'XAxis0.Layer = 100'\n'XAxis0.PopupEnabled = 1'\n'XAxis0.CanFocus = 1'\n'XAxis0.Horizontal = 1'\n'XAxis0.ZOrder = 0'\n'XAxis0.StartPercent = 0'\n'XAxis0.StopPercent = 100'\n'XAxis0.Min = 46087,7455983681'\n'XAxis0.Span = 0,000115740738692693'\n'XAxis0.DesiredStart = 0'\n'XAxis0.DesiredIncrement = 0'\n'XAxis0.ReverseScale = 0'\n'XAxis0.InnerMargin = 5'\n'XAxis0.OuterMargin = 5'\n'XAxis0.Title = X-Axis 1'\n'XAxis0.TitleMargin = 0,25'\n'XAxis0.TitleFont.Charset = 0'\n'XAxis0.TitleFont.Color = 16777215'\n'XAxis0.TitleFont.Height = -12'\n'XAxis0.TitleFont.Name = Arial'\n'XAxis0.TitleFont.Orientation = 0'\n'XAxis0.TitleFont.Pitch = 0'\n'XAxis0.TitleFont.Style = 0'\n'XAxis0.TitleFont.Quality = 0'\n'XAxis0.TitleShow = 0'\n'XAxis0.TitleRotated = 0'\n'XAxis0.MajorLength = 7'\n'XAxis0.MinorLength = 3'\n'XAxis0.MinorCount = 1'\n'XAxis0.LabelsVisible = 1'\n'XAxis0.LabelsMargin = 0,25'\n'XAxis0.LabelsFont.Charset = 0'\n'XAxis0.LabelsFont.Color = 0'\n'XAxis0.LabelsFont.Height = -12'\n'XAxis0.LabelsFont.Name = Arial'\n'XAxis0.LabelsFont.Orientation = 0'\n'XAxis0.LabelsFont.Pitch = 0'\n'XAxis0.LabelsFont.Style = 0'\n'XAxis0.LabelsFont.Quality = 0'\n'XAxis0.LabelSeparation = 2'\n'XAxis0.LabelsRotation = 0'\n'XAxis0.LabelsPrecision = 3'\n'XAxis0.LabelsPrecisionStyle = 0'\n'XAxis0.LabelsFormatStyle = 3'\n'XAxis0.DateTimeFormat = hh:nn:ss.zzz'\n'XAxis0.LabelsMinLength = 5'\n'XAxis0.LabelsMinLengthAutoAdjust = 0'\n'XAxis0.ScaleLineShow = 1'\n'XAxis0.ScaleLinesShow = 1'\n'XAxis0.ScaleLinesColor = 0'\n'XAxis0.StackingEndsMargin = 0,5'\n'XAxis0.ScaleType = 0'\n'XAxis0.TrackingEnabled = 1'\n'XAxis0.TrackingStyle = 3'\n'XAxis0.TrackingIncrementStyle = 0'\n'XAxis0.TrackingAlignFirstStyle = 2'\n'XAxis0.TrackingScrollCompressMax = 0'\n'XAxis0.TrackingSpanMinimum = 0'\n'XAxis0.TrackingMaxMargin = 0'\n'XAxis0.TrackingMinMargin = 0'\n'XAxis0.CursorUseDefaultFormat = 1'\n'XAxis0.CursorFormatStyle = 0'\n'XAxis0.CursorDateTimeFormat = hh:nn:ss'\n'XAxis0.CursorPrecisionStyle = 0'\n'XAxis0.CursorPrecision = 3'\n'XAxis0.CursorMinLength = 5'\n'XAxis0.CursorMinLengthAutoAdjust = 0'\n'XAxis0.LegendUseDefaultFormat = 1'\n'XAxis0.LegendFormatStyle = 0'\n'XAxis0.LegendDateTimeFormat = hh:nn:ss'\n'XAxis0.LegendPrecisionStyle = 0'\n'XAxis0.LegendPrecision = 3'\n'XAxis0.LegendMinLength = 5'\n'XAxis0.LegendMinLengthAutoAdjust = 0'\n'XAxis0.CursorScaler = 1'\n'XAxis0.ScrollMinMaxEnabled = 0'\n'XAxis0.ScrollMax = 100'\n'XAxis0.ScrollMin = 0'\n'XAxis0.RestoreValuesOnResume = 1'\n'XAxis0.MasterUIInput = 0'\n'XAxis0.CartesianStyle = 0'\n'XAxis0.CartesianChildRefAxisName = <None>'\n'XAxis0.CartesianChildRefValue = 0'\n'XAxis0.AlignRefAxisName = <None>'\n'XAxis0.GridLinesVisible = 1'\n'XAxis0.ForceStacking = 0'\n'YAxis0.Name = Y0'\n'YAxis0.Visible = 1'\n'YAxis0.Enabled = 1'\n'YAxis0.Layer = 100'\n'YAxis0.PopupEnabled = 1'\n'YAxis0.CanFocus = 1'\n'YAxis0.Horizontal = 0'\n'YAxis0.ZOrder = 1'\n'YAxis0.StartPercent = 85,7142857142857'\n'YAxis0.StopPercent = 100'\n'YAxis0.Min = 0'\n'YAxis0.Span = 228,085586547852'\n'YAxis0.DesiredStart = 0'\n'YAxis0.DesiredIncrement = 0'\n'YAxis0.ReverseScale = 0'\n'YAxis0.InnerMargin = 5'\n'YAxis0.OuterMargin = 5'\n'YAxis0.Title = rForceAir_kN'\n'YAxis0.TitleMargin = 0,25'\n'YAxis0.TitleFont.Charset = 0'\n'YAxis0.TitleFont.Color = 255'\n'YAxis0.TitleFont.Height = -12'\n'YAxis0.TitleFont.Name = Arial'\n'YAxis0.TitleFont.Orientation = 0'\n'YAxis0.TitleFont.Pitch = 0'\n'YAxis0.TitleFont.Style = 0'\n'YAxis0.TitleFont.Quality = 0'\n'YAxis0.TitleShow = 0'\n'YAxis0.TitleRotated = 1'\n'YAxis0.MajorLength = 7'\n'YAxis0.MinorLength = 3'\n'YAxis0.MinorCount = 1'\n'YAxis0.LabelsVisible = 1'\n'YAxis0.LabelsMargin = 0,25'\n'YAxis0.LabelsFont.Charset = 0'\n'YAxis0.LabelsFont.Color = 255'\n'YAxis0.LabelsFont.Height = -12'\n'YAxis0.LabelsFont.Name = Arial'\n'YAxis0.LabelsFont.Orientation = 0'\n'YAxis0.LabelsFont.Pitch = 0'\n'YAxis0.LabelsFont.Style = 0'\n'YAxis0.LabelsFont.Quality = 0'\n'YAxis0.LabelSeparation = 0'\n'YAxis0.LabelsRotation = 0'\n'YAxis0.LabelsPrecision = 3'\n'YAxis0.LabelsPrecisionStyle = 0'\n'YAxis0.LabelsFormatStyle = 0'\n'YAxis0.DateTimeFormat = hh:nn:ss'\n'YAxis0.LabelsMinLength = 5'\n'YAxis0.LabelsMinLengthAutoAdjust = 0'\n'YAxis0.ScaleLineShow = 1'\n'YAxis0.ScaleLinesShow = 1'\n'YAxis0.ScaleLinesColor = 255'\n'YAxis0.StackingEndsMargin = -0,3'\n'YAxis0.ScaleType = 0'\n'YAxis0.TrackingEnabled = 1'\n'YAxis0.TrackingStyle = 0'\n'YAxis0.TrackingIncrementStyle = 0'\n'YAxis0.TrackingAlignFirstStyle = 3'\n'YAxis0.TrackingScrollCompressMax = 0'\n'YAxis0.TrackingSpanMinimum = 0'\n'YAxis0.TrackingMaxMargin = 0'\n'YAxis0.TrackingMinMargin = 0'\n'YAxis0.CursorUseDefaultFormat = 1'\n'YAxis0.CursorFormatStyle = 0'\n'YAxis0.CursorDateTimeFormat = hh:nn:ss'\n'YAxis0.CursorPrecisionStyle = 0'\n'YAxis0.CursorPrecision = 3'\n'YAxis0.CursorMinLength = 5'\n'YAxis0.CursorMinLengthAutoAdjust = 0'\n'YAxis0.LegendUseDefaultFormat = 1'\n'YAxis0.LegendFormatStyle = 0'\n'YAxis0.LegendDateTimeFormat = hh:nn:ss'\n'YAxis0.LegendPrecisionStyle = 0'\n'YAxis0.LegendPrecision = 3'\n'YAxis0.LegendMinLength = 5'\n'YAxis0.LegendMinLengthAutoAdjust = 0'\n'YAxis0.CursorScaler = 1'\n'YAxis0.ScrollMinMaxEnabled = 0'\n'YAxis0.ScrollMax = 100'\n'YAxis0.ScrollMin = 0'\n'YAxis0.RestoreValuesOnResume = 1'\n'YAxis0.MasterUIInput = 0'\n'YAxis0.CartesianStyle = 0'\n'YAxis0.CartesianChildRefAxisName = <None>'\n'YAxis0.CartesianChildRefValue = 0'\n'YAxis0.AlignRefAxisName = <None>'\n'YAxis0.GridLinesVisible = 1'\n'YAxis0.ForceStacking = 0'\n'YAxis1.Name = Y1'\n'YAxis1.Visible = 1'\n'YAxis1.Enabled = 1'\n'YAxis1.Layer = 100'\n'YAxis1.PopupEnabled = 1'\n'YAxis1.CanFocus = 1'\n'YAxis1.Horizontal = 0'\n'YAxis1.ZOrder = 1'\n'YAxis1.StartPercent = 71,4285714285714'\n'YAxis1.StopPercent = 85,7142857142857'\n'YAxis1.Min = 0'\n'YAxis1.Span = 288,552764892578'\n'YAxis1.DesiredStart = 0'\n'YAxis1.DesiredIncrement = 0'\n'YAxis1.ReverseScale = 0'\n'YAxis1.InnerMargin = 5'\n'YAxis1.OuterMargin = 5'\n'YAxis1.Title = rForceResist_kN'\n'YAxis1.TitleMargin = 0,25'\n'YAxis1.TitleFont.Charset = 0'\n'YAxis1.TitleFont.Color = 12615680'\n'YAxis1.TitleFont.Height = -12'\n'YAxis1.TitleFont.Name = Arial'\n'YAxis1.TitleFont.Orientation = 0'\n'YAxis1.TitleFont.Pitch = 0'\n'YAxis1.TitleFont.Style = 0'\n'YAxis1.TitleFont.Quality = 0'\n'YAxis1.TitleShow = 0'\n'YAxis1.TitleRotated = 1'\n'YAxis1.MajorLength = 7'\n'YAxis1.MinorLength = 3'\n'YAxis1.MinorCount = 1'\n'YAxis1.LabelsVisible = 1'\n'YAxis1.LabelsMargin = 0,25'\n'YAxis1.LabelsFont.Charset = 0'\n'YAxis1.LabelsFont.Color = 12615680'\n'YAxis1.LabelsFont.Height = -12'\n'YAxis1.LabelsFont.Name = Arial'\n'YAxis1.LabelsFont.Orientation = 0'\n'YAxis1.LabelsFont.Pitch = 0'\n'YAxis1.LabelsFont.Style = 0'\n'YAxis1.LabelsFont.Quality = 0'\n'YAxis1.LabelSeparation = 0'\n'YAxis1.LabelsRotation = 0'\n'YAxis1.LabelsPrecision = 3'\n'YAxis1.LabelsPrecisionStyle = 0'\n'YAxis1.LabelsFormatStyle = 0'\n'YAxis1.DateTimeFormat = hh:nn:ss'\n'YAxis1.LabelsMinLength = 5'\n'YAxis1.LabelsMinLengthAutoAdjust = 0'\n'YAxis1.ScaleLineShow = 1'\n'YAxis1.ScaleLinesShow = 1'\n'YAxis1.ScaleLinesColor = 12615680'\n'YAxis1.StackingEndsMargin = -0,3'\n'YAxis1.ScaleType = 0'\n'YAxis1.TrackingEnabled = 1'\n'YAxis1.TrackingStyle = 0'\n'YAxis1.TrackingIncrementStyle = 0'\n'YAxis1.TrackingAlignFirstStyle = 3'\n'YAxis1.TrackingScrollCompressMax = 0'\n'YAxis1.TrackingSpanMinimum = 0'\n'YAxis1.TrackingMaxMargin = 0'\n'YAxis1.TrackingMinMargin = 0'\n'YAxis1.CursorUseDefaultFormat = 1'\n'YAxis1.CursorFormatStyle = 0'\n'YAxis1.CursorDateTimeFormat = hh:nn:ss'\n'YAxis1.CursorPrecisionStyle = 0'\n'YAxis1.CursorPrecision = 3'\n'YAxis1.CursorMinLength = 5'\n'YAxis1.CursorMinLengthAutoAdjust = 0'\n'YAxis1.LegendUseDefaultFormat = 1'\n'YAxis1.LegendFormatStyle = 0'\n'YAxis1.LegendDateTimeFormat = hh:nn:ss'\n'YAxis1.LegendPrecisionStyle = 0'\n'YAxis1.LegendPrecision = 3'\n'YAxis1.LegendMinLength = 5'\n'YAxis1.LegendMinLengthAutoAdjust = 0'\n'YAxis1.CursorScaler = 1'\n'YAxis1.ScrollMinMaxEnabled = 0'\n'YAxis1.ScrollMax = 100'\n'YAxis1.ScrollMin = 0'\n'YAxis1.RestoreValuesOnResume = 1'\n'YAxis1.MasterUIInput = 0'\n'YAxis1.CartesianStyle = 0'\n'YAxis1.CartesianChildRefAxisName = <None>'\n'YAxis1.CartesianChildRefValue = 0'\n'YAxis1.AlignRefAxisName = <None>'\n'YAxis1.GridLinesVisible = 1'\n'YAxis1.ForceStacking = 0'\n'YAxis2.Name = Y2'\n'YAxis2.Visible = 1'\n'YAxis2.Enabled = 1'\n'YAxis2.Layer = 100'\n'YAxis2.PopupEnabled = 1'\n'YAxis2.CanFocus = 1'\n'YAxis2.Horizontal = 0'\n'YAxis2.ZOrder = 1'\n'YAxis2.StartPercent = 57,1428571428571'\n'YAxis2.StopPercent = 71,4285714285714'\n'YAxis2.Min = 0'\n'YAxis2.Span = 100'\n'YAxis2.DesiredStart = 0'\n'YAxis2.DesiredIncrement = 0'\n'YAxis2.ReverseScale = 0'\n'YAxis2.InnerMargin = 5'\n'YAxis2.OuterMargin = 5'\n'YAxis2.Title = rForceSpeed_kN'\n'YAxis2.TitleMargin = 0,25'\n'YAxis2.TitleFont.Charset = 0'\n'YAxis2.TitleFont.Color = 32768'\n'YAxis2.TitleFont.Height = -12'\n'YAxis2.TitleFont.Name = Arial'\n'YAxis2.TitleFont.Orientation = 0'\n'YAxis2.TitleFont.Pitch = 0'\n'YAxis2.TitleFont.Style = 0'\n'YAxis2.TitleFont.Quality = 0'\n'YAxis2.TitleShow = 0'\n'YAxis2.TitleRotated = 1'\n'YAxis2.MajorLength = 7'\n'YAxis2.MinorLength = 3'\n'YAxis2.MinorCount = 1'\n'YAxis2.LabelsVisible = 1'\n'YAxis2.LabelsMargin = 0,25'\n'YAxis2.LabelsFont.Charset = 0'\n'YAxis2.LabelsFont.Color = 32768'\n'YAxis2.LabelsFont.Height = -12'\n'YAxis2.LabelsFont.Name = Arial'\n'YAxis2.LabelsFont.Orientation = 0'\n'YAxis2.LabelsFont.Pitch = 0'\n'YAxis2.LabelsFont.Style = 0'\n'YAxis2.LabelsFont.Quality = 0'\n'YAxis2.LabelSeparation = 0'\n'YAxis2.LabelsRotation = 0'\n'YAxis2.LabelsPrecision = 3'\n'YAxis2.LabelsPrecisionStyle = 0'\n'YAxis2.LabelsFormatStyle = 0'\n'YAxis2.DateTimeFormat = hh:nn:ss'\n'YAxis2.LabelsMinLength = 5'\n'YAxis2.LabelsMinLengthAutoAdjust = 0'\n'YAxis2.ScaleLineShow = 1'\n'YAxis2.ScaleLinesShow = 1'\n'YAxis2.ScaleLinesColor = 32768'\n'YAxis2.StackingEndsMargin = -0,3'\n'YAxis2.ScaleType = 0'\n'YAxis2.TrackingEnabled = 1'\n'YAxis2.TrackingStyle = 0'\n'YAxis2.TrackingIncrementStyle = 0'\n'YAxis2.TrackingAlignFirstStyle = 3'\n'YAxis2.TrackingScrollCompressMax = 0'\n'YAxis2.TrackingSpanMinimum = 0'\n'YAxis2.TrackingMaxMargin = 0'\n'YAxis2.TrackingMinMargin = 0'\n'YAxis2.CursorUseDefaultFormat = 1'\n'YAxis2.CursorFormatStyle = 0'\n'YAxis2.CursorDateTimeFormat = hh:nn:ss'\n'YAxis2.CursorPrecisionStyle = 0'\n'YAxis2.CursorPrecision = 3'\n'YAxis2.CursorMinLength = 5'\n'YAxis2.CursorMinLengthAutoAdjust = 0'\n'YAxis2.LegendUseDefaultFormat = 1'\n'YAxis2.LegendFormatStyle = 0'\n'YAxis2.LegendDateTimeFormat = hh:nn:ss'\n'YAxis2.LegendPrecisionStyle = 0'\n'YAxis2.LegendPrecision = 3'\n'YAxis2.LegendMinLength = 5'\n'YAxis2.LegendMinLengthAutoAdjust = 0'\n'YAxis2.CursorScaler = 1'\n'YAxis2.ScrollMinMaxEnabled = 0'\n'YAxis2.ScrollMax = 100'\n'YAxis2.ScrollMin = 0'\n'YAxis2.RestoreValuesOnResume = 1'\n'YAxis2.MasterUIInput = 0'\n'YAxis2.CartesianStyle = 0'\n'YAxis2.CartesianChildRefAxisName = <None>'\n'YAxis2.CartesianChildRefValue = 0'\n'YAxis2.AlignRefAxisName = <None>'\n'YAxis2.GridLinesVisible = 1'\n'YAxis2.ForceStacking = 0'\n'YAxis3.Name = Y3'\n'YAxis3.Visible = 1'\n'YAxis3.Enabled = 1'\n'YAxis3.Layer = 100'\n'YAxis3.PopupEnabled = 1'\n'YAxis3.CanFocus = 1'\n'YAxis3.Horizontal = 0'\n'YAxis3.ZOrder = 1'\n'YAxis3.StartPercent = 42,8571428571429'\n'YAxis3.StopPercent = 57,1428571428571'\n'YAxis3.Min = 0'\n'YAxis3.Span = 407'\n'YAxis3.DesiredStart = 0'\n'YAxis3.DesiredIncrement = 0'\n'YAxis3.ReverseScale = 0'\n'YAxis3.InnerMargin = 5'\n'YAxis3.OuterMargin = 5'\n'YAxis3.Title = rTimeElapsed_s'\n'YAxis3.TitleMargin = 0,25'\n'YAxis3.TitleFont.Charset = 0'\n'YAxis3.TitleFont.Color = 10485760'\n'YAxis3.TitleFont.Height = -12'\n'YAxis3.TitleFont.Name = Arial'\n'YAxis3.TitleFont.Orientation = 0'\n'YAxis3.TitleFont.Pitch = 0'\n'YAxis3.TitleFont.Style = 0'\n'YAxis3.TitleFont.Quality = 0'\n'YAxis3.TitleShow = 0'\n'YAxis3.TitleRotated = 1'\n'YAxis3.MajorLength = 7'\n'YAxis3.MinorLength = 3'\n'YAxis3.MinorCount = 1'\n'YAxis3.LabelsVisible = 1'\n'YAxis3.LabelsMargin = 0,25'\n'YAxis3.LabelsFont.Charset = 0'\n'YAxis3.LabelsFont.Color = 10485760'\n'YAxis3.LabelsFont.Height = -12'\n'YAxis3.LabelsFont.Name = Arial'\n'YAxis3.LabelsFont.Orientation = 0'\n'YAxis3.LabelsFont.Pitch = 0'\n'YAxis3.LabelsFont.Style = 0'\n'YAxis3.LabelsFont.Quality = 0'\n'YAxis3.LabelSeparation = 0'\n'YAxis3.LabelsRotation = 0'\n'YAxis3.LabelsPrecision = 3'\n'YAxis3.LabelsPrecisionStyle = 0'\n'YAxis3.LabelsFormatStyle = 0'\n'YAxis3.DateTimeFormat = hh:nn:ss'\n'YAxis3.LabelsMinLength = 5'\n'YAxis3.LabelsMinLengthAutoAdjust = 0'\n'YAxis3.ScaleLineShow = 1'\n'YAxis3.ScaleLinesShow = 1'\n'YAxis3.ScaleLinesColor = 10485760'\n'YAxis3.StackingEndsMargin = -0,3'\n'YAxis3.ScaleType = 0'\n'YAxis3.TrackingEnabled = 1'\n'YAxis3.TrackingStyle = 0'\n'YAxis3.TrackingIncrementStyle = 0'\n'YAxis3.TrackingAlignFirstStyle = 3'\n'YAxis3.TrackingScrollCompressMax = 0'\n'YAxis3.TrackingSpanMinimum = 0'\n'YAxis3.TrackingMaxMargin = 0'\n'YAxis3.TrackingMinMargin = 0'\n'YAxis3.CursorUseDefaultFormat = 1'\n'YAxis3.CursorFormatStyle = 0'\n'YAxis3.CursorDateTimeFormat = hh:nn:ss'\n'YAxis3.CursorPrecisionStyle = 0'\n'YAxis3.CursorPrecision = 3'\n'YAxis3.CursorMinLength = 5'\n'YAxis3.CursorMinLengthAutoAdjust = 0'\n'YAxis3.LegendUseDefaultFormat = 1'\n'YAxis3.LegendFormatStyle = 0'\n'YAxis3.LegendDateTimeFormat = hh:nn:ss'\n'YAxis3.LegendPrecisionStyle = 0'\n'YAxis3.LegendPrecision = 3'\n'YAxis3.LegendMinLength = 5'\n'YAxis3.LegendMinLengthAutoAdjust = 0'\n'YAxis3.CursorScaler = 1'\n'YAxis3.ScrollMinMaxEnabled = 0'\n'YAxis3.ScrollMax = 100'\n'YAxis3.ScrollMin = 0'\n'YAxis3.RestoreValuesOnResume = 1'\n'YAxis3.MasterUIInput = 0'\n'YAxis3.CartesianStyle = 0'\n'YAxis3.CartesianChildRefAxisName = <None>'\n'YAxis3.CartesianChildRefValue = 0'\n'YAxis3.AlignRefAxisName = <None>'\n'YAxis3.GridLinesVisible = 1'\n'YAxis3.ForceStacking = 0'\n'YAxis4.Name = Y4'\n'YAxis4.Visible = 1'\n'YAxis4.Enabled = 1'\n'YAxis4.Layer = 100'\n'YAxis4.PopupEnabled = 1'\n'YAxis4.CanFocus = 1'\n'YAxis4.Horizontal = 0'\n'YAxis4.ZOrder = 1'\n'YAxis4.StartPercent = 28,5714285714286'\n'YAxis4.StopPercent = 42,8571428571429'\n'YAxis4.Min = -304'\n'YAxis4.Span = 617,600006103516'\n'YAxis4.DesiredStart = 0'\n'YAxis4.DesiredIncrement = 0'\n'YAxis4.ReverseScale = 0'\n'YAxis4.InnerMargin = 5'\n'YAxis4.OuterMargin = 5'\n'YAxis4.Title = rTractionForceGross_SP_kN'\n'YAxis4.TitleMargin = 0,25'\n'YAxis4.TitleFont.Charset = 0'\n'YAxis4.TitleFont.Color = 4194432'\n'YAxis4.TitleFont.Height = -12'\n'YAxis4.TitleFont.Name = Arial'\n'YAxis4.TitleFont.Orientation = 0'\n'YAxis4.TitleFont.Pitch = 0'\n'YAxis4.TitleFont.Style = 0'\n'YAxis4.TitleFont.Quality = 0'\n'YAxis4.TitleShow = 0'\n'YAxis4.TitleRotated = 1'\n'YAxis4.MajorLength = 7'\n'YAxis4.MinorLength = 3'\n'YAxis4.MinorCount = 1'\n'YAxis4.LabelsVisible = 1'\n'YAxis4.LabelsMargin = 0,25'\n'YAxis4.LabelsFont.Charset = 0'\n'YAxis4.LabelsFont.Color = 4194432'\n'YAxis4.LabelsFont.Height = -12'\n'YAxis4.LabelsFont.Name = Arial'\n'YAxis4.LabelsFont.Orientation = 0'\n'YAxis4.LabelsFont.Pitch = 0'\n'YAxis4.LabelsFont.Style = 0'\n'YAxis4.LabelsFont.Quality = 0'\n'YAxis4.LabelSeparation = 0'\n'YAxis4.LabelsRotation = 0'\n'YAxis4.LabelsPrecision = 3'\n'YAxis4.LabelsPrecisionStyle = 0'\n'YAxis4.LabelsFormatStyle = 0'\n'YAxis4.DateTimeFormat = hh:nn:ss'\n'YAxis4.LabelsMinLength = 5'\n'YAxis4.LabelsMinLengthAutoAdjust = 0'\n'YAxis4.ScaleLineShow = 1'\n'YAxis4.ScaleLinesShow = 1'\n'YAxis4.ScaleLinesColor = 4194432'\n'YAxis4.StackingEndsMargin = -0,3'\n'YAxis4.ScaleType = 0'\n'YAxis4.TrackingEnabled = 1'\n'YAxis4.TrackingStyle = 0'\n'YAxis4.TrackingIncrementStyle = 0'\n'YAxis4.TrackingAlignFirstStyle = 3'\n'YAxis4.TrackingScrollCompressMax = 0'\n'YAxis4.TrackingSpanMinimum = 0'\n'YAxis4.TrackingMaxMargin = 0'\n'YAxis4.TrackingMinMargin = 0'\n'YAxis4.CursorUseDefaultFormat = 1'\n'YAxis4.CursorFormatStyle = 0'\n'YAxis4.CursorDateTimeFormat = hh:nn:ss'\n'YAxis4.CursorPrecisionStyle = 0'\n'YAxis4.CursorPrecision = 3'\n'YAxis4.CursorMinLength = 5'\n'YAxis4.CursorMinLengthAutoAdjust = 0'\n'YAxis4.LegendUseDefaultFormat = 1'\n'YAxis4.LegendFormatStyle = 0'\n'YAxis4.LegendDateTimeFormat = hh:nn:ss'\n'YAxis4.LegendPrecisionStyle = 0'\n'YAxis4.LegendPrecision = 3'\n'YAxis4.LegendMinLength = 5'\n'YAxis4.LegendMinLengthAutoAdjust = 0'\n'YAxis4.CursorScaler = 1'\n'YAxis4.ScrollMinMaxEnabled = 0'\n'YAxis4.ScrollMax = 100'\n'YAxis4.ScrollMin = 0'\n'YAxis4.RestoreValuesOnResume = 1'\n'YAxis4.MasterUIInput = 0'\n'YAxis4.CartesianStyle = 0'\n'YAxis4.CartesianChildRefAxisName = <None>'\n'YAxis4.CartesianChildRefValue = 0'\n'YAxis4.AlignRefAxisName = <None>'\n'YAxis4.GridLinesVisible = 1'\n'YAxis4.ForceStacking = 0'\n'YAxis5.Name = Y5'\n'YAxis5.Visible = 1'\n'YAxis5.Enabled = 1'\n'YAxis5.Layer = 100'\n'YAxis5.PopupEnabled = 1'\n'YAxis5.CanFocus = 1'\n'YAxis5.Horizontal = 0'\n'YAxis5.ZOrder = 1'\n'YAxis5.StartPercent = 14,2857142857143'\n'YAxis5.StopPercent = 28,5714285714286'\n'YAxis5.Min = -361,572967529297'\n'YAxis5.Span = 628,0849609375'\n'YAxis5.DesiredStart = 0'\n'YAxis5.DesiredIncrement = 0'\n'YAxis5.ReverseScale = 0'\n'YAxis5.InnerMargin = 5'\n'YAxis5.OuterMargin = 5'\n'YAxis5.Title = rTractionForceNet_kN'\n'YAxis5.TitleMargin = 0,25'\n'YAxis5.TitleFont.Charset = 0'\n'YAxis5.TitleFont.Color = 16711680'\n'YAxis5.TitleFont.Height = -12'\n'YAxis5.TitleFont.Name = Arial'\n'YAxis5.TitleFont.Orientation = 0'\n'YAxis5.TitleFont.Pitch = 0'\n'YAxis5.TitleFont.Style = 0'\n'YAxis5.TitleFont.Quality = 0'\n'YAxis5.TitleShow = 0'\n'YAxis5.TitleRotated = 1'\n'YAxis5.MajorLength = 7'\n'YAxis5.MinorLength = 3'\n'YAxis5.MinorCount = 1'\n'YAxis5.LabelsVisible = 1'\n'YAxis5.LabelsMargin = 0,25'\n'YAxis5.LabelsFont.Charset = 0'\n'YAxis5.LabelsFont.Color = 16711680'\n'YAxis5.LabelsFont.Height = -12'\n'YAxis5.LabelsFont.Name = Arial'\n'YAxis5.LabelsFont.Orientation = 0'\n'YAxis5.LabelsFont.Pitch = 0'\n'YAxis5.LabelsFont.Style = 0'\n'YAxis5.LabelsFont.Quality = 0'\n'YAxis5.LabelSeparation = 0'\n'YAxis5.LabelsRotation = 0'\n'YAxis5.LabelsPrecision = 3'\n'YAxis5.LabelsPrecisionStyle = 0'\n'YAxis5.LabelsFormatStyle = 0'\n'YAxis5.DateTimeFormat = hh:nn:ss'\n'YAxis5.LabelsMinLength = 5'\n'YAxis5.LabelsMinLengthAutoAdjust = 0'\n'YAxis5.ScaleLineShow = 1'\n'YAxis5.ScaleLinesShow = 1'\n'YAxis5.ScaleLinesColor = 16711680'\n'YAxis5.StackingEndsMargin = -0,3'\n'YAxis5.ScaleType = 0'\n'YAxis5.TrackingEnabled = 1'\n'YAxis5.TrackingStyle = 0'\n'YAxis5.TrackingIncrementStyle = 0'\n'YAxis5.TrackingAlignFirstStyle = 3'\n'YAxis5.TrackingScrollCompressMax = 0'\n'YAxis5.TrackingSpanMinimum = 0'\n'YAxis5.TrackingMaxMargin = 0'\n'YAxis5.TrackingMinMargin = 0'\n'YAxis5.CursorUseDefaultFormat = 1'\n'YAxis5.CursorFormatStyle = 0'\n'YAxis5.CursorDateTimeFormat = hh:nn:ss'\n'YAxis5.CursorPrecisionStyle = 0'\n'YAxis5.CursorPrecision = 3'\n'YAxis5.CursorMinLength = 5'\n'YAxis5.CursorMinLengthAutoAdjust = 0'\n'YAxis5.LegendUseDefaultFormat = 1'\n'YAxis5.LegendFormatStyle = 0'\n'YAxis5.LegendDateTimeFormat = hh:nn:ss'\n'YAxis5.LegendPrecisionStyle = 0'\n'YAxis5.LegendPrecision = 3'\n'YAxis5.LegendMinLength = 5'\n'YAxis5.LegendMinLengthAutoAdjust = 0'\n'YAxis5.CursorScaler = 1'\n'YAxis5.ScrollMinMaxEnabled = 0'\n'YAxis5.ScrollMax = 100'\n'YAxis5.ScrollMin = 0'\n'YAxis5.RestoreValuesOnResume = 1'\n'YAxis5.MasterUIInput = 0'\n'YAxis5.CartesianStyle = 0'\n'YAxis5.CartesianChildRefAxisName = <None>'\n'YAxis5.CartesianChildRefValue = 0'\n'YAxis5.AlignRefAxisName = <None>'\n'YAxis5.GridLinesVisible = 1'\n'YAxis5.ForceStacking = 0'\n'YAxis6.Name = Y6'\n'YAxis6.Visible = 1'\n'YAxis6.Enabled = 1'\n'YAxis6.Layer = 100'\n'YAxis6.PopupEnabled = 1'\n'YAxis6.CanFocus = 1'\n'YAxis6.Horizontal = 0'\n'YAxis6.ZOrder = 1'\n'YAxis6.StartPercent = 0'\n'YAxis6.StopPercent = 14,2857142857143'\n'YAxis6.Min = 0'\n'YAxis6.Span = 35'\n'YAxis6.DesiredStart = 0'\n'YAxis6.DesiredIncrement = 0'\n'YAxis6.ReverseScale = 0'\n'YAxis6.InnerMargin = 5'\n'YAxis6.OuterMargin = 5'\n'YAxis6.Title = rVelocity_km_per_h'\n'YAxis6.TitleMargin = 0,25'\n'YAxis6.TitleFont.Charset = 0'\n'YAxis6.TitleFont.Color = 16711935'\n'YAxis6.TitleFont.Height = -12'\n'YAxis6.TitleFont.Name = Arial'\n'YAxis6.TitleFont.Orientation = 0'\n'YAxis6.TitleFont.Pitch = 0'\n'YAxis6.TitleFont.Style = 0'\n'YAxis6.TitleFont.Quality = 0'\n'YAxis6.TitleShow = 0'\n'YAxis6.TitleRotated = 1'\n'YAxis6.MajorLength = 7'\n'YAxis6.MinorLength = 3'\n'YAxis6.MinorCount = 1'\n'YAxis6.LabelsVisible = 1'\n'YAxis6.LabelsMargin = 0,25'\n'YAxis6.LabelsFont.Charset = 0'\n'YAxis6.LabelsFont.Color = 16711935'\n'YAxis6.LabelsFont.Height = -12'\n'YAxis6.LabelsFont.Name = Arial'\n'YAxis6.LabelsFont.Orientation = 0'\n'YAxis6.LabelsFont.Pitch = 0'\n'YAxis6.LabelsFont.Style = 0'\n'YAxis6.LabelsFont.Quality = 0'\n'YAxis6.LabelSeparation = 0'\n'YAxis6.LabelsRotation = 0'\n'YAxis6.LabelsPrecision = 3'\n'YAxis6.LabelsPrecisionStyle = 0'\n'YAxis6.LabelsFormatStyle = 0'\n'YAxis6.DateTimeFormat = hh:nn:ss'\n'YAxis6.LabelsMinLength = 5'\n'YAxis6.LabelsMinLengthAutoAdjust = 0'\n'YAxis6.ScaleLineShow = 1'\n'YAxis6.ScaleLinesShow = 1'\n'YAxis6.ScaleLinesColor = 16711935'\n'YAxis6.StackingEndsMargin = -0,3'\n'YAxis6.ScaleType = 0'\n'YAxis6.TrackingEnabled = 1'\n'YAxis6.TrackingStyle = 0'\n'YAxis6.TrackingIncrementStyle = 0'\n'YAxis6.TrackingAlignFirstStyle = 3'\n'YAxis6.TrackingScrollCompressMax = 0'\n'YAxis6.TrackingSpanMinimum = 0'\n'YAxis6.TrackingMaxMargin = 0'\n'YAxis6.TrackingMinMargin = 0'\n'YAxis6.CursorUseDefaultFormat = 1'\n'YAxis6.CursorFormatStyle = 0'\n'YAxis6.CursorDateTimeFormat = hh:nn:ss'\n'YAxis6.CursorPrecisionStyle = 0'\n'YAxis6.CursorPrecision = 3'\n'YAxis6.CursorMinLength = 5'\n'YAxis6.CursorMinLengthAutoAdjust = 0'\n'YAxis6.LegendUseDefaultFormat = 1'\n'YAxis6.LegendFormatStyle = 0'\n'YAxis6.LegendDateTimeFormat = hh:nn:ss'\n'YAxis6.LegendPrecisionStyle = 0'\n'YAxis6.LegendPrecision = 3'\n'YAxis6.LegendMinLength = 5'\n'YAxis6.LegendMinLengthAutoAdjust = 0'\n'YAxis6.CursorScaler = 1'\n'YAxis6.ScrollMinMaxEnabled = 0'\n'YAxis6.ScrollMax = 100'\n'YAxis6.ScrollMin = 0'\n'YAxis6.RestoreValuesOnResume = 1'\n'YAxis6.MasterUIInput = 0'\n'YAxis6.CartesianStyle = 0'\n'YAxis6.CartesianChildRefAxisName = <None>'\n'YAxis6.CartesianChildRefValue = 0'\n'YAxis6.AlignRefAxisName = <None>'\n'YAxis6.GridLinesVisible = 1'\n'YAxis6.ForceStacking = 0'\n'ToolBar0.Name = Toolbar 1'\n'ToolBar0.Visible = 1'\n'ToolBar0.Enabled = 1'\n'ToolBar0.Layer = 100'\n'ToolBar0.PopupEnabled = 0'\n'ToolBar0.CanFocus = 1'\n'ToolBar0.Horizontal = 1'\n'ToolBar0.ZOrder = 2'\n'ToolBar0.StartPercent = 0'\n'ToolBar0.StopPercent = 100'\n'ToolBar0.ShowResumeButton = 1'\n'ToolBar0.ShowPauseButton = 1'\n'ToolBar0.ShowAxesModeButtons = 1'\n'ToolBar0.ShowZoomInOutButtons = 1'\n'ToolBar0.ShowSelectButton = 1'\n'ToolBar0.ShowZoomBoxButton = 1'\n'ToolBar0.ShowCursorButton = 1'\n'ToolBar0.ShowEditButton = 1'\n'ToolBar0.ShowCopyButton = 1'\n'ToolBar0.ShowSaveButton = 1'\n'ToolBar0.ShowPrintButton = 1'\n'ToolBar0.ShowPreviewButton = 0'\n'ToolBar0.ZoomInOutFactor = 2'\n'ToolBar0.FlatBorder = 1'\n'ToolBar0.FlatButtons = 1'\n'ToolBar0.SmallButtons = 1'\n'Legend0.Name = Legend 1'\n'Legend0.Visible = 1'\n'Legend0.Enabled = 1'\n'Legend0.Layer = 100'\n'Legend0.PopupEnabled = 1'\n'Legend0.CanFocus = 1'\n'Legend0.Horizontal = 0'\n'Legend0.ZOrder = 3'\n'Legend0.StartPercent = 0'\n'Legend0.StopPercent = 100'\n'Legend0.MarginLeft = 1'\n'Legend0.MarginTop = 1'\n'Legend0.MarginRight = 1'\n'Legend0.MarginBottom = 1'\n'Legend0.BackGroundColor = 8421504'\n'Legend0.BackGroundTransparent = 1'\n'Legend0.SelectedItemBackGroundColor = 65535'\n'Legend0.SelectedItemFont.Charset = 1'\n'Legend0.SelectedItemFont.Color = 0'\n'Legend0.SelectedItemFont.Height = -11'\n'Legend0.SelectedItemFont.Name = Tahoma'\n'Legend0.SelectedItemFont.Orientation = 0'\n'Legend0.SelectedItemFont.Pitch = 0'\n'Legend0.SelectedItemFont.Style = 0'\n'Legend0.SelectedItemFont.Quality = 0'\n'Legend0.ShowColumnLine = 1'\n'Legend0.ShowColumnMarker = 0'\n'Legend0.ShowColumnXAxisTitle = 0'\n'Legend0.ShowColumnYAxisTitle = 0'\n'Legend0.ShowColumnXValue = 0'\n'Legend0.ShowColumnYValue = 0'\n'Legend0.ShowColumnYMax = 0'\n'Legend0.ShowColumnYMin = 0'\n'Legend0.ShowColumnYMean = 0'\n'Legend0.CaptionColumnTitle = LogItem'\n'Legend0.CaptionColumnXAxisTitle = X-Axis'\n'Legend0.CaptionColumnYAxisTitle = Y-Axis'\n'Legend0.CaptionColumnXValue = X'\n'Legend0.CaptionColumnYValue = Y'\n'Legend0.CaptionColumnYMax = Y-Max'\n'Legend0.CaptionColumnYMin = Y-Min'\n'Legend0.CaptionColumnYMean = Y-Mean'\n'Legend0.Font.Charset = 0'\n'Legend0.Font.Color = 0'\n'Legend0.Font.Height = -12'\n'Legend0.Font.Name = Arial'\n'Legend0.Font.Orientation = 0'\n'Legend0.Font.Pitch = 0'\n'Legend0.Font.Style = 0'\n'Legend0.Font.Quality = 0'\n'Legend0.ColumnSpacing = 0,5'\n'Legend0.RowSpacing = 0,25'\n'Legend0.WrapColDesiredCount = 1'\n'Legend0.WrapColAutoCountEnabled = 0'\n'Legend0.WrapColAutoCountMax = 100'\n'Legend0.WrapColSpacingMin = 2'\n'Legend0.WrapColSpacingAuto = 1'\n'Legend0.WrapRowDesiredCount = 5'\n'Legend0.WrapRowAutoCountEnabled = 1'\n'Legend0.WrapRowAutoCountMax = 100'\n'Legend0.WrapRowSpacingMin = 0,25'\n'Legend0.WrapRowSpacingAuto = 0'\n'Legend0.ColumnTitlesVisible = 1'\n'Legend0.ColumnTitlesFont.Charset = 1'\n'Legend0.ColumnTitlesFont.Color = 0'\n'Legend0.ColumnTitlesFont.Height = -11'\n'Legend0.ColumnTitlesFont.Name = Tahoma'\n'Legend0.ColumnTitlesFont.Orientation = 0'\n'Legend0.ColumnTitlesFont.Pitch = 0'\n'Legend0.ColumnTitlesFont.Style = 1'\n'Legend0.ColumnTitlesFont.Quality = 0'\n'Legend0.ChannelNameMaxWidth = 0'\n'Legend0.ChannelNameColorStyle = 0'\n'Legend0.LineColumnWidth = 13'\n'Legend0.LineColumnHeight = 3'\n'Label0.Name = Title'\n'Label0.Visible = 1'\n'Label0.Enabled = 1'\n'Label0.Layer = 100'\n'Label0.PopupEnabled = 1'\n'Label0.CanFocus = 1'\n'Label0.Horizontal = 1'\n'Label0.ZOrder = 1'\n'Label0.StartPercent = 0'\n'Label0.StopPercent = 100'\n'Label0.MarginLeft = 0'\n'Label0.MarginTop = 0'\n'Label0.MarginRight = 0'\n'Label0.MarginBottom = 0,25'\n'Label0.Caption = Sumulated835.Speed plus Forces'\n'Label0.Alignment = 0'\n'Label0.Font.Charset = 0'\n'Label0.Font.Color = 0'\n'Label0.Font.Height = -16'\n'Label0.Font.Name = Arial'\n'Label0.Font.Orientation = 0'\n'Label0.Font.Pitch = 0'\n'Label0.Font.Style = 1'\n'Label0.Font.Quality = 0'\n'Label0.ImageListIndex = -1'\n'Label0.ImageIndex = 0'\n'DataView0.Name = Data View 1'\n'DataView0.Visible = 1'\n'DataView0.Enabled = 1'\n'DataView0.Layer = 100'\n'DataView0.PopupEnabled = 1'\n'DataView0.CanFocus = 1'\n'DataView0.Horizontal = 0'\n'DataView0.ZOrder = 0'\n'DataView0.StartPercent = 0'\n'DataView0.StopPercent = 100'\n'DataView0.Title = '\n'DataView0.BackgroundTransparent = 1'\n'DataView0.BackgroundColor = 8421376'\n'DataView0.GridXAxisName = X-Axis 1'\n'DataView0.GridYAxisName = <All>'\n'DataView0.GridShow = 1'\n'DataView0.GridLineColor = 12632256'\n'DataView0.GridLineShowLeft = 1'\n'DataView0.GridLineShowRight = 1'\n'DataView0.GridLineShowTop = 1'\n'DataView0.GridLineShowBottom = 1'\n'DataView0.GridLineShowXMajors = 1'\n'DataView0.GridLineShowXMinors = 0'\n'DataView0.GridLineShowYMajors = 1'\n'DataView0.GridLineShowYMinors = 0'\n'DataView0.GridLineMajorStyle = 0'\n'DataView0.GridLineMinorStyle = 0'\n'DataView0.GridLineXMajorCustom = 0'\n'DataView0.GridLineXMajorColor = 32768'\n'DataView0.GridLineXMajorWidth = 0'\n'DataView0.GridLineXMajorStyle = 0'\n'DataView0.GridLineXMinorCustom = 0'\n'DataView0.GridLineXMinorColor = 32768'\n'DataView0.GridLineXMinorWidth = 0'\n'DataView0.GridLineXMinorStyle = 0'\n'DataView0.GridLineYMajorCustom = 0'\n'DataView0.GridLineYMajorColor = 32768'\n'DataView0.GridLineYMajorWidth = 0'\n'DataView0.GridLineYMajorStyle = 0'\n'DataView0.GridLineYMinorCustom = 0'\n'DataView0.GridLineYMinorColor = 32768'\n'DataView0.GridLineYMinorWidth = 0'\n'DataView0.GridLineYMinorStyle = 0'\n'DataView0.AxesControlEnabled = 0'\n'DataView0.AxesControlMouseStyle = 2'\n'DataView0.AxesControlWheelStyle = 0'\n'DataView0.AxesControlAllowInSelectMode = 0'\n'DataCursor0.Name = Cursor 1'\n'DataCursor0.Visible = 0'\n'DataCursor0.Enabled = 1'\n'DataCursor0.Layer = 100'\n'DataCursor0.PopupEnabled = 1'\n'DataCursor0.CanFocus = 1'\n'DataCursor0.ChannelName = <All>'\n'DataCursor0.ChannelAllowAll = 1'\n'DataCursor0.ChannelShowAllInLegend = 1'\n'DataCursor0.Style = 0'\n'DataCursor0.Font.Charset = 0'\n'DataCursor0.Font.Color = -16777208'\n'DataCursor0.Font.Height = -12'\n'DataCursor0.Font.Name = Arial'\n'DataCursor0.Font.Orientation = 0'\n'DataCursor0.Font.Pitch = 0'\n'DataCursor0.Font.Style = 0'\n'DataCursor0.Font.Quality = 0'\n'DataCursor0.Color = 0'\n'DataCursor0.UseChannelColor = 1'\n'DataCursor0.HintShow = 1'\n'DataCursor0.HintHideOnRelease = 0'\n'DataCursor0.HintOrientationSide = 0'\n'DataCursor0.HintPosition = 50'\n'DataCursor0.Pointer1Position = 50'\n'DataCursor0.Pointer2Position = 60'\n'DataCursor0.PointerPenWidth = 1'\n'DataCursor0.MenuUserCanChangeOptions = 1'\n'DataCursor0.SnapToDataPoint = 1'\n'DataCursor0.UseCachedInterpolatedData = 0'\n'DataCursor0.MenuItemVisibleValueXY = 1'\n'DataCursor0.MenuItemVisibleValueX = 1'\n'DataCursor0.MenuItemVisibleValueY = 1'\n'DataCursor0.MenuItemVisibleDeltaX = 1'\n'DataCursor0.MenuItemVisibleDeltaY = 1'\n'DataCursor0.MenuItemVisibleInverseDeltaX = 1'\n'DataCursor0.MenuItemCaptionValueXY = Value X-Y'\n'DataCursor0.MenuItemCaptionValueX = Value X'\n'DataCursor0.MenuItemCaptionValueY = Value Y'\n'DataCursor0.MenuItemCaptionDeltaX = Period'\n'DataCursor0.MenuItemCaptionDeltaY = Peak-Peak'\n'DataCursor0.MenuItemCaptionInverseDeltaX = Frequency'\n'AlignWithMargins = 0'\n'HelpType = 1'\n'Margins.Left = 3'\n'Margins.Top = 3'\n'Margins.Right = 3'\n'Margins.Bottom = 3'\n'ParentCustomHint = 1'\n'Constraints.MaxHeight = 0'\n'Constraints.MaxWidth = 0'\n'Constraints.MinHeight = 0'\n'Constraints.MinWidth = 0'\n'OptionSaveAllProperties = 0'\n'AutoFrameRate = 1'\n'UpdateFrameRate = 60'\n'DataViewZHorz = 0'\n'DataViewZVert = 2'\n'XYAxesReverse = 0'\n'UserCanEditObjects = 1'\n'UserCanAddRemoveChannels = 0'\n'OuterMarginLeft = 5'\n'OuterMarginTop = 5'\n'OuterMarginRight = 5'\n'OuterMarginBottom = 5'\n'PrintOrientation = 1'\n'PrintMarginLeft = 1'\n'PrintMarginTop = 1'\n'PrintMarginRight = 1'\n'PrintMarginBottom = 1'\n'PrintShowDialog = 1'\n'PrintDocumentName = Untitled'\n'PrinterName = '\n'HintsPause = 500'\n'HintsHidePause = 2500'\n'HintsShow = 1'\n'HintsFont.Charset = 1'\n'HintsFont.Color = -16777208'\n'HintsFont.Height = -11'\n'HintsFont.Name = Tahoma'\n'HintsFont.Orientation = 0'\n'HintsFont.Pitch = 0'\n'HintsFont.Style = 0'\n'HintsFont.Quality = 0'\n'EditorFormStyle = 0'\n'CopyToClipBoardFormat = 2'\n'TitleVisible = 1'\n'TitleText = Sumulated835.Speed plus Forces'\n'TitleFont.Charset = 0'\n'TitleFont.Color = 0'\n'TitleFont.Height = -16'\n'TitleFont.Name = Arial'\n'TitleFont.Orientation = 0'\n'TitleFont.Pitch = 0'\n'TitleFont.Style = 1'\n'TitleFont.Quality = 0'\n'TitleMargin = 0,25'\n'LogFileName = '\n'LogBufferSize = 0'\n'AnnotationDefaultFont.Charset = 0'\n'AnnotationDefaultFont.Color = 16777215'\n'AnnotationDefaultFont.Height = -12'\n'AnnotationDefaultFont.Name = Arial'\n'AnnotationDefaultFont.Orientation = 0'\n'AnnotationDefaultFont.Pitch = 0'\n'AnnotationDefaultFont.Style = 0'\n'AnnotationDefaultFont.Quality = 0'\n'AnnotationDefaultBrushStlye = 0'\n'AnnotationDefaultBrushColor = 16777215'\n'AnnotationDefaultPenStlye = 0'\n'AnnotationDefaultPenColor = 16777215'\n'AnnotationDefaultPenWidth = 1'\n'AnnotationDefaultReference = 0'\n'AnnotationDefaultReferencePositionX = 2'\n'AnnotationDefaultReferencePositionY = 2'\n'AnnotationDefaultReferenceSizeX = 2'\n'AnnotationDefaultReferenceSizeY = 2'\n'ClipAnnotationsToAxes = 1'\n'BackGroundGradientEnabled = 0'\n'BackGroundGradientDirection = 0'\n'BackGroundGradientStartColor = 16711680'\n'BackGroundGradientStopColor = 0'\n'DataFileColumnSeparator = 0'\n'DataFileFormat = 0'\n'DefaultSaveImageDirectory = '\n'DefaultSaveImageFormat = 0'\n'DefaultPropertyDirectory = '\n'DefaultDataDirectory = '\n'DefaultAnnotationDirectory = '\n'DifferentialPropertySave = 0'\n'BackGroundColor = 16777215'\n'BorderStyle = 2'\n'TabStop = 0'\n'TabOrder = -1'\n'[TraceDisplay]'\n'TrackingYAxisSuspend=0'\n'
+IPLOTX_ANNOTATIONS;AnnotationCount = 0'\n'
+TRACEDISPLAY_SHOW_LIMITS;TRUE
+
+SECTION;LOGITEMS
+LOGITEM;P_Main.rForceAir_kN;;REAL;Air-resistance Force, N;Sumulated835;CHECKED;-1;;;;0
+LOGITEM;P_Main.rForceResist_kN;;REAL;Summ of drag forces, N;Sumulated835;CHECKED;-1;;;;0
+LOGITEM;P_Main.rForceSpeed_kN;;REAL;Speed-drag Force, N;Sumulated835;CHECKED;-1;;;;0
+LOGITEM;P_Main.rTimeElapsed_s;;REAL;;Sumulated835;CHECKED;-1;;;;0
+LOGITEM;P_Main.rTractionForceGross_SP_kN;;REAL;Traction Force Setpoint / Request, kN;Sumulated835;CHECKED;-1;;;;0
+LOGITEM;P_Main.rTractionForceNet_kN;;REAL;Net Traction Force, N;Sumulated835;CHECKED;-1;;;;0
+LOGITEM;P_Main.rVelocity_km_per_h;;REAL;Velocity of vehicle, km/h;Sumulated835;CHECKED;-1;;;;0
+
+SECTION;LOGDATA
+Nb;Type;Date;Time;Sumulated835.P_Main.rForceAir_kN;Sumulated835.P_Main.rForceResist_kN;Sumulated835.P_Main.rForceSpeed_kN;Sumulated835.P_Main.rTimeElapsed_s;Sumulated835.P_Main.rTractionForceGross_SP_kN;Sumulated835.P_Main.rTractionForceNet_kN;Sumulated835.P_Main.rVelocity_km_per_h
+0;B+;06.03.2026;17:52:40:199;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+1;+;06.03.2026;17:52:40:298;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+2;+;06.03.2026;17:52:40:399;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+3;+;06.03.2026;17:52:40:498;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+4;+;06.03.2026;17:52:40:599;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+5;+;06.03.2026;17:52:40:699;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+6;+;06.03.2026;17:52:40:799;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+7;+;06.03.2026;17:52:40:898;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+8;+;06.03.2026;17:52:40:999;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+9;+;06.03.2026;17:52:41:099;12,20851;82,36794;23,07143;177;128;45,63205;29,91121
+10;+;06.03.2026;17:52:41:198;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+11;+;06.03.2026;17:52:41:298;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+12;+;06.03.2026;17:52:41:398;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+13;+;06.03.2026;17:52:41:499;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+14;+;06.03.2026;17:52:41:598;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+15;+;06.03.2026;17:52:41:699;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+16;+;06.03.2026;17:52:41:798;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+17;+;06.03.2026;17:52:41:898;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+18;+;06.03.2026;17:52:41:998;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+19;+;06.03.2026;17:52:42:099;12,63861;83,20093;23,47432;187;128;44,79907;30,4152
+20;+;06.03.2026;17:52:42:199;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+21;+;06.03.2026;17:52:42:298;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+22;+;06.03.2026;17:52:42:398;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+23;+;06.03.2026;17:52:42:499;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+24;+;06.03.2026;17:52:42:599;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+25;+;06.03.2026;17:52:42:698;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+26;+;06.03.2026;17:52:42:798;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+27;+;06.03.2026;17:52:42:898;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+28;+;06.03.2026;17:52:42:998;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+29;+;06.03.2026;17:52:43:098;13,06811;84,02597;23,86985;197;128;43,97403;30,90991
+30;+;06.03.2026;17:52:43:198;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+31;+;06.03.2026;17:52:43:299;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+32;+;06.03.2026;17:52:43:398;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+33;+;06.03.2026;17:52:43:499;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+34;+;06.03.2026;17:52:43:598;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+35;+;06.03.2026;17:52:43:698;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+36;+;06.03.2026;17:52:43:798;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+37;+;06.03.2026;17:52:43:898;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+38;+;06.03.2026;17:52:43:999;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+39;+;06.03.2026;17:52:44:099;13,49668;84,84278;24,25809;207;128;43,15722;31,39543
+40;+;06.03.2026;17:52:44:198;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+41;+;06.03.2026;17:52:44:299;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+42;+;06.03.2026;17:52:44:399;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+43;+;06.03.2026;17:52:44:499;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+44;+;06.03.2026;17:52:44:598;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+45;+;06.03.2026;17:52:44:699;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+46;+;06.03.2026;17:52:44:799;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+47;+;06.03.2026;17:52:44:899;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+48;+;06.03.2026;17:52:44:998;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+49;+;06.03.2026;17:52:45:099;13,92401;85,65115;24,63913;217;128;42,34885;31,87185
+50;+;06.03.2026;17:52:45:199;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+51;+;06.03.2026;17:52:45:299;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+52;+;06.03.2026;17:52:45:398;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+53;+;06.03.2026;17:52:45:499;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+54;+;06.03.2026;17:52:45:598;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+55;+;06.03.2026;17:52:45:698;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+56;+;06.03.2026;17:52:45:799;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+57;+;06.03.2026;17:52:45:899;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+58;+;06.03.2026;17:52:45:999;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+59;+;06.03.2026;17:52:46:099;14,34981;86,45084;25,01303;227;128;41,54916;32,33928
+60;+;06.03.2026;17:52:46:198;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+61;+;06.03.2026;17:52:46:299;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+62;+;06.03.2026;17:52:46:399;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+63;+;06.03.2026;17:52:46:499;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+64;+;06.03.2026;17:52:46:599;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+65;+;06.03.2026;17:52:46:699;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+66;+;06.03.2026;17:52:46:799;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+67;+;06.03.2026;17:52:46:899;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+68;+;06.03.2026;17:52:46:999;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+69;+;06.03.2026;17:52:47:099;14,7738;87,24167;25,37987;237;128;40,75833;32,79781
+70;+;06.03.2026;17:52:47:199;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+71;+;06.03.2026;17:52:47:299;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+72;+;06.03.2026;17:52:47:398;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+73;+;06.03.2026;17:52:47:499;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+74;+;06.03.2026;17:52:47:598;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+75;+;06.03.2026;17:52:47:699;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+76;+;06.03.2026;17:52:47:799;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+77;+;06.03.2026;17:52:47:899;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+78;+;06.03.2026;17:52:47:999;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+79;+;06.03.2026;17:52:48:098;15,19572;88,02345;25,73972;247;128;39,97655;33,24755
+80;+;06.03.2026;17:52:48:199;15,61531;88,796;26,09268;257;128;39,204;33,68859
+81;+;06.03.2026;17:52:48:299;15,61531;88,796;26,09268;257;128;39,204;33,68859
+82;+;06.03.2026;17:52:48:399;15,61531;88,796;26,09268;257;128;39,204;33,68859
+83;+;06.03.2026;17:52:48:499;15,61531;88,796;26,09268;257;128;39,204;33,68859
+84;+;06.03.2026;17:52:48:599;15,61531;88,796;26,09268;257;128;39,204;33,68859
+85;+;06.03.2026;17:52:48:698;15,61531;88,796;26,09268;257;128;39,204;33,68859
+86;+;06.03.2026;17:52:48:799;15,61531;88,796;26,09268;257;128;39,204;33,68859
+87;+;06.03.2026;17:52:48:898;15,61531;88,796;26,09268;257;128;39,204;33,68859
+88;+;06.03.2026;17:52:48:999;15,61531;88,796;26,09268;257;128;39,204;33,68859
+89;+;06.03.2026;17:52:49:098;15,61531;88,796;26,09268;257;128;39,204;33,68859
+90;+;06.03.2026;17:52:49:199;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+91;+;06.03.2026;17:52:49:298;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+92;+;06.03.2026;17:52:49:399;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+93;+;06.03.2026;17:52:49:498;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+94;+;06.03.2026;17:52:49:598;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+95;+;06.03.2026;17:52:49:699;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+96;+;06.03.2026;17:52:49:798;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+97;+;06.03.2026;17:52:49:898;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+98;+;06.03.2026;17:52:49:998;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+99;+;06.03.2026;17:52:50:098;16,03235;89,55917;26,43881;267;-192;-281,5591;30,52105
+100;+;06.03.2026;17:52:50:199;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+101;+;06.03.2026;17:52:50:298;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+102;+;06.03.2026;17:52:50:399;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+103;+;06.03.2026;17:52:50:498;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+104;+;06.03.2026;17:52:50:599;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+105;+;06.03.2026;17:52:50:698;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+106;+;06.03.2026;17:52:50:799;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+107;+;06.03.2026;17:52:50:898;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+108;+;06.03.2026;17:52:50:999;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+109;+;06.03.2026;17:52:51:099;13,15923;84,20016;23,95292;277;-192;-276,2002;27,4138
+110;+;06.03.2026;17:52:51:198;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+111;+;06.03.2026;17:52:51:299;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+112;+;06.03.2026;17:52:51:398;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+113;+;06.03.2026;17:52:51:499;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+114;+;06.03.2026;17:52:51:598;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+115;+;06.03.2026;17:52:51:699;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+116;+;06.03.2026;17:52:51:799;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+117;+;06.03.2026;17:52:51:898;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+118;+;06.03.2026;17:52:51:999;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+119;+;06.03.2026;17:52:52:099;10,61622;79,21857;21,51435;287;-192;-271,2186;24,36259
+120;+;06.03.2026;17:52:52:199;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+121;+;06.03.2026;17:52:52:298;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+122;+;06.03.2026;17:52:52:399;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+123;+;06.03.2026;17:52:52:498;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+124;+;06.03.2026;17:52:52:599;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+125;+;06.03.2026;17:52:52:698;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+126;+;06.03.2026;17:52:52:798;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+127;+;06.03.2026;17:52:52:899;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+128;+;06.03.2026;17:52:52:998;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+129;+;06.03.2026;17:52:53:099;8,384526;74,5923;19,11976;297;-192;-266,5923;21,36343
+130;+;06.03.2026;17:52:53:198;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+131;+;06.03.2026;17:52:53:299;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+132;+;06.03.2026;17:52:53:398;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+133;+;06.03.2026;17:52:53:499;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+134;+;06.03.2026;17:52:53:598;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+135;+;06.03.2026;17:52:53:698;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+136;+;06.03.2026;17:52:53:799;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+137;+;06.03.2026;17:52:53:898;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+138;+;06.03.2026;17:52:53:998;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+139;+;06.03.2026;17:52:54:098;6,447235;70,30125;16,76602;307;-192;-262,3012;18,41254
+140;+;06.03.2026;17:52:54:198;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+141;+;06.03.2026;17:52:54:298;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+142;+;06.03.2026;17:52:54:398;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+143;+;06.03.2026;17:52:54:499;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+144;+;06.03.2026;17:52:54:598;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+145;+;06.03.2026;17:52:54:699;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+146;+;06.03.2026;17:52:54:798;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+147;+;06.03.2026;17:52:54:898;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+148;+;06.03.2026;17:52:54:999;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+149;+;06.03.2026;17:52:55:098;4,789156;66,32732;14,45016;317;-192;-258,3273;15,50636
+150;+;06.03.2026;17:52:55:198;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+151;+;06.03.2026;17:52:55:299;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+152;+;06.03.2026;17:52:55:398;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+153;+;06.03.2026;17:52:55:498;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+154;+;06.03.2026;17:52:55:598;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+155;+;06.03.2026;17:52:55:698;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+156;+;06.03.2026;17:52:55:798;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+157;+;06.03.2026;17:52:55:899;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+158;+;06.03.2026;17:52:55:998;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+159;+;06.03.2026;17:52:56:098;3,396652;62,65405;12,16939;327;-192;-254,6541;12,6415
+160;+;06.03.2026;17:52:56:199;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+161;+;06.03.2026;17:52:56:299;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+162;+;06.03.2026;17:52:56:399;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+163;+;06.03.2026;17:52:56:498;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+164;+;06.03.2026;17:52:56:599;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+165;+;06.03.2026;17:52:56:698;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+166;+;06.03.2026;17:52:56:798;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+167;+;06.03.2026;17:52:56:898;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+168;+;06.03.2026;17:52:56:998;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+169;+;06.03.2026;17:52:57:098;2,257505;59,26656;9,921049;337;-192;-251,2666;9,81475
+170;+;06.03.2026;17:52:57:199;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+171;+;06.03.2026;17:52:57:299;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+172;+;06.03.2026;17:52:57:399;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+173;+;06.03.2026;17:52:57:498;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+174;+;06.03.2026;17:52:57:598;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+175;+;06.03.2026;17:52:57:699;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+176;+;06.03.2026;17:52:57:799;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+177;+;06.03.2026;17:52:57:899;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+178;+;06.03.2026;17:52:57:999;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+179;+;06.03.2026;17:52:58:099;1,360787;56,15141;7,702616;347;-304;-360,1514;5,763047
+180;+;06.03.2026;17:52:58:198;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+181;+;06.03.2026;17:52:58:298;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+182;+;06.03.2026;17:52:58:398;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+183;+;06.03.2026;17:52:58:498;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+184;+;06.03.2026;17:52:58:598;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+185;+;06.03.2026;17:52:58:698;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+186;+;06.03.2026;17:52:58:799;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+187;+;06.03.2026;17:52:58:898;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+188;+;06.03.2026;17:52:58:998;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+189;+;06.03.2026;17:52:59:098;0,469176;52,08002;4,52284;357;-304;-356,08;1,757147
+190;+;06.03.2026;17:52:59:199;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+191;+;06.03.2026;17:52:59:298;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+192;+;06.03.2026;17:52:59:399;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+193;+;06.03.2026;17:52:59:498;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+194;+;06.03.2026;17:52:59:599;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+195;+;06.03.2026;17:52:59:698;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+196;+;06.03.2026;17:52:59:798;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+197;+;06.03.2026;17:52:59:898;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+198;+;06.03.2026;17:52:59:999;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+199;+;06.03.2026;17:53:00:098;0,04361617;48,51063;1,379009;367;-304;-352,5106;0
+200;+;06.03.2026;17:53:00:199;0;47,08801;0;377;-304;-351,088;0
+201;+;06.03.2026;17:53:00:298;0;47,08801;0;377;-304;-351,088;0
+202;+;06.03.2026;17:53:00:398;0;47,08801;0;377;-304;-351,088;0
+203;+;06.03.2026;17:53:00:498;0;47,08801;0;377;-304;-351,088;0
+204;+;06.03.2026;17:53:00:599;0;47,08801;0;377;-304;-351,088;0
+205;+;06.03.2026;17:53:00:698;0;47,08801;0;377;-304;-351,088;0
+206;+;06.03.2026;17:53:00:799;0;47,08801;0;377;-304;-351,088;0
+207;+;06.03.2026;17:53:00:898;0;47,08801;0;377;-304;-351,088;0
+208;+;06.03.2026;17:53:00:999;0;47,08801;0;377;-304;-351,088;0
+209;+;06.03.2026;17:53:01:098;0;47,08801;0;377;-304;-351,088;0
+210;+;06.03.2026;17:53:01:199;0;47,08801;0;387;-304;-351,088;0
+211;+;06.03.2026;17:53:01:299;0;47,08801;0;387;-304;-351,088;0
+212;+;06.03.2026;17:53:01:398;0;47,08801;0;387;-304;-351,088;0
+213;+;06.03.2026;17:53:01:498;0;47,08801;0;387;-304;-351,088;0
+214;+;06.03.2026;17:53:01:598;0;47,08801;0;387;-304;-351,088;0
+215;+;06.03.2026;17:53:01:698;0;47,08801;0;387;-304;-351,088;0
+216;+;06.03.2026;17:53:01:798;0;47,08801;0;387;-304;-351,088;0
+217;+;06.03.2026;17:53:01:899;0;47,08801;0;387;-304;-351,088;0
+218;+;06.03.2026;17:53:01:998;0;47,08801;0;387;-304;-351,088;0
+219;+;06.03.2026;17:53:02:098;0;47,08801;0;387;-304;-351,088;0
+220;+;06.03.2026;17:53:02:199;0;47,08801;0;397;-304;-351,088;0
+221;+;06.03.2026;17:53:02:298;0;47,08801;0;397;-304;-351,088;0
+222;+;06.03.2026;17:53:02:399;0;47,08801;0;397;-304;-351,088;0
+223;+;06.03.2026;17:53:02:498;0;47,08801;0;397;-304;-351,088;0
+224;+;06.03.2026;17:53:02:599;0;47,08801;0;397;-304;-351,088;0
+225;+;06.03.2026;17:53:02:698;0;47,08801;0;397;-304;-351,088;0
+226;+;06.03.2026;17:53:02:798;0;47,08801;0;397;-304;-351,088;0
+227;+;06.03.2026;17:53:02:898;0;47,08801;0;397;-304;-351,088;0
+228;+;06.03.2026;17:53:02:998;0;47,08801;0;397;-304;-351,088;0
+229;+;06.03.2026;17:53:03:098;0;47,08801;0;397;-304;-351,088;0
+230;+;06.03.2026;17:53:03:198;0;47,08801;0;407;-304;-351,088;0
+231;+;06.03.2026;17:53:03:299;0;47,08801;0;407;-304;-351,088;0
+232;+;06.03.2026;17:53:03:398;0;47,08801;0;407;-304;-351,088;0
+233;+;06.03.2026;17:53:03:498;0;47,08801;0;407;-304;-351,088;0
+234;+;06.03.2026;17:53:03:598;0;47,08801;0;407;-304;-351,088;0
+235;+;06.03.2026;17:53:03:698;0;47,08801;0;407;-304;-351,088;0
+236;+;06.03.2026;17:53:03:799;0;47,08801;0;407;-304;-351,088;0
+237;+;06.03.2026;17:53:03:899;0;47,08801;0;407;-304;-351,088;0
+238;+;06.03.2026;17:53:03:999;0;47,08801;0;407;-304;-351,088;0
+239;+;06.03.2026;17:53:04:098;0;47,08801;0;407;-304;-351,088;0
+240;+;06.03.2026;17:53:04:199;0;47,08801;0;0;0;-47,08801;0
+241;+;06.03.2026;17:53:04:298;0;47,08801;0;0;0;-47,08801;0
+242;+;06.03.2026;17:53:04:398;0;47,08801;0;0;0;-47,08801;0
+243;+;06.03.2026;17:53:04:499;0;47,08801;0;0;0;-47,08801;0
+244;+;06.03.2026;17:53:04:598;0;47,08801;0;0;0;-47,08801;0
+245;+;06.03.2026;17:53:04:699;0;47,08801;0;0;0;-47,08801;0
+246;+;06.03.2026;17:53:04:799;0;47,08801;0;0;0;-47,08801;0
+247;+;06.03.2026;17:53:04:898;0;47,08801;0;0;0;-47,08801;0
+248;+;06.03.2026;17:53:04:998;0;47,08801;0;0;0;-47,08801;0
+249;+;06.03.2026;17:53:05:099;0;47,08801;0;0;0;-47,08801;0
+250;+;06.03.2026;17:53:05:199;0;47,08801;0;10;0;-47,08801;0
+251;+;06.03.2026;17:53:05:299;0;47,08801;0;10;0;-47,08801;0
+252;+;06.03.2026;17:53:05:399;0;47,08801;0;10;0;-47,08801;0
+253;+;06.03.2026;17:53:05:499;0;47,08801;0;10;0;-47,08801;0
+254;+;06.03.2026;17:53:05:599;0;47,08801;0;10;0;-47,08801;0
+255;+;06.03.2026;17:53:05:699;0;47,08801;0;10;0;-47,08801;0
+256;+;06.03.2026;17:53:05:799;0;47,08801;0;10;0;-47,08801;0
+257;+;06.03.2026;17:53:05:899;0;47,08801;0;10;0;-47,08801;0
+258;+;06.03.2026;17:53:05:998;0;47,08801;0;10;0;-47,08801;0
+259;+;06.03.2026;17:53:06:099;0;47,08801;0;10;0;-47,08801;0
+260;+;06.03.2026;17:53:06:199;0;47,08801;0;20;0;-47,08801;0
+261;+;06.03.2026;17:53:06:299;0;47,08801;0;20;0;-47,08801;0
+262;+;06.03.2026;17:53:06:398;0;47,08801;0;20;0;-47,08801;0
+263;+;06.03.2026;17:53:06:498;0;47,08801;0;20;0;-47,08801;0
+264;+;06.03.2026;17:53:06:599;0;47,08801;0;20;0;-47,08801;0
+265;+;06.03.2026;17:53:06:698;0;47,08801;0;20;0;-47,08801;0
+266;+;06.03.2026;17:53:06:799;0;47,08801;0;20;0;-47,08801;0
+267;+;06.03.2026;17:53:06:899;0;47,08801;0;20;0;-47,08801;0
+268;+;06.03.2026;17:53:06:998;0;47,08801;0;20;0;-47,08801;0
+269;+;06.03.2026;17:53:07:099;0;47,08801;0;20;0;-47,08801;0
+270;+;06.03.2026;17:53:07:199;0;47,08801;0;30;0;-47,08801;0
+271;+;06.03.2026;17:53:07:299;0;47,08801;0;30;0;-47,08801;0
+272;+;06.03.2026;17:53:07:399;0;47,08801;0;30;0;-47,08801;0
+273;+;06.03.2026;17:53:07:498;0;47,08801;0;30;0;-47,08801;0
+274;+;06.03.2026;17:53:07:599;0;47,08801;0;30;0;-47,08801;0
+275;+;06.03.2026;17:53:07:698;0;47,08801;0;30;0;-47,08801;0
+276;+;06.03.2026;17:53:07:799;0;47,08801;0;30;0;-47,08801;0
+277;+;06.03.2026;17:53:07:899;0;47,08801;0;30;0;-47,08801;0
+278;+;06.03.2026;17:53:07:998;0;47,08801;0;30;0;-47,08801;0
+279;+;06.03.2026;17:53:08:099;0;47,08801;0;30;0;-47,08801;0
+280;+;06.03.2026;17:53:08:198;0;47,08801;0;40;313,6;266,512;2,99826
+281;+;06.03.2026;17:53:08:298;0;47,08801;0;40;313,6;266,512;2,99826
+282;+;06.03.2026;17:53:08:399;0;47,08801;0;40;313,6;266,512;2,99826
+283;+;06.03.2026;17:53:08:498;0;47,08801;0;40;313,6;266,512;2,99826
+284;+;06.03.2026;17:53:08:599;0;47,08801;0;40;313,6;266,512;2,99826
+285;+;06.03.2026;17:53:08:698;0;47,08801;0;40;313,6;266,512;2,99826
+286;+;06.03.2026;17:53:08:798;0;47,08801;0;40;313,6;266,512;2,99826
+287;+;06.03.2026;17:53:08:898;0;47,08801;0;40;313,6;266,512;2,99826
+288;+;06.03.2026;17:53:08:999;0;47,08801;0;40;313,6;266,512;2,99826
+289;+;06.03.2026;17:53:09:099;0;47,08801;0;40;313,6;266,512;2,99826
+290;+;06.03.2026;17:53:09:198;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+291;+;06.03.2026;17:53:09:299;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+292;+;06.03.2026;17:53:09:399;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+293;+;06.03.2026;17:53:09:499;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+294;+;06.03.2026;17:53:09:598;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+295;+;06.03.2026;17:53:09:699;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+296;+;06.03.2026;17:53:09:799;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+297;+;06.03.2026;17:53:09:898;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+298;+;06.03.2026;17:53:09:998;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+299;+;06.03.2026;17:53:10:098;0,1269902;49,56803;2,353034;50;313,6;264,032;5,968619
+300;+;06.03.2026;17:53:10:198;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+301;+;06.03.2026;17:53:10:298;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+302;+;06.03.2026;17:53:10:398;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+303;+;06.03.2026;17:53:10:499;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+304;+;06.03.2026;17:53:10:598;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+305;+;06.03.2026;17:53:10:699;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+306;+;06.03.2026;17:53:10:798;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+307;+;06.03.2026;17:53:10:898;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+308;+;06.03.2026;17:53:10:998;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+309;+;06.03.2026;17:53:11:099;0,5032448;52,27542;4,684173;60;313,6;261,3246;8,908521
+310;+;06.03.2026;17:53:11:199;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+311;+;06.03.2026;17:53:11:299;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+312;+;06.03.2026;17:53:11:398;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+313;+;06.03.2026;17:53:11:499;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+314;+;06.03.2026;17:53:11:598;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+315;+;06.03.2026;17:53:11:699;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+316;+;06.03.2026;17:53:11:799;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+317;+;06.03.2026;17:53:11:898;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+318;+;06.03.2026;17:53:11:999;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+319;+;06.03.2026;17:53:12:098;1,121096;55,20051;6,991408;70;313,6;258,3995;11,81551
+320;+;06.03.2026;17:53:12:199;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+321;+;06.03.2026;17:53:12:299;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+322;+;06.03.2026;17:53:12:399;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+323;+;06.03.2026;17:53:12:499;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+324;+;06.03.2026;17:53:12:598;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+325;+;06.03.2026;17:53:12:699;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+326;+;06.03.2026;17:53:12:799;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+327;+;06.03.2026;17:53:12:898;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+328;+;06.03.2026;17:53:12:998;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+329;+;06.03.2026;17:53:13:098;1,972136;58,33296;9,272817;80;313,6;255,267;14,68727
+330;+;06.03.2026;17:53:13:198;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+331;+;06.03.2026;17:53:13:298;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+332;+;06.03.2026;17:53:13:399;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+333;+;06.03.2026;17:53:13:498;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+334;+;06.03.2026;17:53:13:598;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+335;+;06.03.2026;17:53:13:699;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+336;+;06.03.2026;17:53:13:798;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+337;+;06.03.2026;17:53:13:898;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+338;+;06.03.2026;17:53:13:999;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+339;+;06.03.2026;17:53:14:098;3,047289;61,66186;11,52657;90;313,6;251,9381;17,52157
+340;+;06.03.2026;17:53:14:198;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+341;+;06.03.2026;17:53:14:298;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+342;+;06.03.2026;17:53:14:399;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+343;+;06.03.2026;17:53:14:498;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+344;+;06.03.2026;17:53:14:598;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+345;+;06.03.2026;17:53:14:699;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+346;+;06.03.2026;17:53:14:798;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+347;+;06.03.2026;17:53:14:899;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+348;+;06.03.2026;17:53:14:998;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+349;+;06.03.2026;17:53:15:098;4,336883;65,17582;13,75093;100;313,6;248,4242;20,31635
+350;+;06.03.2026;17:53:15:198;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+351;+;06.03.2026;17:53:15:298;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+352;+;06.03.2026;17:53:15:398;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+353;+;06.03.2026;17:53:15:499;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+354;+;06.03.2026;17:53:15:598;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+355;+;06.03.2026;17:53:15:699;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+356;+;06.03.2026;17:53:15:798;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+357;+;06.03.2026;17:53:15:899;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+358;+;06.03.2026;17:53:15:998;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+359;+;06.03.2026;17:53:16:099;5,830728;68,863;15,94427;110;313,6;244,737;23,06964
+360;+;06.03.2026;17:53:16:198;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+361;+;06.03.2026;17:53:16:298;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+362;+;06.03.2026;17:53:16:399;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+363;+;06.03.2026;17:53:16:498;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+364;+;06.03.2026;17:53:16:598;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+365;+;06.03.2026;17:53:16:698;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+366;+;06.03.2026;17:53:16:798;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+367;+;06.03.2026;17:53:16:898;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+368;+;06.03.2026;17:53:16:998;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+369;+;06.03.2026;17:53:17:099;7,518186;72,71124;18,10505;120;313,6;240,8887;25,77963
+370;+;06.03.2026;17:53:17:199;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+371;+;06.03.2026;17:53:17:298;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+372;+;06.03.2026;17:53:17:398;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+373;+;06.03.2026;17:53:17:498;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+374;+;06.03.2026;17:53:17:598;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+375;+;06.03.2026;17:53:17:698;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+376;+;06.03.2026;17:53:17:799;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+377;+;06.03.2026;17:53:17:898;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+378;+;06.03.2026;17:53:17:998;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+379;+;06.03.2026;17:53:18:098;9,388258;76,70812;20,23186;130;313,6;236,8919;28,44467
+380;+;06.03.2026;17:53:18:198;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+381;+;06.03.2026;17:53:18:299;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+382;+;06.03.2026;17:53:18:399;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+383;+;06.03.2026;17:53:18:498;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+384;+;06.03.2026;17:53:18:599;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+385;+;06.03.2026;17:53:18:699;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+386;+;06.03.2026;17:53:18:798;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+387;+;06.03.2026;17:53:18:898;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+388;+;06.03.2026;17:53:18:999;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+389;+;06.03.2026;17:53:19:099;11,42966;80,84105;22,32338;140;128;47,15895;28,97521
+390;+;06.03.2026;17:53:19:198;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+391;+;06.03.2026;17:53:19:299;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+392;+;06.03.2026;17:53:19:399;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+393;+;06.03.2026;17:53:19:498;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+394;+;06.03.2026;17:53:19:599;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+395;+;06.03.2026;17:53:19:698;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+396;+;06.03.2026;17:53:19:799;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+397;+;06.03.2026;17:53:19:898;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+398;+;06.03.2026;17:53:19:999;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+399;+;06.03.2026;17:53:20:098;11,86;81,68774;22,73974;150;128;46,31226;29,49622
+400;+;06.03.2026;17:53:20:198;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+401;+;06.03.2026;17:53:20:298;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+402;+;06.03.2026;17:53:20:398;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+403;+;06.03.2026;17:53:20:499;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+404;+;06.03.2026;17:53:20:599;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+405;+;06.03.2026;17:53:20:699;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+406;+;06.03.2026;17:53:20:799;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+407;+;06.03.2026;17:53:20:898;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+408;+;06.03.2026;17:53:20:998;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+409;+;06.03.2026;17:53:21:099;12,29035;82,52699;23,14863;160;128;45,47301;30,00779
+410;+;06.03.2026;17:53:21:199;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+411;+;06.03.2026;17:53:21:298;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+412;+;06.03.2026;17:53:21:399;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+413;+;06.03.2026;17:53:21:498;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+414;+;06.03.2026;17:53:21:598;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+415;+;06.03.2026;17:53:21:699;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+416;+;06.03.2026;17:53:21:798;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+417;+;06.03.2026;17:53:21:898;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+418;+;06.03.2026;17:53:21:999;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+419;+;06.03.2026;17:53:22:098;12,72037;83,35848;23,55012;170;128;44,64151;30,51001
+420;+;06.03.2026;17:53:22:199;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+421;+;06.03.2026;17:53:22:299;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+422;+;06.03.2026;17:53:22:399;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+423;+;06.03.2026;17:53:22:499;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+424;+;06.03.2026;17:53:22:599;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+425;+;06.03.2026;17:53:22:699;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+426;+;06.03.2026;17:53:22:799;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+427;+;06.03.2026;17:53:22:898;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+428;+;06.03.2026;17:53:22:999;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+429;+;06.03.2026;17:53:23:099;13,14971;84,18197;23,94426;180;128;43,81803;31,00296
+430;+;06.03.2026;17:53:23:199;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+431;+;06.03.2026;17:53:23:299;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+432;+;06.03.2026;17:53:23:398;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+433;+;06.03.2026;17:53:23:498;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+434;+;06.03.2026;17:53:23:599;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+435;+;06.03.2026;17:53:23:698;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+436;+;06.03.2026;17:53:23:799;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+437;+;06.03.2026;17:53:23:899;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+438;+;06.03.2026;17:53:23:999;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+439;+;06.03.2026;17:53:24:098;13,57806;84,99719;24,33113;190;128;43,0028;31,48674
+440;+;06.03.2026;17:53:24:199;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+441;+;06.03.2026;17:53:24:298;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+442;+;06.03.2026;17:53:24:398;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+443;+;06.03.2026;17:53:24:498;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+444;+;06.03.2026;17:53:24:598;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+445;+;06.03.2026;17:53:24:698;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+446;+;06.03.2026;17:53:24:799;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+447;+;06.03.2026;17:53:24:899;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+448;+;06.03.2026;17:53:24:998;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+449;+;06.03.2026;17:53:25:098;14,00513;85,80393;24,7108;200;128;42,19607;31,96145
+450;+;06.03.2026;17:53:25:198;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+451;+;06.03.2026;17:53:25:298;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+452;+;06.03.2026;17:53:25:399;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+453;+;06.03.2026;17:53:25:498;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+454;+;06.03.2026;17:53:25:599;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+455;+;06.03.2026;17:53:25:699;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+456;+;06.03.2026;17:53:25:798;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+457;+;06.03.2026;17:53:25:898;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+458;+;06.03.2026;17:53:25:998;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+459;+;06.03.2026;17:53:26:099;14,4306;86,60195;25,08335;210;128;41,39805;32,42718
+460;+;06.03.2026;17:53:26:199;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+461;+;06.03.2026;17:53:26:299;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+462;+;06.03.2026;17:53:26:399;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+463;+;06.03.2026;17:53:26:498;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+464;+;06.03.2026;17:53:26:598;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+465;+;06.03.2026;17:53:26:698;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+466;+;06.03.2026;17:53:26:798;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+467;+;06.03.2026;17:53:26:898;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+468;+;06.03.2026;17:53:26:998;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+469;+;06.03.2026;17:53:27:098;14,85422;87,39108;25,44885;220;128;40,60892;32,88403
+470;+;06.03.2026;17:53:27:199;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+471;+;06.03.2026;17:53:27:299;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+472;+;06.03.2026;17:53:27:398;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+473;+;06.03.2026;17:53:27:498;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+474;+;06.03.2026;17:53:27:599;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+475;+;06.03.2026;17:53:27:698;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+476;+;06.03.2026;17:53:27:798;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+477;+;06.03.2026;17:53:27:898;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+478;+;06.03.2026;17:53:27:999;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+479;+;06.03.2026;17:53:28:098;15,27571;88,1711;25,80738;230;128;39,8289;33,3321
+480;+;06.03.2026;17:53:28:199;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+481;+;06.03.2026;17:53:28:299;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+482;+;06.03.2026;17:53:28:398;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+483;+;06.03.2026;17:53:28:499;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+484;+;06.03.2026;17:53:28:598;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+485;+;06.03.2026;17:53:28:699;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+486;+;06.03.2026;17:53:28:798;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+487;+;06.03.2026;17:53:28:898;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+488;+;06.03.2026;17:53:28:999;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+489;+;06.03.2026;17:53:29:098;15,69484;88,94187;26,15903;240;128;39,05812;33,7715
+490;+;06.03.2026;17:53:29:198;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+491;+;06.03.2026;17:53:29:299;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+492;+;06.03.2026;17:53:29:398;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+493;+;06.03.2026;17:53:29:499;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+494;+;06.03.2026;17:53:29:599;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+495;+;06.03.2026;17:53:29:698;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+496;+;06.03.2026;17:53:29:798;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+497;+;06.03.2026;17:53:29:898;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+498;+;06.03.2026;17:53:29:999;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+499;+;06.03.2026;17:53:30:098;16,11136;89,70325;26,50388;250;128;38,29675;34,20234
+500;+;06.03.2026;17:53:30:199;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+501;+;06.03.2026;17:53:30:298;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+502;+;06.03.2026;17:53:30:398;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+503;+;06.03.2026;17:53:30:498;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+504;+;06.03.2026;17:53:30:599;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+505;+;06.03.2026;17:53:30:698;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+506;+;06.03.2026;17:53:30:799;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+507;+;06.03.2026;17:53:30:899;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+508;+;06.03.2026;17:53:30:999;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+509;+;06.03.2026;17:53:31:099;16,52507;90,45507;26,842;260;-192;-282,455;31,02472
+510;+;06.03.2026;17:53:31:199;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+511;+;06.03.2026;17:53:31:299;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+512;+;06.03.2026;17:53:31:399;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+513;+;06.03.2026;17:53:31:498;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+514;+;06.03.2026;17:53:31:599;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+515;+;06.03.2026;17:53:31:698;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+516;+;06.03.2026;17:53:31:799;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+517;+;06.03.2026;17:53:31:899;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+518;+;06.03.2026;17:53:31:998;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+519;+;06.03.2026;17:53:32:099;13,59713;85,03334;24,34821;270;-192;-277,0334;27,9081
+520;+;06.03.2026;17:53:32:199;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+521;+;06.03.2026;17:53:32:298;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+522;+;06.03.2026;17:53:32:398;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+523;+;06.03.2026;17:53:32:499;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+524;+;06.03.2026;17:53:32:598;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+525;+;06.03.2026;17:53:32:699;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+526;+;06.03.2026;17:53:32:799;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+527;+;06.03.2026;17:53:32:899;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+528;+;06.03.2026;17:53:32:999;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+529;+;06.03.2026;17:53:33:098;11,00252;79,9928;21,90228;280;-192;-271,9928;24,84818
+530;+;06.03.2026;17:53:33:198;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+531;+;06.03.2026;17:53:33:299;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+532;+;06.03.2026;17:53:33:398;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+533;+;06.03.2026;17:53:33:499;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+534;+;06.03.2026;17:53:33:599;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+535;+;06.03.2026;17:53:33:698;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+536;+;06.03.2026;17:53:33:798;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+537;+;06.03.2026;17:53:33:899;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+538;+;06.03.2026;17:53:33:999;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+539;+;06.03.2026;17:53:34:099;8,722092;75,31094;19,50085;290;-192;-267,3109;21,84093
+540;+;06.03.2026;17:53:34:198;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+541;+;06.03.2026;17:53:34:299;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+542;+;06.03.2026;17:53:34:399;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+543;+;06.03.2026;17:53:34:498;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+544;+;06.03.2026;17:53:34:599;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+545;+;06.03.2026;17:53:34:698;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+546;+;06.03.2026;17:53:34:799;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+547;+;06.03.2026;17:53:34:898;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+548;+;06.03.2026;17:53:34:998;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+549;+;06.03.2026;17:53:35:098;6,738664;70,96743;17,14076;300;-192;-262,9674;18,88255
+550;+;06.03.2026;17:53:35:198;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+551;+;06.03.2026;17:53:35:298;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+552;+;06.03.2026;17:53:35:398;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+553;+;06.03.2026;17:53:35:498;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+554;+;06.03.2026;17:53:35:599;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+555;+;06.03.2026;17:53:35:698;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+556;+;06.03.2026;17:53:35:799;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+557;+;06.03.2026;17:53:35:899;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+558;+;06.03.2026;17:53:35:998;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+559;+;06.03.2026;17:53:36:099;5,036777;66,9438;14,81903;310;-192;-258,9438;15,96943
+560;+;06.03.2026;17:53:36:198;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+561;+;06.03.2026;17:53:36:298;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+562;+;06.03.2026;17:53:36:399;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+563;+;06.03.2026;17:53:36:498;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+564;+;06.03.2026;17:53:36:599;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+565;+;06.03.2026;17:53:36:698;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+566;+;06.03.2026;17:53:36:799;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+567;+;06.03.2026;17:53:36:898;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+568;+;06.03.2026;17:53:36:998;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+569;+;06.03.2026;17:53:37:098;3,602553;63,22337;12,53281;320;-192;-255,2234;13,09817
+570;+;06.03.2026;17:53:37:199;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+571;+;06.03.2026;17:53:37:299;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+572;+;06.03.2026;17:53:37:398;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+573;+;06.03.2026;17:53:37:499;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+574;+;06.03.2026;17:53:37:598;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+575;+;06.03.2026;17:53:37:698;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+576;+;06.03.2026;17:53:37:799;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+577;+;06.03.2026;17:53:37:898;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+578;+;06.03.2026;17:53:37:999;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+579;+;06.03.2026;17:53:38:098;2,423553;59,791;10,27944;330;-192;-251,791;10,26552
+580;+;06.03.2026;17:53:38:198;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+581;+;06.03.2026;17:53:38:298;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+582;+;06.03.2026;17:53:38:398;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+583;+;06.03.2026;17:53:38:498;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+584;+;06.03.2026;17:53:38:599;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+585;+;06.03.2026;17:53:38:698;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+586;+;06.03.2026;17:53:38:799;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+587;+;06.03.2026;17:53:38:898;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+588;+;06.03.2026;17:53:38:998;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+589;+;06.03.2026;17:53:39:098;1,488653;56,63303;8,05638;340;-304;-360,633;6,208397
+590;+;06.03.2026;17:53:39:198;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+591;+;06.03.2026;17:53:39:298;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+592;+;06.03.2026;17:53:39:398;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+593;+;06.03.2026;17:53:39:499;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+594;+;06.03.2026;17:53:39:599;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+595;+;06.03.2026;17:53:39:698;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+596;+;06.03.2026;17:53:39:799;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+597;+;06.03.2026;17:53:39:899;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+598;+;06.03.2026;17:53:39:998;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+599;+;06.03.2026;17:53:40:098;0,5444908;52,50484;4,872351;350;-304;-356,5049;2,197718
+600;+;06.03.2026;17:53:40:198;0,06823002;48,881;1,724769;360;-304;-352,881;0
+601;+;06.03.2026;17:53:40:299;0,06823002;48,881;1,724769;360;-304;-352,881;0
+602;+;06.03.2026;17:53:40:399;0,06823002;48,881;1,724769;360;-304;-352,881;0
+603;+;06.03.2026;17:53:40:498;0,06823002;48,881;1,724769;360;-304;-352,881;0
+604;+;06.03.2026;17:53:40:598;0,06823002;48,881;1,724769;360;-304;-352,881;0
+605;+;06.03.2026;17:53:40:699;0,06823002;48,881;1,724769;360;-304;-352,881;0
+606;+;06.03.2026;17:53:40:799;0,06823002;48,881;1,724769;360;-304;-352,881;0
+607;+;06.03.2026;17:53:40:898;0,06823002;48,881;1,724769;360;-304;-352,881;0
+608;+;06.03.2026;17:53:40:999;0,06823002;48,881;1,724769;360;-304;-352,881;0
+609;+;06.03.2026;17:53:41:098;0,06823002;48,881;1,724769;360;-304;-352,881;0
+610;+;06.03.2026;17:53:41:199;0;47,08801;0;370;-304;-351,088;0
+611;+;06.03.2026;17:53:41:298;0;47,08801;0;370;-304;-351,088;0
+612;+;06.03.2026;17:53:41:398;0;47,08801;0;370;-304;-351,088;0
+613;+;06.03.2026;17:53:41:498;0;47,08801;0;370;-304;-351,088;0
+614;+;06.03.2026;17:53:41:599;0;47,08801;0;370;-304;-351,088;0
+615;+;06.03.2026;17:53:41:699;0;47,08801;0;370;-304;-351,088;0
+616;+;06.03.2026;17:53:41:799;0;47,08801;0;370;-304;-351,088;0
+617;+;06.03.2026;17:53:41:899;0;47,08801;0;370;-304;-351,088;0
+618;+;06.03.2026;17:53:41:998;0;47,08801;0;370;-304;-351,088;0
+619;+;06.03.2026;17:53:42:099;0;47,08801;0;370;-304;-351,088;0
+620;+;06.03.2026;17:53:42:199;0;47,08801;0;380;-304;-351,088;0
+621;+;06.03.2026;17:53:42:298;0;47,08801;0;380;-304;-351,088;0
+622;+;06.03.2026;17:53:42:399;0;47,08801;0;380;-304;-351,088;0
+623;+;06.03.2026;17:53:42:498;0;47,08801;0;380;-304;-351,088;0
+624;+;06.03.2026;17:53:42:598;0;47,08801;0;380;-304;-351,088;0
+625;+;06.03.2026;17:53:42:699;0;47,08801;0;380;-304;-351,088;0
+626;+;06.03.2026;17:53:42:798;0;47,08801;0;380;-304;-351,088;0
+627;+;06.03.2026;17:53:42:899;0;47,08801;0;380;-304;-351,088;0
+628;+;06.03.2026;17:53:42:999;0;47,08801;0;380;-304;-351,088;0
+629;+;06.03.2026;17:53:43:099;0;47,08801;0;380;-304;-351,088;0
+630;+;06.03.2026;17:53:43:198;0;47,08801;0;390;-304;-351,088;0
+631;+;06.03.2026;17:53:43:299;0;47,08801;0;390;-304;-351,088;0
+632;+;06.03.2026;17:53:43:399;0;47,08801;0;390;-304;-351,088;0
+633;+;06.03.2026;17:53:43:499;0;47,08801;0;390;-304;-351,088;0
+634;+;06.03.2026;17:53:43:599;0;47,08801;0;390;-304;-351,088;0
+635;+;06.03.2026;17:53:43:699;0;47,08801;0;390;-304;-351,088;0
+636;+;06.03.2026;17:53:43:798;0;47,08801;0;390;-304;-351,088;0
+637;+;06.03.2026;17:53:43:899;0;47,08801;0;390;-304;-351,088;0
+638;+;06.03.2026;17:53:43:999;0;47,08801;0;390;-304;-351,088;0
+639;+;06.03.2026;17:53:44:099;0;47,08801;0;390;-304;-351,088;0
+640;+;06.03.2026;17:53:44:198;0;47,08801;0;400;-304;-351,088;0
+641;+;06.03.2026;17:53:44:299;0;47,08801;0;400;-304;-351,088;0
+642;+;06.03.2026;17:53:44:399;0;47,08801;0;400;-304;-351,088;0
+643;+;06.03.2026;17:53:44:499;0;47,08801;0;400;-304;-351,088;0
+644;+;06.03.2026;17:53:44:599;0;47,08801;0;400;-304;-351,088;0
+645;+;06.03.2026;17:53:44:698;0;47,08801;0;400;-304;-351,088;0
+646;+;06.03.2026;17:53:44:799;0;47,08801;0;400;-304;-351,088;0
+647;+;06.03.2026;17:53:44:899;0;47,08801;0;400;-304;-351,088;0
+648;+;06.03.2026;17:53:44:998;0;47,08801;0;400;-304;-351,088;0
+649;+;06.03.2026;17:53:45:099;0;47,08801;0;400;-304;-351,088;0
+650;+;06.03.2026;17:53:45:198;0;47,08801;0;0;0;-47,08801;0
+651;+;06.03.2026;17:53:45:299;0;47,08801;0;0;0;-47,08801;0
+652;+;06.03.2026;17:53:45:398;0;47,08801;0;0;0;-47,08801;0
+653;+;06.03.2026;17:53:45:498;0;47,08801;0;0;0;-47,08801;0
+654;+;06.03.2026;17:53:45:599;0;47,08801;0;0;0;-47,08801;0
+655;+;06.03.2026;17:53:45:698;0;47,08801;0;0;0;-47,08801;0
+656;+;06.03.2026;17:53:45:799;0;47,08801;0;0;0;-47,08801;0
+657;+;06.03.2026;17:53:45:899;0;47,08801;0;0;0;-47,08801;0
+658;+;06.03.2026;17:53:45:999;0;47,08801;0;0;0;-47,08801;0
+659;+;06.03.2026;17:53:46:098;0;47,08801;0;0;0;-47,08801;0
+660;+;06.03.2026;17:53:46:199;0;47,08801;0;10;0;-47,08801;0
+661;+;06.03.2026;17:53:46:298;0;47,08801;0;10;0;-47,08801;0
+662;+;06.03.2026;17:53:46:399;0;47,08801;0;10;0;-47,08801;0
+663;+;06.03.2026;17:53:46:499;0;47,08801;0;10;0;-47,08801;0
+664;+;06.03.2026;17:53:46:598;0;47,08801;0;10;0;-47,08801;0
+665;+;06.03.2026;17:53:46:699;0;47,08801;0;10;0;-47,08801;0
+666;+;06.03.2026;17:53:46:798;0;47,08801;0;10;0;-47,08801;0
+667;+;06.03.2026;17:53:46:898;0;47,08801;0;10;0;-47,08801;0
+668;+;06.03.2026;17:53:46:998;0;47,08801;0;10;0;-47,08801;0
+669;+;06.03.2026;17:53:47:098;0;47,08801;0;10;0;-47,08801;0
+670;+;06.03.2026;17:53:47:198;0;47,08801;0;20;0;-47,08801;0
+671;+;06.03.2026;17:53:47:298;0;47,08801;0;20;0;-47,08801;0
+672;+;06.03.2026;17:53:47:398;0;47,08801;0;20;0;-47,08801;0
+673;+;06.03.2026;17:53:47:499;0;47,08801;0;20;0;-47,08801;0
+674;+;06.03.2026;17:53:47:599;0;47,08801;0;20;0;-47,08801;0
+675;+;06.03.2026;17:53:47:698;0;47,08801;0;20;0;-47,08801;0
+676;+;06.03.2026;17:53:47:799;0;47,08801;0;20;0;-47,08801;0
+677;+;06.03.2026;17:53:47:898;0;47,08801;0;20;0;-47,08801;0
+678;+;06.03.2026;17:53:47:999;0;47,08801;0;20;0;-47,08801;0
+679;+;06.03.2026;17:53:48:099;0;47,08801;0;20;0;-47,08801;0
+680;+;06.03.2026;17:53:48:199;0;47,08801;0;30;0;-47,08801;0
+681;+;06.03.2026;17:53:48:299;0;47,08801;0;30;0;-47,08801;0
+682;+;06.03.2026;17:53:48:399;0;47,08801;0;30;0;-47,08801;0
+683;+;06.03.2026;17:53:48:499;0;47,08801;0;30;0;-47,08801;0
+684;+;06.03.2026;17:53:48:599;0;47,08801;0;30;0;-47,08801;0
+685;+;06.03.2026;17:53:48:699;0;47,08801;0;30;0;-47,08801;0
+686;+;06.03.2026;17:53:48:798;0;47,08801;0;30;0;-47,08801;0
+687;+;06.03.2026;17:53:48:899;0;47,08801;0;30;0;-47,08801;0
+688;+;06.03.2026;17:53:48:998;0;47,08801;0;30;0;-47,08801;0
+689;+;06.03.2026;17:53:49:098;0;47,08801;0;30;0;-47,08801;0
+690;+;06.03.2026;17:53:49:199;0;47,08801;0;40;313,6;266,512;2,99826
+691;+;06.03.2026;17:53:49:299;0;47,08801;0;40;313,6;266,512;2,99826
+692;+;06.03.2026;17:53:49:398;0;47,08801;0;40;313,6;266,512;2,99826
+693;+;06.03.2026;17:53:49:498;0;47,08801;0;40;313,6;266,512;2,99826
+694;+;06.03.2026;17:53:49:598;0;47,08801;0;40;313,6;266,512;2,99826
+695;+;06.03.2026;17:53:49:699;0;47,08801;0;40;313,6;266,512;2,99826
